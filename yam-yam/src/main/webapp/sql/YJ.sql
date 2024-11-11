@@ -27,12 +27,12 @@ CREATE TABLE reviews_store(
 
 --chat 테이블 생성
 CREATE TABLE chat(
-chat_num NUMBER PRIMARY KEY,
+chat_num NUMBER PRIMARY KEY, -- chat_num을 주키로 지정
 chat_sender_id VARCHAR2(30),
 chat_receiver_id VARCHAR2(30),
 chat_message VARCHAR2(300),
 chat_sent_at DATE,
 chat_read NUMBER,
 mem_num NUMBER,
-CONSTRAINT fk_chat_mem_num FOREIGN KEY (mem_num) REFERENCES MEMBER(mem_num)
+CONSTRAINT fk_chat_mem_num FOREIGN KEY (mem_num) REFERENCES MEMBER(mem_num) --mem_num이 member 테이블의 mem_num을 참조
 );
