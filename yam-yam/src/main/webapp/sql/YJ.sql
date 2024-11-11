@@ -24,3 +24,15 @@ CREATE TABLE reviews_store(
   other_num NUMBER,
   CONSTRAINT fk_reviews_store_other_num FOREIGN KEY (other_num) REFERENCES OTHER(other_num) --other_num이 other테이블의 other_num을 참조
 );
+
+--chat 테이블 생성
+CREATE TABLE chat(
+chat_num NUMBER PRIMARY KEY,
+chat_sender_id VARCHAR2(30),
+chat_receiver_id VARCHAR2(30),
+chat_message VARCHAR2(300),
+chat_sent_at DATE,
+chat_read NUMBER,
+mem_num NUMBER,
+CONSTRAINT fk_chat_mem_num FOREIGN KEY (mem_num) REFERENCES MEMBER(mem_num)
+);
