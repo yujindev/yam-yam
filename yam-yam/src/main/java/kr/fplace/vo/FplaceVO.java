@@ -11,6 +11,14 @@ public class FplaceVO {
 	private String fp_menuimg3;//대표메뉴사진3
 	private String fp_menuimg4;//대표메뉴사진4
 	private String fp_loc ;//위치
+	private long mem_num;//회원번호
+	
+	public long getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(long mem_num) {
+		this.mem_num = mem_num;
+	}
 	public long getFp_num() {
 		return fp_num;
 	}

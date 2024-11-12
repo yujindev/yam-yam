@@ -1,5 +1,11 @@
 package kr.fplace.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import kr.fplace.vo.FplaceVO;
+import kr.util.DBUtil;
+
 public class FplaceDAO {
 	//싱글턴 패턴
 		private static FplaceDAO instance = new FplaceDAO();
@@ -8,6 +14,36 @@ public class FplaceDAO {
 		}
 		private FplaceDAO() {}
 		//식당 등록
+		public void insertFplace(FplaceVO fplace) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				//sql문
+				sql ="insert into fplace (fp_num, fp_name, fp_phone, fp_time, fp_loc, fp_storeimg, "
+						+ "fp_menuimg1, fp_menuimg2, fp_menuimg3, fp_menuimg4, mem_num )  "
+						+ "values (fplace_seq.nextval, ?,?,?,?,?,?,?,?,?,?)";
+				pstmt= conn.prepareStatement(sql);
+				pstmt.setString(1, fplace.getFp_name());
+				pstmt.setString(2, fplace.getFp_phone());
+				pstmt.setString(3, fplace.getFp_time());
+				pstmt.setString(4, fplace.getFp_loc());
+				pstmt.setString(5, fplace.getFp_storeimg());
+				pstmt.setString(6, fplace.getFp_menuimg1());
+				pstmt.setString(7, fplace.getFp_menuimg2());
+				pstmt.setString(8, fplace.getFp_menuimg3());
+				pstmt.setString(9, fplace.getFp_menuimg4());
+				pstmt.setLong(10, fplace.getMem_num());
+				pstmt.executeUpdate();
+			}catch (Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+				
+			}
+		}
 		//전체 식당 개수
 		//전체 식당 목록
 		//식당상세
@@ -27,4 +63,5 @@ public class FplaceDAO {
 		//리뷰 상세(댓글수정, 삭제시 작성자 회원번호 체크용도로 사용)
 		//리뷰 수정 
 		//리뷰 삭제
+
 }
