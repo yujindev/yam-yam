@@ -1,0 +1,58 @@
+.flex-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.f-around {
+  justify-content: space-around;
+}
+
+.f-between {
+  justify-content: space-between;
+}
+
+.f-center {
+  justify-content: center;
+}
+
+.items img {
+  max-width: 100%;
+}
+
+.hidden{
+  display: none;
+}
+.active {
+  display: block !important;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-90 {
+  width: 90%;
+}
+.w-80 {
+  width: 80%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.m-0auto {
+  margin: 0 auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.text-c {
+  text-align: center;
+}
+
+.pb-1 {
+  padding-bottom :1rem;
+}
