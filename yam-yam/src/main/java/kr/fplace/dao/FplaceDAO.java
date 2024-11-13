@@ -23,8 +23,8 @@ public class FplaceDAO {
 				conn = DBUtil.getConnection();
 				//sql문
 				sql ="insert into fplace (fp_num, fp_name, fp_phone, fp_time, fp_loc, fp_storeimg, "
-						+ "fp_menuimg1, fp_menuimg2, fp_menuimg3, fp_menuimg4, mem_num )  "
-						+ "values (fplace_seq.nextval, ?,?,?,?,?,?,?,?,?,?)";
+						+ "fp_menuimg1, fp_menuimg2, fp_menuimg3, fp_menuimg4, fp_filter1, fp_filter2,fp_filter3, mem_num )  "
+						+ "values (fplace_seq.nextval, ?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt= conn.prepareStatement(sql);
 				pstmt.setString(1, fplace.getFp_name());
 				pstmt.setString(2, fplace.getFp_phone());
@@ -35,16 +35,19 @@ public class FplaceDAO {
 				pstmt.setString(7, fplace.getFp_menuimg2());
 				pstmt.setString(8, fplace.getFp_menuimg3());
 				pstmt.setString(9, fplace.getFp_menuimg4());
-				pstmt.setLong(10, fplace.getMem_num());
+				pstmt.setString(10, fplace.getFp_filter1());
+				pstmt.setString(11, fplace.getFp_filter2());
+				pstmt.setString(12, fplace.getFp_filter3());
+				pstmt.setLong(13, fplace.getMem_num());
 				pstmt.executeUpdate();
 			}catch (Exception e) {
 				throw new Exception(e);
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
-				
 			}
 		}
 		//전체 식당 개수
+		
 		//전체 식당 목록
 		//식당상세
 		//식당 정보 수정
