@@ -36,6 +36,9 @@ public class WriteAction implements Action{
 		fplace.setFp_menuimg2(FileUtil.uploadFile(request, "fp_menuimg2"));
 		fplace.setFp_menuimg3(FileUtil.uploadFile(request, "fp_menuimg3"));
 		fplace.setFp_menuimg4(FileUtil.uploadFile(request,"fp_menuimg4"));
+		fplace.setFp_filter1(request.getParameter("fp_fliter1"));
+		fplace.setFp_filter2(request.getParameter("fp_fliter2"));
+		fplace.setFp_filter3(request.getParameter("fp_fliter3"));
 		fplace.setMem_num(user_num);// 작성자 회원번호
 		
 		FplaceDAO dao = FplaceDAO.getInstance();

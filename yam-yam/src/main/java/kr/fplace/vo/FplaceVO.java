@@ -11,8 +11,29 @@ public class FplaceVO {
 	private String fp_menuimg3;//대표메뉴사진3
 	private String fp_menuimg4;//대표메뉴사진4
 	private String fp_loc ;//위치
+	private String fp_filter1;// 필터1
+	private String fp_filter2;// 필터2
+	private String fp_filter3;// 필터3
 	private long mem_num;//회원번호
 	
+	public String getFp_filter1() {
+		return fp_filter1;
+	}
+	public void setFp_filter1(String fp_filter1) {
+		this.fp_filter1 = fp_filter1;
+	}
+	public String getFp_filter2() {
+		return fp_filter2;
+	}
+	public void setFp_filter2(String fp_filter2) {
+		this.fp_filter2 = fp_filter2;
+	}
+	public String getFp_filter3() {
+		return fp_filter3;
+	}
+	public void setFp_filter3(String fp_filter3) {
+		this.fp_filter3 = fp_filter3;
+	}
 	public long getMem_num() {
 		return mem_num;
 	}

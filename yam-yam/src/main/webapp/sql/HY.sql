@@ -10,7 +10,9 @@ fp_menuimg2 varchar2(400) not null,
 fp_menuimg3 varchar2(400) not null,
 fp_menuimg4 varchar2(400) not null,
 fp_loc varchar2(50)	not null,
+mem_num number not null,
 constraint pk_fp_num primary key (fp_num)
+constraint mem_num_fk foreign key (mem_num) references member(mem_num)
 );
 create sequence fplace_seq;
 --오늘의 메뉴
