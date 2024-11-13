@@ -2,11 +2,11 @@
 /* ========================== 초기 css : start ========================== */
 /* 전체 레이아웃
 --------------------------*/
-body{
+/* body{
 	width:960px;
 	margin:0 auto;
 	background:#E6E6E6;
-}
+} */
 a:link{
 	text-decoration:none;
 	color:#000000;
@@ -21,16 +21,16 @@ a:hover{
 }
 /* 페이지 레이아웃
 --------------------------*/
-.page-main{
+/* .page-main{
 	background:#FFFFFF;
 	margin:40px 0;
 	border-radius:5px;
 	box-shadow:0 2px 6px rgba(100,100,100,0.3);
 	min-height:650px;
-}
-.content-main{
+} */
+/* .content-main{
 	padding:10px 20px;
-}
+} */
 /* 공통 메시지
 --------------------------*/
 .result-display{
@@ -355,9 +355,14 @@ table {
 /* ====================================================================== */
 header {
   padding: 3% 0; 
+  position: sticky;
+  height: 67px;
+  z-index: 9999;
+  background: #FCFCFC;
+  top: 0;
 }
 
-main, .page-main {
+main, .content-main {
   padding: 3%;
   max-width: 1200px;
   margin: 0 auto;
@@ -367,7 +372,16 @@ h2{
   font-size: 2rem;
   line-height: 2;
 }
-
+header h1 {
+  padding: 0 3rem;
+}
+header nav { 
+  padding: 0 1rem 1rem;
+}
+header button {
+  background-color: transparent;
+  border: none;
+}
 /* nav */
 .search-box {
   padding: .2rem;
@@ -378,10 +392,19 @@ h2{
   padding: .4rem;
 }
 
-.menu {
-  padding: 3%;
-  cursor: pointer;
+.nav_menu {
+  /* height: fit-content; */
 }
+.nav_menu_title {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+.nav_menu_title:hover {
+  color: orange;
+  font-weight: 500;
+}
+
 .menu p {
   line-height: 2;
 }
@@ -389,9 +412,25 @@ h2{
   display: none;
   z-index: 999;
   text-align: center;
-  background: #ededed;
 }
-.nav_smenu.active {
+.nav_smenu.open {
   display: block;
+  transition-duration: 500ms;
+  transition-property: margin-right;
+  transition-timing-function: ease-in-out;
+}
+.nav_smenu li {
+  padding: 1rem;
+}
+.nav_smenu li a {
+  color: #000;
 }
 
+.btn_area {
+  width: calc(30% - 100px);
+  height: fit-content;
+}
+
+.btn_area li {
+  height: fit-content;
+}
