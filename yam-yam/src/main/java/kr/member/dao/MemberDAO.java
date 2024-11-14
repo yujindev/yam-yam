@@ -3,6 +3,8 @@ package kr.member.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
@@ -157,6 +159,112 @@ public class MemberDAO {
 	/* ============ 관리자 ============ */
 	
 	//전체 내용 개수, 검색 내용 개수
+	public int getMemberCountByAdmin(String keyfield,String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		try {
+			conn=DBUtil.getConnection();
+			
+			//검색 처리
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += "where mem_id like '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "where mem_nickname like '%' || ? || '%'";
+				else if(keyfield.equals("3")) sub_sql += "where mem_phone like '%' || ? || '%'";
+			}
+			
+			sql = "select count(*) from member left outer join member_detail using(mem_num)"+sub_sql;
+			pstmt=conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	
 	//전체 목록, 검색 목록
+	public List<MemberVO> getListMemberByAdmin(int start,int end, String keyfield, String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MemberVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += "where mem_id like '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "where mem_nickname like '%' || ? || '%'";
+				else if(keyfield.equals("3")) sub_sql += "where mem_phone like '%' || ? || '%'";
+			}
+			sql = "select * from "
+					+ "(select a.*,rownum rnum from "
+					+ "(select * from member left outer join member_detail using(mem_num)"
+					+ sub_sql + "order by mem_num desc nulls last)a)"
+							+ " where rnum >= ? and rnum <= ?";
+			pstmt=conn.prepareStatement(sql);
+			
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<MemberVO>();
+			while(rs.next()) {
+				MemberVO member = new MemberVO();
+				member.setMem_num(rs.getLong("mem_num"));
+				member.setMem_id(rs.getString("mem_id"));
+				member.setMem_nickname(rs.getString("mem_nickname"));
+				member.setMem_phone(rs.getString("mem_phone"));
+				member.setMem_auth(rs.getInt("mem_auth"));
+				member.setMem_date(rs.getDate("mem_date"));
+				if(rs.getDate("mem_mdate")!=null) {
+					member.setMem_mdate(rs.getDate("mem_mdate"));
+				}
+				list.add(member);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 	//회원 등급 수정
+	public void updateMemberByAdmin(int mem_auth, long mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "update member set mem_auth=? where mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_auth);
+			pstmt.setLong(2, mem_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
