@@ -16,7 +16,7 @@ public class MemberVO {
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPw(String mem_pw) {
 		//회원등급(auth):0탈퇴,1경고,2일반,9관리자
-		if(mem_auth > 1 && mem_pw.equals(mem_pw)) {
+		if(mem_auth > 0 && this.mem_pw.equals(mem_pw)) {
 			return true;
 		}
 		return false;

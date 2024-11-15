@@ -18,6 +18,8 @@ public class LoginAction implements Action{
 		String mem_id = request.getParameter("mem_id");
 		String mem_pw = request.getParameter("mem_pw");
 		
+		System.out.println(mem_id + "," + mem_pw);
+		
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.checkMember(mem_id, null);
 		boolean check = false;
