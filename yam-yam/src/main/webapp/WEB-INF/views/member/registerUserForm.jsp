@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){

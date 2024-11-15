@@ -70,7 +70,7 @@ public class MemberDAO {
 	}
 	
 	//ID 중복 체크 및 로그인 처리
-	public MemberVO checkMember(String id, String nickname) throws Exception{
+	public MemberVO checkMember(String mem_id, String mem_nickname) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -80,18 +80,18 @@ public class MemberDAO {
 		try {
 			conn=DBUtil.getConnection();
 			
-			if(id!=null && nickname==null) {//아이디 중복확인시
+			if(mem_id!=null && mem_nickname==null) {//아이디 중복확인시
 				sql="select * from member left outer join member_detail using(mem_num) where mem_id=?";
 				
-			}else if(nickname!=null && id==null) {//닉네임 중복확인시
+			}else if(mem_nickname!=null && mem_id==null) {//닉네임 중복확인시
 				sql = "select * from member left outer join member_detail using(mem_num) where mem_nickname=?";
 			}
 			
 			pstmt=conn.prepareStatement(sql);
-			if(id!=null && nickname==null) {//아이디 중복확인시
-				pstmt.setString(1, id);
-			}else if(nickname!=null && id==null) {//닉네임 중복확인시
-				pstmt.setString(1,nickname);
+			if(mem_id!=null && mem_nickname==null) {//아이디 중복확인시
+				pstmt.setString(1, mem_id);
+			}else if(mem_nickname!=null && mem_id==null) {//닉네임 중복확인시
+				pstmt.setString(1, mem_nickname);
 			}
 			
 			rs=pstmt.executeQuery();
