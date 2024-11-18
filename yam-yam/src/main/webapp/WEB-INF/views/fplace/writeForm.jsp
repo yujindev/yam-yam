@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>식당정보 저장</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+	href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 		$(function(){
@@ -22,6 +22,23 @@
 						return false;
 					}
 				}//end of for
+				if (document.querySelectorAll('input[name="fp_filter1"]:checked').length === 0) {
+		            alert('필터1를 하나 이상 선택해야 합니다.');
+		            return false;
+		        }
+
+		        // 필터2 체크박스 유효성 검사
+		        if (document.querySelectorAll('input[name="fp_filter2"]:checked').length === 0) {
+		            alert('필터2를 하나 이상 선택해야 합니다.');
+		            return false;
+		        }
+
+		        // 필터3 체크박스 유효성 검사
+		        if (document.querySelectorAll('input[name="fp_filter3"]:checked').length === 0) {
+		            alert('필터3를 하나 이상 선택해야 합니다.');
+		            return false;
+		        }
+				
 			});//end of submit
 		});
 	</script>
@@ -50,45 +67,45 @@
 					<input type="text" name="fp_loc" id="fp_loc" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="fp_filter1">필터1(식사, 요리, 간식)</label> 
-					<input type="text" name="fp_filter1" id="fp_filter1" maxlength="50" class="input-check">
+					<li><label for="fp_filter1">필터1 (식사, 요리, 간식)</label></li>
+					<li>
+					    <label><input type="checkbox" name="fp_filter1" value="식사">식사</label>
+					    <label><input type="checkbox" name="fp_filter1" value="요리">요리</label>
+					    <label><input type="checkbox" name="fp_filter1" value="간식">간식</label>
 					</li>
 					
-					<li><label for="fp_filter2">필터2(한식, 중식, 일식, 양식, 아시안)</label> 
-					<input type="text" name="fp_filter2" id="fp_filter2" maxlength="50" class="input-check">
+					<li><label for="fp_filter2">필터2 (한식, 중식, 일식, 양식, 아시안)</label></li>
+					<li>
+					    <label><input type="checkbox" name="fp_filter2" value="한식">한식</label>
+					    <label><input type="checkbox" name="fp_filter2" value="중식">중식</label>
+					    <label><input type="checkbox" name="fp_filter2" value="일식">일식</label>
+					    <label><input type="checkbox" name="fp_filter2" value="양식">양식</label>
+					    <label><input type="checkbox" name="fp_filter2" value="아시안">아시안</label>
 					</li>
+
 					
-					<li><label for="fp_filter3">필터3(혼밥, 친구, 연인, 가족, 모임)</label> 
-					<input type="text" name="fp_filter3" id="fp_filter3" maxlength="50" class="input-check">
+					<li><label for="fp_filter3">필터3 (혼밥, 친구, 연인, 가족, 모임)</label></li>
+					<li>
+				    <label><input type="checkbox" name="fp_filter3" value="혼밥">혼밥</label>
+				    <label><input type="checkbox" name="fp_filter3" value="친구">친구</label>
+				    <label><input type="checkbox" name="fp_filter3" value="연인">연인</label>
+				    <label><input type="checkbox" name="fp_filter3" value="가족">가족</label>
+				    <label><input type="checkbox" name="fp_filter3" value="모임">모임</label>
 					</li>
-					
+
+
+
 					<li><label for="fp_storeimg">식당이미지</label> 
 					<input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
-					</li>
-					
-					<li><label for="fp_menuimg1">메뉴이미지1</label> 
-					<input type="file" name="fp_menuimg1" id="fp_menuimg1" accept="image/gif,image/png,image/jpeg">
-					</li>
-					
-					<li><label for="fp_menuimg2">메뉴이미지2</label> 
-					<input type="file" name="fp_menuimg2" id="fp_menuimg2" accept="image/gif,image/png,image/jpeg">
-					</li>
-					
-					<li><label for="fp_menuimg3">메뉴이미지3</label> 
-					<input type="file" name="fp_menuimg3" id="fp_menuimg3" accept="image/gif,image/png,image/jpeg">
-					</li>
-					
-					<li><label for="fp_menuimg4">메뉴이미지4</label> 
-					<input type="file" name="fp_menuimg4" id="fp_menuimg4" accept="image/gif,image/png,image/jpeg">
 					</li>
 					
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> 
 					<input type="button" value="목록" onclick="location.href='list.do'">
-				</div>
+				</div>d
 			</form>
-		</div>
+		</div>s
 	</div>
 </body>
 </html>
