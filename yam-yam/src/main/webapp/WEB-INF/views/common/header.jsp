@@ -36,7 +36,7 @@
 			<li class="nav_menu">
 				<button class="nav_menu_title">식당찾기</button>
 				<ul class="nav_smenu">
-					<li><a href="#">맛집랭킹</a></li>
+					<li><a href="${pageContext.request.contextPath}/fplace/list.do">맛집랭킹</a></li>
 					<li><a href="#">식당정보</a></li>
 				</ul>
 			</li>

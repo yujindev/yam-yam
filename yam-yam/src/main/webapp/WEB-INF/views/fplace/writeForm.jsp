@@ -103,9 +103,9 @@
 				<div class="align-center">
 					<input type="submit" value="등록"> 
 					<input type="button" value="목록" onclick="location.href='list.do'">
-				</div>d
+				</div>
 			</form>
-		</div>s
+		</div>
 	</div>
 </body>
 </html>
