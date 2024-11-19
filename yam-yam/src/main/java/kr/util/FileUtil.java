@@ -14,18 +14,18 @@ public class FileUtil {
 
 		String upload = requset.getServletContext().getRealPath(UPLOAD_PATH);
 		Part part = requset.getPart(param);
-		String filename = part.getSubmittedFileName();
-		if (!filename.isEmpty()) {
+		String fp_storeimg = part.getSubmittedFileName();
+		if (!fp_storeimg.isEmpty()) {
 			UUID uuid = UUID.randomUUID();
-			filename = uuid.toString() + filename.substring(filename.lastIndexOf("."));
-			part.write(upload+"/"+filename);
+			fp_storeimg = uuid.toString() + fp_storeimg.substring(fp_storeimg.lastIndexOf("."));
+			part.write(upload+"/"+fp_storeimg);
 		}
-		return filename;
+		return fp_storeimg;
 	}
-	public static void removeFile(HttpServletRequest requset, String filename) {
-		if (filename!=null) {
+	public static void removeFile(HttpServletRequest requset, String fp_storeimg) {
+		if (fp_storeimg!=null) {
 			String upload = requset.getServletContext().getRealPath(UPLOAD_PATH);
-			File file = new File(upload+"/"+filename);
+			File file = new File(upload+"/"+fp_storeimg);
 			if (file.exists()) file.delete();
 		}
 	}
