@@ -21,7 +21,7 @@ public class WriteAction implements Action{
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_auth !=9 ) {//관리자로 로그인하지 않은 경우
 			return "common/notice.jsp";
-		}
+		}else {
 		
 		//로그인된 경우
 		//전송된 데이터 인코딩 처리
@@ -32,13 +32,32 @@ public class WriteAction implements Action{
 		fplace.setFp_time(request.getParameter("fp_time"));
 		fplace.setFp_loc(request.getParameter("fp_loc"));
 		fplace.setFp_storeimg(FileUtil.uploadFile(request,"fp_storeimg"));
-		fplace.setFp_menuimg1(FileUtil.uploadFile(request, "fp_menuimg1"));
-		fplace.setFp_menuimg2(FileUtil.uploadFile(request, "fp_menuimg2"));
-		fplace.setFp_menuimg3(FileUtil.uploadFile(request, "fp_menuimg3"));
-		fplace.setFp_menuimg4(FileUtil.uploadFile(request,"fp_menuimg4"));
-		fplace.setFp_filter1(request.getParameter("fp_fliter1"));
-		fplace.setFp_filter2(request.getParameter("fp_fliter2"));
-		fplace.setFp_filter3(request.getParameter("fp_fliter3"));
+		
+		String[] fp_filter1 = request.getParameterValues("fp_filter1");
+		String tmp_fp_filter1 = "";
+		for(int i=0;i<fp_filter1.length;i++) {
+			if (i>0) tmp_fp_filter1+=",";
+			tmp_fp_filter1 += fp_filter1[i];
+		}
+		fplace.setFp_filter1(tmp_fp_filter1);
+	
+		String[] fp_filter2 = request.getParameterValues("fp_filter2");
+		String tmp_fp_filter2 = "";
+		for(int i=0;i<fp_filter2.length;i++) {
+			if (i>0) tmp_fp_filter2 += ",";
+			tmp_fp_filter2 += fp_filter2[i];
+		}
+		fplace.setFp_filter2(tmp_fp_filter2);
+		
+		String[] fp_filter3 = request.getParameterValues("fp_filter3");
+		String tmp_fp_filter3="";
+		for(int i=0;i<fp_filter3.length;i++) {
+			if (i>0) tmp_fp_filter3 += ",";
+			tmp_fp_filter3 += fp_filter3[i];
+		}
+		fplace.setFp_filter3(tmp_fp_filter3);
+		
+		
 		fplace.setMem_num(user_num);// 작성자 회원번호
 		
 		FplaceDAO dao = FplaceDAO.getInstance();
@@ -46,7 +65,7 @@ public class WriteAction implements Action{
 		
 		request.setAttribute("notice_msg","식당 정보 등록 완료!");
 		request.setAttribute("notice_url", request.getContextPath()+"/fplace/list.do");
-		
+		}
 		return "common/alert_view.jsp";
 	}
 
