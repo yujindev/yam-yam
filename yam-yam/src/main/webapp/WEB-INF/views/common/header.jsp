@@ -54,10 +54,10 @@
 			<li class="nav_menu">
 				<button class="nav_menu_title">이게뭐지?</button>
 				<ul class="nav_smenu">
-					<li><a href="#">날씨</a></li>
-					<li><a href="#">포춘쿠키</a></li>
-					<li><a href="#">건강정보</a></li>
-					<li><a href="#">축제정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/dopamine/dpList.do?dp_category=0">날씨</a></li>
+					<li><a href="${pageContext.request.contextPath}/dopamine/fortuneCookie.do">포춘쿠키</a></li>
+					<li><a href="${pageContext.request.contextPath}/dopamine/dpList.do?dp_category=2">건강정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/dopamine/dpList.do?dp_category=3">축제정보</a></li>
 				</ul>
 			</li>
 			<c:if test="${user_auth==9}">
