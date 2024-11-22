@@ -8,7 +8,8 @@
 <title>리뷰 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/Bm.bookmark.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmreviews.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmrstore.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.reviews.js"></script>
 </head>
 <body>
@@ -22,7 +23,7 @@
 			<div id="reply_div">
 				<span class="reviews-title">리뷰 작성</span>
 				<form id="reviews_form" enctype="multipart/form-data">
-					<input type="hidden" name="fp_num" value="${fplace.fp_num}" id="fp_num">
+					<input type="hidden" name="fp_num" value="${reviews.fp_num}" id="fp_num">
 					
 					<!-- 음식점 제목 -->
         			<h3>${fplace.fp_name}</h3>
@@ -54,8 +55,6 @@
 					 <div class="photo-upload">
 		                <label for="reviews_img1">사진 1:</label>
 		                <input type="file" id="reviews_img1" name="reviews_img1" accept="image/*">
-		                <label for="reviews_img2">사진 2:</label>
-		                <input type="file" id="reviews_img2" name="reviews_img2" accept="image/*">
 		            </div>
 		             <!-- 전송 버튼 -->
 					 <div id="re_second" class="align-right">
@@ -66,15 +65,15 @@
 				</form>
 			</div>
 			<!-- 리뷰 작성 끝 -->
-			<!-- 리뷰 목록 출력 시작 -->
-			<div id="output"></div>
-			<div class="paging-button" style="display:none;">
-				<input type="button" value="다음글 보기">
-			</div>
-			<div id="loading" style="display:none;">
-				<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-			</div>
-			<!-- 리뷰 목록 출력 끝 -->
+<!-- 			<!-- 리뷰 목록 출력 시작 --> -->
+<!-- 			<div id="output"></div> -->
+<!-- 			<div class="paging-button" style="display:none;"> -->
+<!-- 				<input type="button" value="다음글 보기"> -->
+<!-- 			</div> -->
+<!-- 			<div id="loading" style="display:none;"> -->
+<%-- 				<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50"> --%>
+<!-- 			</div> -->
+<!-- 			<!-- 리뷰 목록 출력 끝 --> -->
 		</div>
 	</div>
 </body>
