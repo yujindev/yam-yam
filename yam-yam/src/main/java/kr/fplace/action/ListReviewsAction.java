@@ -31,18 +31,20 @@ public class ListReviewsAction implements Action {
 		
 		FplaceDAO dao = FplaceDAO.getInstance();
 		int count = dao.getReviewsCount(fp_num);
-		//조회수 증가
-		dao.updateReadcount(Long.parseLong(request.getParameter("reviews_num")));
+		
+		HttpSession session = request.getSession();
+		Long user_num = (Long)session.getAttribute("user_num");
+		if(user_num==null) {
+			user_num = 0L;
+		}
 		
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, Integer.parseInt(rowCount));
 		List<ReviewsVO> list = null;
 		if(count > 0) {
-			list = dao.getListReviews(page.getStartRow(), page.getEndRow(),fp_num);
+			list = dao.getListReviews(page.getStartRow(), page.getEndRow(),fp_num, user_num);
 		}else {
 			list = Collections.emptyList();
 		}
-		HttpSession session = request.getSession();
-		Long user_num = (Long)session.getAttribute("user_num");
 		
 		Map<String,Object> mapAjax = new HashMap<String,Object>();
 		mapAjax.put("count", count);

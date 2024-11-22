@@ -29,18 +29,31 @@ $(function(){
 				
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output += '<h4>'+item.id + '</h4>';
+					output += '<h3>'+item.mem_id + '</h3>';
+					output += '<h3>'+item.fp_name + '</h3>';
 					output += '<div class="sub-item">';
 					output += '<p>'+item.reviews_con+'</p>';
-					output += '<span class="modify-date">등록일 : ' + item.reviews_date + '</span>';
-					
+					if (item.reviews_img1) {
+					      // 이미지 경로가 존재하는 경우 이미지 태그로 렌더링
+					     output += '<img src="../upload/'+item.reviews_img1+'" width="200" height="200">';
+					}
 					
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자 회원번호 일치
 						output += ' <input type="button" data-renum="'+item.reviews_num+'" value="삭제" class="delete-btn">';
-						
+					}else{
+						// 북마크 버튼
+						if (item.bookmarked) {
+							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/fav02.gif" width="50">';
+						} else {
+							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/fav01.gif" width="50">';
+						}
+							output += '<span class="output_brcount">북마크: '+item.reviews_count+'</span>'; 
 					}
+					output += '<hr size = "1" noshade width="98%">';
+					//등록일
+					output += '<span class="modify-date">등록일 : ' + item.reviews_date + '</span>';
 					output += '<hr size = "1" noshade width="100%">';
 					output += '</div>';
 					output += '</div>';
@@ -60,7 +73,7 @@ $(function(){
 			},
 			error:function(){
 				$('#loading').hide();
-				alert('네트워크 오류 발생');
+				alert('네트워크 오류 발생1');
 			}
 		});
 	}
@@ -73,18 +86,21 @@ $(function(){
 	 *====================================== */
 	//댓글 등록 이벤트 연결
 	$('#reviews_form').submit(function(event){
-		if($('#reviews_content').val().trim()==''){
+		if($('#reviews_con').val().trim()==''){
 			alert('내용을 입력하세요!');
-			$('#reviews_content').val('').focus();
+			$('#reviews_con').val('').focus();
 			return false;
 		}
 		//form 이하의 태그에 입력한 데이터를 모두 읽어서 쿼리 스트링으로 반환
-		let form_data = $(this).serialize();
+		const form_data = new FormData($(this)[0]);
+				
 		//서버와 통신
 		$.ajax({
-			url:'writereviews.do',
+			url:'writeReviews.do',
 			type:'post',
 			data:form_data,
+			processData: false, // FormData로 전송할 때 필요
+			contentType: false,
 			dataType : 'json',
 			success:function(param){
 				if(param.result=='logout'){
@@ -98,7 +114,7 @@ $(function(){
 					alert('댓글 등록 오류 발생');
 				}
 			},error:function(){
-				alert('네트워크 오류 발생');
+				alert('네트워크 오류 발생2');
 			}
 		});
 		//기본 이벤트 제거
@@ -108,7 +124,6 @@ $(function(){
 	function initForm(){
 		$('textarea').val('');
 		$('reviews_first .letter-count').text('300/300');
-	
 	}
 	
 	/*======================================
@@ -123,12 +138,9 @@ $(function(){
 		}else{
 			let remain = 300 - inputLength;
 			remain += '/300';
-			if($(this).attr('id') == 're_content'){
+			if($(this).attr('id') == 'reviews_con'){
 				//등록폼 글자수
-				$('#re_first .letter-count').text(remain);
-			}else{
-				//수정폼 글자수
-				$('#mre_first .letter-count').text(remain);
+				$('#reviews_first .letter-count').text(remain);
 			}
 		}
 	});
@@ -138,9 +150,9 @@ $(function(){
 	$(document).on('click','.delete-btn',function(){
 			//댓글 번호
 			let reviews_num = $(this).attr('data-renum');
+			
 				//서버와 통신
 				$.ajax({
-					
 					url:'deleteReviews.do',
 					type:'post',
 					data:{reviews_num:reviews_num},
@@ -158,10 +170,83 @@ $(function(){
 						}
 					},
 					error:function(){
-						alert('네트워크 오류 발생');
+						alert('네트워크 오류 발생3');
 					}
 				})
 			});
+//			/*======================================
+//			 * 좋아요 등록 (및 삭제) 이벤트 연결
+//			 *====================================== */	
+//			$('.output_bmreviews').click(function(){
+//				//서버와 통신
+//				$.ajax({
+//					url:'writeBmreviews.do',
+//					type:'post',
+//					data:{reviews_num:$(this).attr('data-num')},
+//					dataType:'json',
+//					success:function(param){
+//						if(param.result=='logout'){
+//							alert('로그인 후 북마크를 눌러주세요');
+//						}else if(param.result=='success'){
+//							displayBmreviews(param);
+//						}else{
+//							alert('북마크 등록/삭제 오류 발생2');
+//						}
+//					},
+//					error:function(){
+//						alert('네트워크 오류 발생!2');
+//					}
+//				});
+//			});
+// 북마크 등록 (및 삭제) 이벤트 연결
+$(document).on('click', '.output_bmreviews', function () {
+    const button = $(this); // 클릭된 버튼 요소
+	//const parentItem = button.closest('.item'); // 해당 리뷰 블록 전체를 찾음
+	//const countElement = parentItem.find('.output_brcount'); // 같은 리뷰의 북마크 개수 요소
+	  const countElement = button.siblings('.output_brcount'); // 북마크 개수 요소
+    // 서버와 통신
+    $.ajax({
+        url: 'writeBmreviews.do',
+        type: 'post',
+        data:{reviews_num:$(this).attr('data-num')},
+        dataType: 'json',
+        success: function (param) {
+            if (param.result === 'logout') {
+                alert('로그인 후 북마크를 눌러주세요');
+				// 현재 페이지 URL 가져오기
+				const currentUrl = encodeURIComponent(window.location.href);
+				window.location.href = '../member/loginForm.do?redirectUrl=' + currentUrl;
+            } else if (param.result === 'success') {
+				// 북마크 상태 업데이트
+				const newSrc = param.status === 'yesBmreviews'
+				             ? '../images/fav02.gif'
+				             : '../images/fav01.gif';
+				               button.attr('src', newSrc); // 클릭된 버튼의 이미지 변경
+                //$('.output_brcount').text(param.count); // 북마크 개수 업데이트
+				countElement.text(param.count); // 해당 리뷰의 북마크 개수 업데이트
+			} else {
+                alert('북마크 등록/삭제 오류 발생');
+            }
+        },
+        error: function () {
+            alert('네트워크 오류 발생!');
+        }
+    });
+});
+			/*======================================
+			 * 좋아요 표시 함수
+			 *====================================== */		
+			function displayBmreviews(param){
+				let output;
+				if(param.status == 'yesBmreviews'){//북마크 선택
+					output = '../images/fav02.gif';
+				}else{//북마크 미선택
+					output = '../images/fav01.gif';
+				}
+				//문서 객체에 설정
+				$('.output_bmreviews').attr('src',output);
+				$('.output_brcount').text(param.count);
+			}
 	/*======================================
 	* 초기 데이터(목록) 호출
 	*====================================== */
