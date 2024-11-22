@@ -76,20 +76,19 @@
 					<input type="text" name="fp_loc" id="fp_loc"  value="${fplace.fp_loc}" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="fp_filter1">필터1 (식사, 요리, 간식)</label></li>
+					<li><label for="fp_filter1">필터1 (식사, 간식)</label></li>
 					<li>
-					    <label><input type="checkbox" name="fp_filter1" value="식사">식사</label>
-					    <label><input type="checkbox" name="fp_filter1" value="요리">요리</label>
-					    <label><input type="checkbox" name="fp_filter1" value="간식">간식</label>
+					    <label><input type="radio" name="fp_filter1" value="식사">식사</label>
+					    <label><input type="radio" name="fp_filter1" value="간식">간식</label>
 					</li>
 					
 					<li><label for="fp_filter2">필터2 (한식, 중식, 일식, 양식, 아시안)</label></li>
 					<li>
-					    <label><input type="checkbox" name="fp_filter2" value="한식">한식</label>
-					    <label><input type="checkbox" name="fp_filter2" value="중식">중식</label>
-					    <label><input type="checkbox" name="fp_filter2" value="일식">일식</label>
-					    <label><input type="checkbox" name="fp_filter2" value="양식">양식</label>
-					    <label><input type="checkbox" name="fp_filter2" value="아시안">아시안</label>
+					    <label><input type="radio" name="fp_filter2" value="한식">한식</label>
+					    <label><input type="radio" name="fp_filter2" value="중식">중식</label>
+					    <label><input type="radio" name="fp_filter2" value="일식">일식</label>
+					    <label><input type="radio" name="fp_filter2" value="양식">양식</label>
+					    <label><input type="radio" name="fp_filter2" value="아시안">아시안</label>
 					</li>
 
 					

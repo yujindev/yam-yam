@@ -26,7 +26,9 @@ fpmenu_img varchar2(400) not null,
 fpmenu_name varchar2(100) not null,
 fpmenu_price number not null,
 fp_num number not null,
+mem_num number not null,
 constraint fpmenu_num_pk primary key(fpmenu_num),
 constraint  fp_num_fk foreign key (fp_num) references fplace(fp_num)
+constraint mem_num_fk foreign key (mem_num) references member(mem_num)
 );
 create sequence fpmenu_seq;

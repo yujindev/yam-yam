@@ -32,12 +32,11 @@
 		<div class="content-main">
 			<h2>맛집랭킹</h2>
 		<!-- 필터 시작 -->
-		<form action="search.do" method="get">
+		<form action="list.do" method="get">
     <div class="filter-container">
         <div class="filter">
             <button type="button" class="filter-btn">전체</button>
             <label><input type="checkbox" name="fp_filter1" value="식사">식사</label>
-            <label><input type="checkbox" name="fp_filter1" value="요리">요리</label>
             <label><input type="checkbox" name="fp_filter1" value="간식">간식</label>
         </div>
         <div class="filter">
@@ -107,6 +106,7 @@
        		</tr>
     </c:forEach>
 </table>
+<div class="align-center">${page}</div>
 </c:if>
 		<!-- 목록 끝 -->
 		</div>
