@@ -4,6 +4,7 @@ public class PagingUtil {
 	private int startRow;	 // 한 페이지에서 보여줄 게시글의 시작 번호
 	private int endRow;	 // 한 페이지에서 보여줄 게시글의 끝 번호
 	private StringBuffer page;// 페이지 표시 문자열
+	private int currentPage;
 
 	/**
 	 * currentPage : 현재페이지
@@ -32,7 +33,7 @@ public class PagingUtil {
 	}
 	public PagingUtil(String keyfield, String keyword, int currentPage, int count, int rowCount,
 			int pageCount,String pageUrl,String addKey) {
-
+		this.currentPage = currentPage;
 		if(count >= 0) {
 			String sub_url = "";
 			if(keyword != null) sub_url = "&keyfield="+keyfield+"&keyword="+keyword;
@@ -104,5 +105,8 @@ public class PagingUtil {
 	}
 	public int getEndRow() {
 		return endRow;
+	}
+	public int getCurrentPage() {
+	        return currentPage; // 현재 페이지 반환
 	}
 }

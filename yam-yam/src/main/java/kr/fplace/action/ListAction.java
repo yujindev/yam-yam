@@ -49,14 +49,20 @@ public class ListAction implements Action{
        
 		FplaceDAO dao = FplaceDAO.getInstance();
 		int count = dao.getFplaceCount(fp_filter1, fp_filter2, fp_filter3);
-		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(null, null, Integer.parseInt(pageNum), count, 1, 10, "list.do",addKey);
+		int pageSize = 10; // 한 페이지당 표시할 항목 수
+		PagingUtil page = new PagingUtil(null, null, Integer.parseInt(pageNum), count, 10, pageSize, "list.do",addKey);
 		List<FplaceVO> list = null;
 		if(count > 0) {
 			list = dao.getListFplace(page.getStartRow(), page.getEndRow(), fp_filter1, fp_filter2, fp_filter3);
+			
+			 // 전체 순위 계산 및 설정
+            int startRank = (page.getCurrentPage() - 1) * pageSize; // 전체 순위 시작값
+            for (int i = 0; i < list.size(); i++) {
+                list.get(i).setRank(startRank + i + 1); // 순위 저장
+            }
 		}
-		
+
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());

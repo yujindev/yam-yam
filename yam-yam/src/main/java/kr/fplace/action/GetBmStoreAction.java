@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.fplace.dao.FplaceDAO;
-import kr.fplace.vo.BmreviewsVO;
 import kr.fplace.vo.BmstoreVO;
 import kr.util.StringUtil;
 

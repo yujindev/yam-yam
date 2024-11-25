@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>맛집랭킹</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
 <!-- 필터처리 추후 필요
 <script type="text/javascript">
  	window.onload=function(){
@@ -62,52 +63,49 @@
 		<!-- 필터 끝 -->
 		<!-- 목록 생성 -->
 		<div class="list-space align-right">
-		<c:if test="${!empty user_num && user_auth == 9}">
-		<input type="button" value="식당등록" onclick="location.href='writeForm.do'">
-		</c:if>
+			<c:if test="${!empty user_num && user_auth == 9}">
+				<input type="button" value="식당등록" onclick="location.href='writeForm.do'">
+			</c:if>
 		</div>
-			<c:if test="${count == 0}">
+		
+		<c:if test="${count == 0}">
 			<div class="result-display">
 			 	표시할 식당정보가 없습니다.
 			</div>
-			</c:if>
+		</c:if>
+		
 		<c:if test="${count > 0}">
-		<table class="ranking-table">
-    		<c:forEach var="fplace" items="${list}">
-	        <tr class="table-row">
-	            <!-- 랭킹 번호 및 이미지 -->
-	            <td>
-	            <div class="rank-cell">랭킹번호 어쩌구~~ </div>
-	            </td>
-	              <%-- 랭킹 번호 필요   
-	              <div class="rank-number">${fplace.fp_rank}</div>  --%>
-	            <td>
-	                <img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" 
-	                     alt="${fplace.fp_name}" 
-	                     class="image-cell">
-	            </td>
+			<table class="ranking-table">
+    			<c:forEach var="fplace" items="${list}">
+	        		<tr class="table-row">
+	            		 <!-- 순위 -->
+	            		<td>
+	                		<div class="rank-number">${fplace.rank}</div>
+	            		</td>
+						<!-- 가게이미지 -->
+	            		<td>
+	                		<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}" class="image-cell">
+	            		</td>
 	            
-	            <!-- 가게 정보 -->
-	            <td class="details-cell">
-	                <p class="category">${fplace.fp_filter1}, ${fplace.fp_filter2}, ${fplace.fp_filter3}</p>
-	                <p class="name">
-	                <a href="detail.do?fp_num=${fplace.fp_num}">${fplace.fp_name}</a></p>
-	               <%-- 별점, 리뷰개수 필요 
-	               		<div class="rating">
-	                    <span class="store-stars">⭐ ${fplace.fp_??}</span>
-	                    <span class="store-reviews">리뷰 ${fplace.fp_reviews}개</span> 
-	                </div>
-	                --%> 
-	            </td>
-	            <!-- 북마크 -->
-	            <td class="bookmark-cell">
-	                <div class="bookmark-icon">북마크</div>
-	            </td>
-       		</tr>
-    </c:forEach>
-</table>
-<div class="align-center">${page}</div>
-</c:if>
+	            		<!-- 가게 정보 -->
+			            <td class="details-cell">
+			                <p class="category">${fplace.fp_filter1}, ${fplace.fp_filter2}, ${fplace.fp_filter3}</p>
+			                <p class="name">
+			                	<a href="detail.do?fp_num=${fplace.fp_num}">${fplace.fp_name}</a>
+			                </p>
+			                <p>⭐ ${fplace.fp_avgscore}</p> 
+			                <p>리뷰${fplace.reviews_count}개</p> <!-- !!vo랑 같아야 함!! -->
+			            </td>
+			            
+	           			 <!-- 북마크 -->
+			            <td>
+			                <img id="output_bmstore" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
+			            </td>
+       				</tr>
+   			 	</c:forEach>
+			</table>
+			<div class="align-center">${page}</div>
+		</c:if>
 		<!-- 목록 끝 -->
 		</div>
 	</div>

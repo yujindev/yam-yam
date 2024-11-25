@@ -126,93 +126,195 @@ public class FplaceDAO {
 		return count;
 	}
 
-	//전체 식당 목록
-	public List<FplaceVO> getListFplace(int startRow, int endRow, String fp_filter1, String fp_filter2, String fp_filter3) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<FplaceVO> list =null;
-		String sql = null;
-		String sub_sql = "";
-		int cnt = 0;
+//	//전체 식당 목록
+//	public List<FplaceVO> getListFplace(int startRow, int endRow, String fp_filter1, String fp_filter2, String fp_filter3) throws Exception{
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		List<FplaceVO> list =null;
+//		String sql = null;
+//		String sub_sql = "";
+//		int cnt = 0;
+//
+//		try {
+//			conn = DBUtil.getConnection();
+//
+//			if(!"".equals(fp_filter1) || !"".equals(fp_filter2) || !"".equals(fp_filter3)) {
+//				sub_sql += " where ";
+//			}
+//			
+//			if(!"".equals(fp_filter1)) {
+//				sub_sql += " INSTR(?,fp_filter1) > 0";
+//			}
+//
+//			if(!"".equals(fp_filter1) && !"".equals(fp_filter2)) {
+//				sub_sql += " OR ";
+//			}
+//			
+//			if(!"".equals(fp_filter2)) {
+//				sub_sql += " INSTR(?,fp_filter2) > 0 ";
+//			}
+//
+//			if(!"".equals(fp_filter2) && !"".equals(fp_filter3)) {
+//				sub_sql += " OR ";
+//			}
+//			
+//			if(!"".equals(fp_filter1) && "".equals(fp_filter2) && !"".equals(fp_filter3)) {
+//				sub_sql += " OR ";
+//			}
+//			
+//			if(!"".equals(fp_filter3)) {
+//				sub_sql += " case when length(fp_filter3) >= length(?) then instr(fp_filter3,?) "
+//						+ "else instr(?,fp_filter3) end  > 0";
+//			}
+//
+//			sql = "select * from (select a.*, rownum rnum from "
+//					+ "(select * from fplace join member using(mem_num) " + sub_sql
+//					+ " order by fp_num desc)a) where rnum >= ? and rnum <= ?";
+//			System.out.println("SQL : " + sql);
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			if(!"".equals(fp_filter1)) {
+//				pstmt.setString(++cnt, fp_filter1);		}
+//
+//			if(!"".equals(fp_filter2)) {
+//				pstmt.setString(++cnt, fp_filter2);
+//			}
+//
+//			if(!"".equals(fp_filter3)) {
+//				pstmt.setString(++cnt, fp_filter3);
+//				pstmt.setString(++cnt, fp_filter3);
+//				pstmt.setString(++cnt, fp_filter3);
+//			}
+//			pstmt.setInt(++cnt, startRow); // 번호가 달라지기 때문에 1,2,3으로 지정하면 안됨
+//			pstmt.setInt(++cnt, endRow); // 번호가 달라지기 때문에 1,2,3으로 지정하면 안됨
+//			rs = pstmt.executeQuery();
+//			list = new ArrayList<FplaceVO>();
+//
+//			while (rs.next()) {
+//				FplaceVO fplace = new FplaceVO();
+//				fplace.setFp_num(rs.getInt("fp_num"));
+//				fplace.setFp_name(rs.getString("fp_name"));
+//				fplace.setFp_phone(rs.getString("fp_phone"));
+//				fplace.setFp_time(rs.getString("fp_time"));
+//				fplace.setFp_loc(rs.getString("fp_loc"));
+//				fplace.setFp_storeimg(rs.getString("fp_storeimg"));
+//				fplace.setFp_filter1(rs.getString("fp_filter1"));
+//				fplace.setFp_filter2(rs.getString("fp_filter2"));
+//				fplace.setFp_filter3(rs.getString("fp_filter3"));
+//				fplace.setMem_num(rs.getLong("mem_num"));
+//				fplace.setFp_avgscore(rs.getLong("fp_avgscore"));
+//				list.add(fplace);
+//			}
+//		}catch (Exception e) {
+//			throw new Exception(e);
+//		}finally {
+//			DBUtil.executeClose(rs, pstmt, conn);
+//		}
+//
+//		return list;
+//	}
+	
+	public List<FplaceVO> getListFplace(int startRow, int endRow, String fp_filter1, String fp_filter2, String fp_filter3) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<FplaceVO> list = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    int cnt = 0;
 
-		try {
-			conn = DBUtil.getConnection();
+	    try {
+	        conn = DBUtil.getConnection();
 
-			if(!"".equals(fp_filter1) || !"".equals(fp_filter2) || !"".equals(fp_filter3)) {
-				sub_sql += " where ";
-			}
-			
-			if(!"".equals(fp_filter1)) {
-				sub_sql += " INSTR(?,fp_filter1) > 0";
-			}
+	        if (!"".equals(fp_filter1) || !"".equals(fp_filter2) || !"".equals(fp_filter3)) {
+	            sub_sql += " WHERE ";
+	        }
 
-			if(!"".equals(fp_filter1) && !"".equals(fp_filter2)) {
-				sub_sql += " OR ";
-			}
-			
-			if(!"".equals(fp_filter2)) {
-				sub_sql += " INSTR(?,fp_filter2) > 0 ";
-			}
+	        if (!"".equals(fp_filter1)) {
+	            sub_sql += " INSTR(?,fp_filter1) > 0";
+	        }
 
-			if(!"".equals(fp_filter2) && !"".equals(fp_filter3)) {
-				sub_sql += " OR ";
-			}
-			
-			if(!"".equals(fp_filter1) && "".equals(fp_filter2) && !"".equals(fp_filter3)) {
-				sub_sql += " OR ";
-			}
-			
-			if(!"".equals(fp_filter3)) {
-				sub_sql += " case when length(fp_filter3) >= length(?) then instr(fp_filter3,?) "
-						+ "else instr(?,fp_filter3) end  > 0";
-			}
+	        if (!"".equals(fp_filter1) && !"".equals(fp_filter2)) {
+	            sub_sql += " OR ";
+	        }
 
-			sql = "select * from (select a.*, rownum rnum from "
-					+ "(select * from fplace join member using(mem_num) " + sub_sql
-					+ " order by fp_num desc)a) where rnum >= ? and rnum <= ?";
-			System.out.println("SQL : " + sql);
-			pstmt = conn.prepareStatement(sql);
-			
-			if(!"".equals(fp_filter1)) {
-				pstmt.setString(++cnt, fp_filter1);		}
+	        if (!"".equals(fp_filter2)) {
+	            sub_sql += " INSTR(?,fp_filter2) > 0 ";
+	        }
 
-			if(!"".equals(fp_filter2)) {
-				pstmt.setString(++cnt, fp_filter2);
-			}
+	        if (!"".equals(fp_filter2) && !"".equals(fp_filter3)) {
+	            sub_sql += " OR ";
+	        }
 
-			if(!"".equals(fp_filter3)) {
-				pstmt.setString(++cnt, fp_filter3);
-				pstmt.setString(++cnt, fp_filter3);
-				pstmt.setString(++cnt, fp_filter3);
-			}
-			pstmt.setInt(++cnt, startRow); // 번호가 달라지기 때문에 1,2,3으로 지정하면 안됨
-			pstmt.setInt(++cnt, endRow); // 번호가 달라지기 때문에 1,2,3으로 지정하면 안됨
-			rs = pstmt.executeQuery();
-			list = new ArrayList<FplaceVO>();
+	        if (!"".equals(fp_filter1) && "".equals(fp_filter2) && !"".equals(fp_filter3)) {
+	            sub_sql += " OR ";
+	        }
 
-			while (rs.next()) {
-				FplaceVO fplace = new FplaceVO();
-				fplace.setFp_num(rs.getInt("fp_num"));
-				fplace.setFp_name(rs.getString("fp_name"));
-				fplace.setFp_phone(rs.getString("fp_phone"));
-				fplace.setFp_time(rs.getString("fp_time"));
-				fplace.setFp_loc(rs.getString("fp_loc"));
-				fplace.setFp_storeimg(rs.getString("fp_storeimg"));
-				fplace.setFp_filter1(rs.getString("fp_filter1"));
-				fplace.setFp_filter2(rs.getString("fp_filter2"));
-				fplace.setFp_filter3(rs.getString("fp_filter3"));
-				fplace.setMem_num(rs.getLong("mem_num"));
+	        if (!"".equals(fp_filter3)) {
+	            sub_sql += " CASE WHEN LENGTH(fp_filter3) >= LENGTH(?) THEN INSTR(fp_filter3,?) "
+	                    + "ELSE INSTR(?,fp_filter3) END > 0";
+	        }
 
-				list.add(fplace);
-			}
-		}catch (Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
+	        sql = "SELECT * FROM (" +
+	        	      "   SELECT a.*, rownum rnum " +
+	        	      "   FROM (" +
+	        	      "       SELECT f.*, COALESCE(r.avg_score, 0) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
+	        	      "       FROM (" +
+	        	      "           SELECT fp_num, AVG(reviews_score) AS avg_score, COUNT(reviews_score) AS review_count " +
+	        	      "           FROM reviews " +
+	        	      "           GROUP BY fp_num" +
+	        	      "       ) r " +
+	        	      "       RIGHT OUTER JOIN fplace f ON r.fp_num = f.fp_num " + sub_sql +
+	        	      "       ORDER BY fp_avgscore DESC, f.fp_num DESC" + // 평균 별점 우선 정렬 후, 같은 별점일 경우 식당 번호로 정렬
+	        	      "   ) a" +
+	        	      ") WHERE rnum >= ? AND rnum <= ?";
 
-		return list;
+	        pstmt = conn.prepareStatement(sql);
+
+	        if (!"".equals(fp_filter1)) {
+	            pstmt.setString(++cnt, fp_filter1);
+	        }
+
+	        if (!"".equals(fp_filter2)) {
+	            pstmt.setString(++cnt, fp_filter2);
+	        }
+
+	        if (!"".equals(fp_filter3)) {
+	            pstmt.setString(++cnt, fp_filter3);
+	            pstmt.setString(++cnt, fp_filter3);
+	            pstmt.setString(++cnt, fp_filter3);
+	        }
+
+	        pstmt.setInt(++cnt, startRow);
+	        pstmt.setInt(++cnt, endRow);
+
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<>();
+
+	        while (rs.next()) {
+	            FplaceVO fplace = new FplaceVO();
+	            fplace.setFp_num(rs.getInt("fp_num"));
+	            fplace.setFp_name(rs.getString("fp_name"));
+	            fplace.setFp_phone(rs.getString("fp_phone"));
+	            fplace.setFp_time(rs.getString("fp_time"));
+	            fplace.setFp_loc(rs.getString("fp_loc"));
+	            fplace.setFp_storeimg(rs.getString("fp_storeimg"));
+	            fplace.setFp_filter1(rs.getString("fp_filter1"));
+	            fplace.setFp_filter2(rs.getString("fp_filter2"));
+	            fplace.setFp_filter3(rs.getString("fp_filter3"));
+	            fplace.setMem_num(rs.getLong("mem_num"));
+	            fplace.setFp_avgscore(rs.getDouble("fp_avgscore")); // 평균 별점 설정
+	            fplace.setReviews_count(rs.getInt("fp_review_count")); /*rs.getInt()안에 sql문의 알리아스 넣어주기*/
+	            list.add(fplace);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
 	}
 
 
@@ -506,28 +608,28 @@ public class FplaceDAO {
 
 
 	//별점 계산
-	public double getAverageScoreByRestaurant(long fpNum) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		
-	    try { 
-	    	conn = DBUtil.getConnection();
-	    	sql = "SELECT AVG(reviews_score) AS avg_score FROM reviews WHERE fp_num = ?";     
-		    pstmt = conn.prepareStatement(sql);
-		    pstmt.setLong(1, fpNum);
-		    rs = pstmt.executeQuery();
-	        if (rs.next()) {
-	            return rs.getDouble("avg_score");
-	        }
-	    }catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
+		public double getAverageScoreByRestaurant(long fpNum) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			
+		    try { 
+		    	conn = DBUtil.getConnection();
+		    	sql = "SELECT AVG(reviews_score) AS avg_score FROM reviews WHERE fp_num = ?";     
+			    pstmt = conn.prepareStatement(sql);
+			    pstmt.setLong(1, fpNum);
+			    rs = pstmt.executeQuery();
+		        if (rs.next()) {
+		            return rs.getDouble("avg_score");
+		        }
+		    }catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+		    return 0.0; // 리뷰가 없는 경우 0 반환
 		}
-	    return 0.0; // 리뷰가 없는 경우 0 반환
-	}
 	
 	//북마크 개수
 	//리뷰
