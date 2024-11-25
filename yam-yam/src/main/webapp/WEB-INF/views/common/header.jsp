@@ -1,23 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script>
-    window.onload = function(){
-    //header 버튼클릭시 서브메뉴 보임
-    const menu = document.querySelectorAll('.nav_menu')
-    const subMenu = document.querySelectorAll('.nav_smenu');
-    const btnNav = document.querySelector('.btn-nav');
 
-    
-    //toggle형태
-    btnNav.addEventListener('click', () => {
-    subMenu.forEach(item => {
-      item.classList.toggle('open'); // 각 요소에 active 클래스 추가
-    });
-  });
-
-  }
-</script>
 <header class="flex-box">
 	<h1>
 		<a class="m-0auto pb-1" href="${pageContext.request.contextPath}/main/main.do"><img
@@ -97,4 +81,18 @@
 			</li>
 		</c:if>
 	</ul>
+	<script>
+    //header 버튼클릭시 서브메뉴 보임
+    const menu = document.querySelectorAll('.nav_menu')
+    const subMenu = document.querySelectorAll('.nav_smenu');
+    const btnNav = document.querySelector('.btn-nav');
+
+    
+    //toggle형태
+    btnNav.addEventListener('click', () => {
+    subMenu.forEach(item => {
+      item.classList.toggle('open'); // 각 요소에 active 클래스 추가
+    });
+  });
+</script>
 </header>
