@@ -105,6 +105,17 @@
 					<input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
 					</li>
 					
+					<li><label for="">예약 가능 시간</label>
+					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
+					<span>11:00</span>
+					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
+					<span>11:30</span>
+					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
+					<span>12:00</span>
+					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
+					<span>12:30</span>
+					</li>
+					
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> 
