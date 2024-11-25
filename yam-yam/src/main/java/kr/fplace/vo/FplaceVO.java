@@ -12,6 +12,16 @@ public class FplaceVO {
 	private String fp_filter3;// 필터3
 	private long mem_num;//회원번호
 	
+	private double fp_avgscore; //리뷰 평정
+	private int rank; // 순위
+	private int reviews_count;
+	
+	public double getFp_avgscore() {
+		return fp_avgscore;
+	}
+	public void setFp_avgscore(double fp_avgscore) {
+		this.fp_avgscore = fp_avgscore;
+	}
 	public long getFp_num() {
 		return fp_num;
 	}
@@ -72,5 +82,18 @@ public class FplaceVO {
 	public void setMem_num(long mem_num) {
 		this.mem_num = mem_num;
 	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public int getReviews_count() {
+		return reviews_count;
+	}
+	public void setReviews_count(int reviews_count) {
+		this.reviews_count = reviews_count;
+	}
+	
 	
 }

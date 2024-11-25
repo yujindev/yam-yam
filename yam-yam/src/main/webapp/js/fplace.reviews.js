@@ -37,11 +37,12 @@ $(function(){
 					      // 이미지 경로가 존재하는 경우 이미지 태그로 렌더링
 					     output += '<img src="../upload/'+item.reviews_img1+'" width="200" height="200">';
 					}
-					
+					output+='<div class="top-actions">';
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자 회원번호 일치
 						output += ' <input type="button" data-renum="'+item.reviews_num+'" value="삭제" class="delete-btn">';
+						output += '<img class="output_bmreviews disabled" src="../images/fav-disabled.gif" width="50">';
 					}else{
 						// 북마크 버튼
 						if (item.bookmarked) {
@@ -49,8 +50,10 @@ $(function(){
 						} else {
 							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/fav01.gif" width="50">';
 						}
-							output += '<span class="output_brcount">북마크: '+item.reviews_count+'</span>'; 
 					}
+					output += '<span class="output_brcount"> '+item.reviews_count+'</span>'; 
+					output+='</div>';
+					
 					output += '<hr size = "1" noshade width="98%">';
 					//등록일
 					output += '<span class="modify-date">등록일 : ' + item.reviews_date + '</span>';
@@ -108,6 +111,7 @@ $(function(){
 				}else if(param.result=='success'){
 					//폼 초기화
 					initForm();
+					$('.stars input[type="radio"]').prop('checked', false); //별점 작성 후 조기화
 					//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째 페이지의 게시글 목록을 다시 호출함
 					selectList(1)
 				}else{
@@ -174,79 +178,49 @@ $(function(){
 					}
 				})
 			});
-//			/*======================================
-//			 * 좋아요 등록 (및 삭제) 이벤트 연결
-//			 *====================================== */	
-//			$('.output_bmreviews').click(function(){
-//				//서버와 통신
-//				$.ajax({
-//					url:'writeBmreviews.do',
-//					type:'post',
-//					data:{reviews_num:$(this).attr('data-num')},
-//					dataType:'json',
-//					success:function(param){
-//						if(param.result=='logout'){
-//							alert('로그인 후 북마크를 눌러주세요');
-//						}else if(param.result=='success'){
-//							displayBmreviews(param);
-//						}else{
-//							alert('북마크 등록/삭제 오류 발생2');
-//						}
-//					},
-//					error:function(){
-//						alert('네트워크 오류 발생!2');
-//					}
-//				});
-//			});
-// 북마크 등록 (및 삭제) 이벤트 연결
-$(document).on('click', '.output_bmreviews', function () {
-    const button = $(this); // 클릭된 버튼 요소
-	//const parentItem = button.closest('.item'); // 해당 리뷰 블록 전체를 찾음
-	//const countElement = parentItem.find('.output_brcount'); // 같은 리뷰의 북마크 개수 요소
-	  const countElement = button.siblings('.output_brcount'); // 북마크 개수 요소
-    // 서버와 통신
-    $.ajax({
-        url: 'writeBmreviews.do',
-        type: 'post',
-        data:{reviews_num:$(this).attr('data-num')},
-        dataType: 'json',
-        success: function (param) {
-            if (param.result === 'logout') {
-                alert('로그인 후 북마크를 눌러주세요');
-				// 현재 페이지 URL 가져오기
-				const currentUrl = encodeURIComponent(window.location.href);
-				window.location.href = '../member/loginForm.do?redirectUrl=' + currentUrl;
-            } else if (param.result === 'success') {
-				// 북마크 상태 업데이트
-				const newSrc = param.status === 'yesBmreviews'
-				             ? '../images/fav02.gif'
-				             : '../images/fav01.gif';
-				               button.attr('src', newSrc); // 클릭된 버튼의 이미지 변경
-                //$('.output_brcount').text(param.count); // 북마크 개수 업데이트
-				countElement.text(param.count); // 해당 리뷰의 북마크 개수 업데이트
-			} else {
-                alert('북마크 등록/삭제 오류 발생');
-            }
-        },
-        error: function () {
-            alert('네트워크 오류 발생!');
-        }
-    });
-});
-			/*======================================
-			 * 좋아요 표시 함수
-			 *====================================== */		
-			function displayBmreviews(param){
-				let output;
-				if(param.status == 'yesBmreviews'){//북마크 선택
-					output = '../images/fav02.gif';
-				}else{//북마크 미선택
-					output = '../images/fav01.gif';
-				}
-				//문서 객체에 설정
-				$('.output_bmreviews').attr('src',output);
-				$('.output_brcount').text(param.count);
-			}
+			
+			
+	// 북마크 등록 (및 삭제) 이벤트 연결
+	$(document).on('click', '.output_bmreviews', function () {
+	    const button = $(this); // 클릭된 버튼 요소
+		//const parentItem = button.closest('.item'); // 해당 리뷰 블록 전체를 찾음
+		//const countElement = parentItem.find('.output_brcount'); // 같은 리뷰의 북마크 개수 요소
+		const countElement = button.siblings('.output_brcount'); // 북마크 개수 요소
+		
+		if ($(this).hasClass('disabled')) {
+		        alert('본인의 글은 북마크할 수 없습니다.');
+		        return false; // 클릭 이벤트 중단
+		}
+	    // 서버와 통신
+	    $.ajax({
+	        url: 'writeBmreviews.do',
+	        type: 'post',
+	        data:{reviews_num:$(this).attr('data-num')},
+	        dataType: 'json',
+	        success: function (param) {
+	            if (param.result === 'logout') {
+	                alert('로그인 후 북마크를 눌러주세요');
+					// 현재 페이지 URL 가져오기
+					const currentUrl = encodeURIComponent(window.location.href);
+					window.location.href = '../member/loginForm.do?redirectUrl=' + currentUrl;
+	            } else if (param.result === 'success') {
+					// 북마크 상태 업데이트
+					const newSrc = param.status === 'yesBmreviews'
+					             ? '../images/fav02.gif'
+					             : '../images/fav01.gif';
+					               button.attr('src', newSrc); // 클릭된 버튼의 이미지 변경
+	                //$('.output_brcount').text(param.count); // 북마크 개수 업데이트
+					countElement.text(param.count); // 해당 리뷰의 북마크 개수 업데이트
+				} else {
+	                alert('북마크 등록/삭제 오류 발생');
+	            }
+	        },
+	        error: function () {
+	            alert('네트워크 오류 발생!');
+	        }
+	    });
+	});
+	
 	/*======================================
 	* 초기 데이터(목록) 호출
 	*====================================== */

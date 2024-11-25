@@ -7,13 +7,13 @@ $(function(){
 		$.ajax({
 			url:'getBmstore.do',
 			type:'post',
-			data:{board_num:$('#output_bmstore').attr('data-num')},
+			data:{fp_num:$('#output_bmstore').attr('data-num')},
 			dataType:'json',
 			success:function(param){
 				displayBmstore(param);
 			},
 			error:function(){
-				alert('네트워크 오류 발생');
+				alert('네트워크 오류 발생1');
 			}
 		});
 	}
@@ -25,7 +25,7 @@ $(function(){
 		$.ajax({
 			url:'writeBmstore.do',
 			type:'post',
-			data:{board_num:$(this).attr('data-num')},
+			data:{fp_num:$(this).attr('data-num')},
 			dataType:'json',
 			success:function(param){
 				if(param.result=='logout'){
@@ -37,7 +37,7 @@ $(function(){
 				}
 			},
 			error:function(){
-				alert('네트워크 오류 발생!');
+				alert('네트워크 오류 발생!2');
 			}
 		});
 	});
