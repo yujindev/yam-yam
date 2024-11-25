@@ -10,103 +10,72 @@ $(function () {
     /*===========================
      * 메뉴 목록 출력 00
     ============================*/
-    function selectMenuList(pageNum) {
-        currentPage = pageNum;
-		
-		//로딩 이미지 노출
-		$('#loading').show();
 
-        // 서버와 통신
-        $.ajax({
-            url: 'listFpmenu.do',
-            type: 'post',
-            data: {pageNum: pageNum, rowCount: rowCount, fp_num: $('#fp_num').val()},
-            dataType: 'json',
-            success:function(param) {
-				//로딩 이미지 감추기
-				$('#loading').hide();
+	function selectMenuList(pageNum) {
+	    currentPage = pageNum;
+
+	    // 로딩 이미지 노출
+	    $('#loading').show();
+
+	    // 서버와 통신
+	    $.ajax({
+	        url: 'listFpmenu.do',
+	        type: 'post',
+	        data: { pageNum: pageNum, rowCount: rowCount, fp_num: $('#fp_num').val() },
+	        dataType: 'json',
+	        success: function (param) {
+	            // 로딩 이미지 감추기
+	            $('#loading').hide();
+
+	            count = param.count;//전체 항목 수 저장
+
+	            if (pageNum === 1) {
+	                // 처음 호출 시 목록 초기화
+	                $('#menu_output').empty(); // 슬라이더 초기화
+	                currentIndex = 0; // 초기화
+	            }
+				if (param.list && param.list.length > 0) {
+					//목록이 있을때만 항목 추가
+	            $(param.list).each(function (index, item) {
+	                let output = '<div class="menu-item">';
+	                output += '<div class="menu-info">';
+	                output += '<img src="../upload/' + item.fpmenu_img + '" alt="메뉴 이미지" class="menu-img">';
+	                output += `<h4>${item.fpmenu_name}</h4>`;
+	                output += `<p>${item.fpmenu_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>`;
+
+	                // 관리자만 수정, 삭제 버튼 표시
+	                if (param.user_num) {
+	                    output += '<input type="button" value="수정" class="modify-menu-btn" data-renum="' + item.fpmenu_num + '">';
+	                    output += '<input type="button" value="삭제" class="delete-menu-btn" data-renum="' + item.fpmenu_num + '">';
+	                }
+	                output += '<hr size="1" noshade width="100%">';
+	                output += '</div>';
+	                output += '</div>';
+
+	                // 메뉴 항목 추가
+	                $('#post-scroll').append(output);
+	            });
 				
-				count = param.count;
-
-                if (pageNum === 1) {
-                    // 처음 호출 시 목록 초기화
-                    $('#menu_output').empty();//슬라이더 초기화??
-                }
-
-                $(param.list).each(function (index, item) {
-					let output = '<div class="menu-item">';
-		                //이미지 삽입해야함
-		                output += '<div class="menu-info">';
-						output += '<img src="../upload/'+item.fpmenu_img+'" alt="메뉴 이미지" class="menu-img">';
-		                output += `<h4>${item.fpmenu_name}</h4>`;
-		                output += `<p>${item.fpmenu_price}원</p>`;
-
-                    // 관리자만 수정, 삭제 버튼 표시
-                    if (param.user_num) {
-                        output += '<input type="button" value="수정" class="modify-menu-btn" data-renum= "'+ item.fpmenu_num + '">';
-                        output += '<input type="button" value="삭제" class="delete-menu-btn" data-renum= "'+ item.fpmenu_num + '">';
-                    }
-					output += '<hr size = "1" noshade width="100%">';
-                    output += '</div>';
-                    output += '</div>';
-
-                    // 메뉴 출력
-                    $('#menu_output').append(output);
-                });
-
-                 //페이지 버튼 처리
-                if (currentPage >= Math.ceil(param.count / rowCount)) {
-                    $('.menu-paging-button').hide();
-                } else {
-                   $('.menu-paging-button').show();
-                }
+				} else {
+               // 목록이 없을 때 메시지 출력 (선택 사항)
+               if (pageNum === 1) {
+                   $('#post-scroll').html('<h2s>등록된 메뉴가 없습니다.</h2>');
+               }
+           }
 				
-				//updateSlider();//슬라이더 업데이트
-            },
-            error: function () {
-				$('#loading').hide();
-                alert('네트워크 오류 발생1');
-            },
-        });
-    }
-	//페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
-			$('.menu-paging-button input').click(function(){
-				selectMenuList(currentPage+1);
-			});
+	        },
+	        error: function () {
+	            $('#loading').hide();
+	            alert('네트워크 오류 발생');
+	        },
+	    });
+	}
 
 
-	
-	
-	//슬라이더 함수
-	//function updateSlider(){
-		//const slideWrapper = document.querySelector('#menu_output');
-	//	const itemWidth = doucument.quertySelector('.menu-item').offsetWidth;
-		//slideWrapper.style.transform = 'translateX(-${currentIndex * itemWidth}px)';
-//	}
-                
-		/* 이전 버튼 클릭 이벤트 추가 확인 필요함;;;;
-		//$('.slide_prev').click(function () {
-		    const totalItems = $('.menu-item').length;
-		    if (currentIndex > 0) {
-		        currentIndex--;
-		        updateSlider();
-		    }
-		});
-
-		= 다음 버튼 클릭 이벤트
-		$('.slide_next').click(function () {
-		    const totalItems = $('.menu-item').length;
-		    if (currentIndex < totalItems - 3) {
-		        currentIndex++;
-		        updateSlider();
-		    }
-		});
-
-		// 초기 데이터 로드
-		$(document).ready(function () {
-		    selectMenuList(1);
-		});
-
+	// 초기 데이터 로드
+	$(document).ready(function () {
+	    selectMenuList(1);
+	});
 
     /*===========================
      * 메뉴 등록
