@@ -21,7 +21,7 @@ $(function(){
 				//로딩 이미지 감추기
 				$('#loading').hide();
 				count = param.count;
-				 
+				
 				if(pageNum == 1){
 					//처음 호출시는 해당 ID의 div의 내부 내용물을 제거
 					$('#output').empty();
