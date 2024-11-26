@@ -29,7 +29,7 @@ $(function(){
 				
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output += '<h3>'+item.mem_id + '</h3>';
+					output += '<h3><a href="../others/saveStore.do?mem_id='+item.mem_id+'">'+item.mem_id + '</a></h3>';
 					output += '<h3>'+item.fp_name + '</h3>';
 					output += '<div class="sub-item">';
 					output += '<p>'+item.reviews_con+'</p>';
