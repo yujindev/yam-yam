@@ -28,11 +28,11 @@ CREATE TABLE reviews_store(
 --chat 테이블 생성
 CREATE TABLE chat(
 chat_num NUMBER PRIMARY KEY,
-chat_sender_id VARCHAR2(30),
-chat_receiver_id VARCHAR2(30),
+chat_sender_num number,
+chat_receiver_num number,
 chat_message VARCHAR2(300),
-chat_sent_at DATE,
-chat_read NUMBER,
-mem_num NUMBER,
-CONSTRAINT fk_chat_mem_num FOREIGN KEY (mem_num) REFERENCES MEMBER(mem_num)
+chat_sent_at DATE default sysdate not null,
+chat_read NUMBER default 1 not null,
+CONSTRAINT fk_chat_mem_num FOREIGN KEY (chat_sender_num) REFERENCES MEMBER(mem_num),
+CONSTRAINT fk_chat_mem_num2 FOREIGN KEY (chat_receiver_num) REFERENCES MEMBER(mem_num)
 );
