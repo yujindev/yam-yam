@@ -1,11 +1,12 @@
 package kr.dopamine.vo;
 
+
 public class DopamineVO {
 	private long dp_num; //글번호
 	private int dp_category; //글 카테고리
 	private String dp_title; //글 제목
 	private String dp_content; //글 내용
-	private int mem_auth; //회원번호
+	private long mem_num; //회원번호
 	
 	public long getDp_num() {
 		return dp_num;
@@ -31,11 +32,10 @@ public class DopamineVO {
 	public void setDp_content(String dp_content) {
 		this.dp_content = dp_content;
 	}
-	public int getMem_auth() {
-		return mem_auth;
+	public long getMem_num() {
+		return mem_num;
 	}
-	public void setMem_auth(int mem_auth) {
-		this.mem_auth = mem_auth;
+	public void setMem_num(long mem_num) {
+		this.mem_num = mem_num;
 	}
-	
 }

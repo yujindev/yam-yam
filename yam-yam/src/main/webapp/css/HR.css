@@ -21,13 +21,14 @@ a:hover{
 }
 /* 페이지 레이아웃
 --------------------------*/
-/* .page-main{
+ .page-main{
 	background:#FFFFFF;
 	margin:40px 0;
 	border-radius:5px;
 	box-shadow:0 2px 6px rgba(100,100,100,0.3);
 	min-height:650px;
-} */
+	align-items:center;
+}
 /* .content-main{
 	padding:10px 20px;
 } */
@@ -291,6 +292,7 @@ form#mre_form{
 #file_detail{
 	margin: 5px 0 0 130px; 
 }
+
 
 
 

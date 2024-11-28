@@ -36,3 +36,12 @@ constraint reserv_fk1 foreign key (mem_num) references member (mem_num),
 constraint reserv_fk2 foreign key (fp_num) references fplace (fp_num)
 );
 Create sequence reserv_seq;
+
+create table FPLACE_TIME(
+ft_num number not null,
+ft_time varchar2(30),
+fp_num number not null,
+constraint fptime_pk primary key (ft_num),
+constraint fptime_fk foreign key (fp_num) references fplace (fp_num)
+);
+create sequence fptime_seq;
