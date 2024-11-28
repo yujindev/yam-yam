@@ -33,6 +33,7 @@ public class LoginAction implements Action{
 			HttpSession session = request.getSession();
 			session.setAttribute("user_num", member.getMem_num());
 			session.setAttribute("user_id", member.getMem_id());
+			session.setAttribute("user_nickname", member.getMem_nickname());
 			session.setAttribute("user_auth", member.getMem_auth());
 			//메인으로 리다이렉트
 			return "redirect:/main/main.do";
