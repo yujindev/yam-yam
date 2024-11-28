@@ -151,8 +151,45 @@ public class MemberDAO {
 		return member;
 	}
 	
-	//회원 정보 수정
+	//연락처 수정
+	public void modifyPhone(long user_num, String mem_phone) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "update member_detail set mem_phone=? where mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_phone);
+			pstmt.setLong(2, user_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//비밀번호 수정
+	public void modifyPw(String mem_pw, long user_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			DBUtil.getConnection();
+			sql = "update member_detail set mem_pw=? where mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_pw);
+			pstmt.setLong(2, user_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+	}
 	//회원 탈퇴(회원 정보 삭제)
 	
 	
