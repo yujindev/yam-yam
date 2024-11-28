@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ㅇㅇㅇ님의 프로필 페이지 </title>
+<title>${member.mem_nickname}님의 프로필 </title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/YJ.css" type="text/css">
@@ -15,11 +15,11 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
 			<div class="text-c">
-				<h2>{$mem_nickname}님의 프로필</h2>
+				<h2>${member.mem_nickname}님의 프로필</h2>
 				<img src='${pageContext.request.contextPath}/images/icon-account.png'
 					alt="개인프로필아이">
 				<div class="flex-box f-center btn-area">
-					<button type="button" onclick="location.href='${pageContext.request.contextPath}/chat/showChat.do'" class="btn-primary btn-icon pl-1" style="background-image: url('${pageContext.request.contextPath}/images/icon-chat.png')";>채팅하기</button>
+					<button type="button" onclick="location.href='${pageContext.request.contextPath}/chat/showChat.do?chat_receiver_num=${member.mem_num}'" class="btn-primary btn-icon pl-1" style="background-image: url('${pageContext.request.contextPath}/images/icon-chat.png')";>채팅하기</button>
 					<button class="btn-line-primary btn-icon pl-1" style="background-image: url('${pageContext.request.contextPath}/images/icon-plus.png')";>팔로우하기</button>
 				</div>
 			</div>

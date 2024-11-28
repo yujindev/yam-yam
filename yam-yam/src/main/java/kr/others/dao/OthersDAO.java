@@ -7,7 +7,7 @@ import kr.others.vo.OthersVO;
 import kr.util.DBUtil;
 
 //이용자를 팔로우하는 기능을 만들고 타이용자의 정보조회를 하면 됨 (팔로우 기능...? 식당북마크, 식당리뷰 테이블 조인 추후 수정 )
-
+  
 public class OthersDAO {
 	//팔로우
 	public void insertFav(OthersVO favVO) throws Exception {
