@@ -2,34 +2,186 @@ package kr.others.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import kr.fplace.vo.FplaceVO;
+import kr.fplace.vo.ReviewsVO;
+import kr.member.vo.MemberVO;
 import kr.others.vo.OthersVO;
 import kr.util.DBUtil;
 
-//이용자를 팔로우하는 기능을 만들고 타이용자의 정보조회를 하면 됨 (팔로우 기능...? 식당북마크, 식당리뷰 테이블 조인 추후 수정 )
-  
 public class OthersDAO {
-	//팔로우
-	public void insertFav(OthersVO favVO) throws Exception {
+	//싱글턴패턴
+	private static OthersDAO instance = new OthersDAO();
+	public static OthersDAO getInstance() {
+		return instance;
+	}
+	
+	private OthersDAO() {}
+
+	// 멤버정보 읽기
+	public MemberVO getMember(String mem_id) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO member = null;
+		String sql = null;
+
+		try {
+			// 커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			// SQL문 작성
+			sql = "SELECT * FROM member JOIN member_detail USING(mem_num) WHERE mem_id=?";
+			// PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			// ?에 데이터 바인딩
+			pstmt.setString(1, mem_id);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				member = new MemberVO();
+				member.setMem_num(rs.getLong("mem_num"));
+				member.setMem_id(rs.getString("mem_id"));
+				member.setMem_nickname(rs.getString("mem_nickname"));
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return member;
+	}
+
+
+	// 특정회원이 북마크한 가게 목록
+	public List<FplaceVO> getMemberStoreBookmarks(int start, int end, long mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<FplaceVO> list = null;
 		String sql = null;
 		try {
-			//커넥션 풀로부커 커넥션 할당
+			// 커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
-			//SQL문 작성 
-			sql = "SELECT * FROM reviews_store WHERE rest_num=? AND other_num=?";
-			//PreparedStatement 객체 생성
-			//?에 데이터 바인딩
-			//SQL문 실행
 			
-		}catch(Exception e) {
+			
+			sql ="SELECT * FROM (SELECT a.*, rownum rnum "
+			+ "FROM (SELECT * FROM bmstore b JOIN fplace USING(fp_num) WHERE b.mem_num=? "
+			+ "ORDER BY reg_date DESC)a) WHERE rnum>=? AND rnum<=?";
+			
+			
+			
+			// PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			// ?에 데이터 바인딩
+			pstmt.setLong(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			// SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<FplaceVO>();
+			while (rs.next()) {
+				FplaceVO fplace = new FplaceVO();
+				fplace.setFp_name(rs.getString("fp_name")); // 식당 이름
+				fplace.setFp_loc(rs.getString("fp_loc")); // 식당 위치
+				fplace.setFp_storeimg(rs.getString("fp_storeimg"));// 식당 이미지
+				fplace.setFp_time(rs.getString("fp_time")); // 식당 영업시간
+				fplace.setFp_phone(rs.getString("fp_phone")); // 식당 전화번호
+
+				list.add(fplace);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	//특정 회원이 북마크한 식당 수
+	public int countMemberStoreBookmarks(long mem_num) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			//커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "SELECT COUNT(*) FROM bmstore b JOIN fplace USING(fp_num) WHERE b.mem_num=?";
+			//pstmt 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, mem_num);
+			//sql문 실행 
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch (Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
+		return count;
 	}
-	//찜삭제
-	//특정회원이 좋아요한 목록 
+	
+	
+	// 특정회원이 북마크한 리뷰 목록
+	public List<ReviewsVO> getMemberReviewBookmarks(int start, int end, long mem_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ReviewsVO> list = null;
+		String sql = null;
+		try {
+			// 커넥션 할당
+			conn = DBUtil.getConnection();
+
+			// SQL작성
+			sql = "SELECT * FROM bmreviews b JOIN reviews USING(reviews_num) WHERE b.mem_num=?;";
+			
+
+			// PreparedStatement 객체 생
+			pstmt = conn.prepareStatement(sql);
+
+			// ?에 데이터 바인딩
+			pstmt.setLong(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+
+			// SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+
+			// 결과
+			while (rs.next()) {
+				ReviewsVO review = new ReviewsVO();
+				review.setReviews_num(rs.getLong("reviews_num"));
+				review.setMem_num(rs.getLong("mem_num"));
+				review.setFp_name(rs.getString("fp_name"));// 가게이름
+				review.setReviews_score(rs.getInt("reviews_score")); // 별점
+				review.setReviews_con(rs.getString("reviews_con")); // 리뷰 내용
+				review.setReviews_date(rs.getDate("reviews_date")); // 작성일
+				review.setReviews_img1(rs.getString("reviews_img1")); // 리뷰 이미지
+
+				list.add(review);
+
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,19 +15,21 @@
 <div class="page-main">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
-			<div class="text-c">
-				<h2>${member.mem_nickname}님의 프로필</h2>
-				<img src='${pageContext.request.contextPath}/images/icon-account.png'
-					alt="개인프로필아이">
-				<div class="flex-box f-center btn-area">
-					<button type="button" onclick="location.href='${pageContext.request.contextPath}/chat/showChat.do?chat_receiver_num=${member.mem_num}'" class="btn-primary btn-icon pl-1" style="background-image: url('${pageContext.request.contextPath}/images/icon-chat.png')";>채팅하기</button>
-					<button class="btn-line-primary btn-icon pl-1" style="background-image: url('${pageContext.request.contextPath}/images/icon-plus.png')";>팔로우하기</button>
-				</div>
-			</div>
-			<ul class="flex-box f-center">
-				<li><button type="button" onclick="location.href='page'">찜한식당</button></li>
-				<li><button type="button" onclick="location.href='page'">식당리뷰</button></li>
+			<jsp:include page="/WEB-INF/views/others/userProfile.jsp"/>
+			<%-- <c:if test="${count == 0}">
+				<div class="result-display">북마크한 식당이 없습니다.</div>
+			</c:if>
+			<c:if test="${count == 1}"> --%>
+			<c:forEach var="fplace" items="${list}">
+			<ul class="bg-gr300 pb-1">
+				<li>음식점 이름 : ${fplace.fp_name}</li>
+				<li>연락처 : ${fplace.fp_phone}</li>
+				<li>영업시간 : ${fplace.fp_time}</li>
+				<li>위치 : ${fplace.fp_loc}</li>
+				<li><img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}" class="image-cell"></li>
 			</ul>
+				</c:forEach>
+			<%-- </c:if> --%>
 		</div>
 	</div>
 
