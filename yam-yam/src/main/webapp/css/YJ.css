@@ -82,3 +82,16 @@
 	background: url('../images/icon-close.png') no-repeat;
 	width: 48px;
 }
+
+/* others
+-------------------------- */
+
+.tab {
+	width: 200px;
+  display: block;
+  text-align: center;
+  padding: 1rem;
+}
+.selected {
+	border-bottom: 3px solid #A8A6A6;
+}

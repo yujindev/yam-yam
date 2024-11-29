@@ -92,6 +92,10 @@
 .f-between {justify-content: space-between;}
 .f-center {justify-content: center;}
 
+/* ================= flex =============== */
+.block-box {display:block;}
+.inline-box {display:inline;}
+.inblo-box {display:inline-block;}
 
 /* ================= button =============== */
 /* 버튼 기본속성  */
