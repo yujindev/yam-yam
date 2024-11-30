@@ -16,6 +16,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
 			<jsp:include page="/WEB-INF/views/others/userProfile.jsp"/>
+			<ul class="flex-box f-center pb-1">
+				<li class="tab selected"><a href="${pageContext.request.contextPath}/others/saveStore.do?mem_id=${member.mem_id}">찜한식당</a></li>
+				<li class="tab"><a href="${pageContext.request.contextPath}/others/saveReview.do?mem_id=${member.mem_id}">찜한리뷰</a></li>
+			</ul>
 			<%-- <c:if test="${count == 0}">
 				<div class="result-display">북마크한 식당이 없습니다.</div>
 			</c:if>

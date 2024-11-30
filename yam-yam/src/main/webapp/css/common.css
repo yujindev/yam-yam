@@ -14,19 +14,20 @@
 
 /* ================= margin padding =============== */
 
-.m-0auto {margin: 0 auto;}
-.ml-auto {margin-left: auto;}
-.mr-auto {margin-right: auto;}
+.m-0auto {margin: 0 auto !important;}
+.ml-auto {margin-left: auto !important;}
+.mr-auto {margin-right: auto !important;}
+.mb-1 {margin-bottom:1rem !important;}
 
-.p-1 {padding:1rem;}
-.p-2 {padding:2rem;}
+.p-1 {padding:1rem !important;}
+.p-2 {padding:2rem !important;}
 .pb-1 {padding-bottom :1rem !important;}
 .pl-1 {padding-left: 1rem !important;}
 
-.pt-2{padding-top:2rem;}
+.pt-2{padding-top:2rem !important;}
 
-.text-c {text-align: center;}
-.text-r {text-align: right;}
+.text-c {text-align: center !important;}
+.text-r {text-align: right !important;}
 
 
 /* ================= color =============== */
@@ -45,28 +46,28 @@
 
 /* bg컬러 */
 
-.bg-gr100 {background-color: var(--gr100);}
-.bg-gr150 {background-color: var(--gr150);}
-.bg-gr300 {background-color: var(--gr300);}
-.bg-gr400 {background-color: var(--gr400);}
-.bg-gr450 {background-color: var(--gr450);}
-.bg-gr500 {background-color: var(--gr500);}
-.bg-gr600 {background-color: var(--gr600);}
-.bg-wh {background-color: var(--wh);}
-.bg-bk {background-color: var(--bk);}
-.bg-main {background-color: var(--main-color);}
+.bg-gr100 {background-color: var(--gr100) !important;}
+.bg-gr150 {background-color: var(--gr150) !important;}
+.bg-gr300 {background-color: var(--gr300) !important;}
+.bg-gr400 {background-color: var(--gr400) !important;}
+.bg-gr450 {background-color: var(--gr450) !important;}
+.bg-gr500 {background-color: var(--gr500) !important;}
+.bg-gr600 {background-color: var(--gr600) !important;}
+.bg-wh {background-color: var(--wh) !important;}
+.bg-bk {background-color: var(--bk) !important;}
+.bg-main {background-color: var(--main-color) !important;}
 
 /* text컬러 */
-.text-gr100 {color: var(--gr100);}
-.text-gr150 {color: var(--gr150);}
-.text-gr300 {color: var(--gr300);}
-.text-gr400 {color: var(--gr400);}
-.text-gr450 {color: var(--gr450);}
-.text-gr500 {color: var(--gr500);}
-.text-gr600 {color: var(--gr600);}
-.text-wh {color: var(--wh);}
-.text-bk {color: var(--bk);}
-.text-main {color: var(--main-color);}
+.text-gr100 {color: var(--gr100) !important;}
+.text-gr150 {color: var(--gr150) !important;}
+.text-gr300 {color: var(--gr300) !important;}
+.text-gr400 {color: var(--gr400) !important;}
+.text-gr450 {color: var(--gr450) !important;}
+.text-gr500 {color: var(--gr500) !important;}
+.text-gr600 {color: var(--gr600) !important;}
+.text-wh {color: var(--wh) !important;}
+.text-bk {color: var(--bk) !important;}
+.text-main {color: var(--main-color) !important;}
 
 /* ================= text 속성 =============== */
 
@@ -85,17 +86,17 @@
 /* ================= flex =============== */
 
 .flex-box {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
 }
 .f-around {justify-content: space-around;}
 .f-between {justify-content: space-between;}
 .f-center {justify-content: center;}
 
-/* ================= flex =============== */
-.block-box {display:block;}
-.inline-box {display:inline;}
-.inblo-box {display:inline-block;}
+/* ================= display 속성 =============== */
+.block-box {display:block !important;}
+.inline-box {display:inline !important;}
+.inblo-box {display:inline-block !important;}
 
 /* ================= button =============== */
 /* 버튼 기본속성  */
@@ -119,5 +120,11 @@ button {
 .btn-icon {
 	background-repeat:no-repeat;
 	background-position: 7px 12px;
-    background-size: 24px;
+  background-size: 24px;
+}
+
+/* ================= 아이콘 =============== */
+.icon {
+	width: 32px;
+	height: 32px;
 }
