@@ -9,7 +9,3 @@
 			class="btn-primary btn-icon pl-1 block-box ml-auto "
 			style="background-image: url('${pageContext.request.contextPath}/images/icon-chat.png')";>채팅하기</button>
 </div>
-<ul class="flex-box f-center pb-1">
-	<li class="tab selected"><a href="${pageContext.request.contextPath}/others/saveStore.do?mem_id=${member.mem_id}">찜한식당</a></li>
-	<li class="tab"><a href="${pageContext.request.contextPath}/others/saveReview.do?mem_id=${member.mem_id}">찜한리뷰</a></li>
-</ul>

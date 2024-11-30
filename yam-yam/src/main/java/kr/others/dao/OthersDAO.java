@@ -73,8 +73,6 @@ public class OthersDAO {
 			+ "FROM (SELECT * FROM bmstore b JOIN fplace USING(fp_num) WHERE b.mem_num=? "
 			+ "ORDER BY reg_date DESC)a) WHERE rnum>=? AND rnum<=?";
 			
-			
-			
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			// ?에 데이터 바인딩
@@ -145,10 +143,20 @@ public class OthersDAO {
 			conn = DBUtil.getConnection();
 
 			// SQL작성
-			sql = "SELECT * FROM bmreviews b JOIN reviews USING(reviews_num) WHERE b.mem_num=?;";
-			
+			sql = "SELECT * FROM ("
+					+ "SELECT a.*, rownum rnum "
+					+ "FROM ("
+					+ "SELECT r.reviews_num, r.mem_num AS reviews_memnum, r.reviews_date, r.reviews_score, r.reviews_con, r.reviews_img1, "
+					+ "b.reg_date AS bmdate, b.mem_num AS bm_num,f.fp_num, f.fp_name ,m.mem_nickname "
+					+ "FROM bmreviews b "
+					+ "JOIN reviews r ON r.reviews_num = b.reviews_num "
+					+ "JOIN fplace f ON r.fp_num = f.fp_num "
+					+ "JOIN member m ON r.mem_num = m.mem_num "
+					+ "WHERE b.mem_num = ? "
+					+ "ORDER BY b.reg_date DESC) a)"
+					+ "WHERE rnum BETWEEN ? AND ?";
 
-			// PreparedStatement 객체 생
+			// PreparedStatement 객체 생성 
 			pstmt = conn.prepareStatement(sql);
 
 			// ?에 데이터 바인딩
@@ -162,16 +170,18 @@ public class OthersDAO {
 
 			// 결과
 			while (rs.next()) {
-				ReviewsVO review = new ReviewsVO();
-				review.setReviews_num(rs.getLong("reviews_num"));
-				review.setMem_num(rs.getLong("mem_num"));
-				review.setFp_name(rs.getString("fp_name"));// 가게이름
-				review.setReviews_score(rs.getInt("reviews_score")); // 별점
-				review.setReviews_con(rs.getString("reviews_con")); // 리뷰 내용
-				review.setReviews_date(rs.getDate("reviews_date")); // 작성일
-				review.setReviews_img1(rs.getString("reviews_img1")); // 리뷰 이미지
+				ReviewsVO reviews = new ReviewsVO();
+				reviews.setReviews_num(rs.getLong("reviews_num")); 
+				reviews.setMem_num(rs.getLong("reviews_memnum")); //작성자
+				reviews.setMem_nickname(rs.getString("mem_nickname")); //작성자 닉네임
+				reviews.setFp_num(rs.getLong("fp_num"));//가게num
+				reviews.setFp_name(rs.getString("fp_name"));// 가게이름
+				reviews.setReviews_score(rs.getInt("reviews_score")); // 별점
+				reviews.setReviews_con(rs.getString("reviews_con")); // 리뷰 내용
+				reviews.setReviews_date(rs.getDate("reviews_date")); // 작성일
+				reviews.setReviews_img1(rs.getString("reviews_img1")); // 리뷰 이미지
 
-				list.add(review);
+				list.add(reviews);
 
 			}
 
@@ -182,6 +192,39 @@ public class OthersDAO {
 		}
 		return list;
 	}
+	
+	//특정 회원이 북마크한 리뷰 수
+	public int countMemberReviewBookmarks(long mem_num) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			//커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "SELECT COUNT(*) FROM bmreviews b JOIN reviews USING(reviews_num) WHERE b.mem_num=?";
+			//pstmt 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, mem_num);
+			//sql문 실행 
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	
+
 
 
 }

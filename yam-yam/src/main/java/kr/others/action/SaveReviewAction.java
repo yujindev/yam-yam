@@ -9,15 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import kr.chat.dao.ChatDAO;
 import kr.controller.Action;
-import kr.fplace.vo.FplaceVO;
+import kr.fplace.vo.ReviewsVO;
 import kr.member.vo.MemberVO;
 import kr.others.dao.OthersDAO;
 import kr.util.PagingUtil;
 
-public class SaveStoreAction implements Action {
+public class SaveReviewAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 		// 전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		// 특정회원 정보 가져오기
@@ -25,16 +26,17 @@ public class SaveStoreAction implements Action {
 
 		// DAO호출
 		ChatDAO dao = ChatDAO.getInstance();
+		OthersDAO odao = OthersDAO.getInstance();
 		MemberVO member = dao.getMember(mem_id);
+		
 
 		request.setAttribute("member", member);
 
 		// =========찜 목록 시작 ============//
+		
 		long mem_num = member.getMem_num();
-		OthersDAO odao = OthersDAO.getInstance();
-		int count = odao.countMemberStoreBookmarks(mem_num);
-
-		HttpSession session = request.getSession();
+		int count = odao.countMemberReviewBookmarks(mem_num);
+		
 
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null)
@@ -46,9 +48,9 @@ public class SaveStoreAction implements Action {
 
 		// currentPage,count,rowCount
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, Integer.parseInt(rowCount));
-		List<FplaceVO> list = null;
+		List<ReviewsVO> list = null;
 		if (count > 0) {
-			list = odao.getMemberStoreBookmarks(page.getStartRow(), page.getEndRow(), mem_num);
+			list = odao.getMemberReviewBookmarks(page.getStartRow(), page.getEndRow(), mem_num);
 		} else {
 			list = Collections.emptyList();
 		}
@@ -58,7 +60,7 @@ public class SaveStoreAction implements Action {
 		request.setAttribute("page",page.getPage());
 
 		// JSP 경로 반환
-		return "others/saveStore.jsp";
+		return "others/saveReview.jsp";
 	}
 
 }

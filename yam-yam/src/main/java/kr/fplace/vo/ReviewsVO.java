@@ -18,6 +18,15 @@ public class ReviewsVO {
 	private boolean isBookmarked; 
 	private int reviews_count;
 	
+	private String mem_nickname;
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	
 	public String getMem_id() {
 		return mem_id;
 	}
