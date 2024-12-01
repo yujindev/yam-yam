@@ -92,7 +92,7 @@ form{
 	padding:10px 10px 10px 30px;
 }
 form ul li label{
-	width:130px;
+	width:500px;
 	display:inline-block;
 }
 ul{
@@ -713,3 +713,210 @@ table {
     right: 10px;
 }
 
+/* 페이지메인 */
+ 
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+    form ul {
+        list-style: none;
+        padding: 0;
+    }
+    form ul li {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    input[type="text"], input[type="file"], input[type="checkbox"], select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+   
+    input[type="checkbox"] {
+        width: auto;
+    }
+    
+    
+     input[type="file"] {
+        padding: 5px;
+    }
+   /* 필터 섹션 */
+    .filter-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* 필터 그룹 간 간격 */
+        margin-bottom: 20px;
+    }
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* 필터 제목과 버튼 간 간격 */
+    }
+    .filter-group strong {
+        margin-right: 10px; /* 필터 제목 오른쪽 여백 */
+        font-size: 14px;
+        color: #333;
+    }
+    .filter-group label {
+        margin-left: 5px; /* 체크박스/라디오 버튼과 라벨 사이의 간격 */
+        font-size: 14px;
+        color: #555;
+    }
+    .filter-group input[type="radio"],
+    .filter-group input[type="checkbox"] {
+        margin: 0; /* 기본 여백 제거 */
+    }
+   
+    .align-center {
+        text-align: center;
+    }
+    .align-center input[type="submit"], .align-center input[type="button"] {
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 5px;
+    }
+    .align-center input[type="submit"]:hover, .align-center input[type="button"]:hover {
+        background-color: #ff4500;
+    }
+/* 제비뽑기와 룰렛 애니메이션 스타일 */
+
+/* ========================== 룰렛 스타일 ========================== */
+
+/* 룰렛 컨테이너 */
+.roulette-container {
+    position: relative;
+    width: 400px;
+    height: 500px; /* 캔버스와 버튼 포함 */
+    margin: 20px auto;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 룰렛 캔버스 */
+#roulette_canvas {
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    border: 5px solid orange;
+    border-radius: 50%; /* 원형 테두리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}
+
+/* 화살표 이미지 */
+#arrow_image {
+    position: absolute;
+    top: 5px; /* 캔버스 상단 */
+    left: 50%; /* 수평 중앙 */
+    transform: translateX(-50%); /* 가로 중앙 정렬 */
+    width: 40px;
+    z-index: 10; /* 캔버스 위에 표시 */
+}
+
+/* 결과 텍스트 */
+#result-display {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ========================== 제비뽑기 스타일 ========================== */
+
+
+/* 부모 컨테이너 */
+ #canvas-container {
+     position: relative; /* 자식 요소 위치 기준 설정 */
+     text-align: center; /* 캔버스와 GIF, 텍스트를 중앙 정렬 */
+     width: 500px; /* 캔버스/GIF 컨테이너의 너비 */
+     margin: 0 auto; /* 화면 중앙으로 이동 */
+ }
+
+ /* 캔버스 스타일 */
+ #name-canvas {
+     width: 500px;
+     height: 500px;
+ }
+
+ /* GIF 이미지 스타일 */
+ #shuffle-gif {
+     position: absolute; /* 캔버스와 동일한 위치에 겹치도록 설정 */
+     top: 0;
+     left: 0;
+     width: 500px;
+     height: 500px;
+     display: none; /* 기본적으로 숨김 */
+ }
+
+
+
+/* ========================== 공통 버튼 스타일 ========================== */
+
+/* 버튼 컨테이너 */
+ .random-button-container {
+            margin-top: 20px; /* 버튼과 캔버스 사이의 간격 */
+            display: flex;
+            justify-content: center; /* 버튼들을 중앙 정렬 */
+            gap: 10px; /* 버튼 간 간격 */
+        }
+
+        /* 버튼 스타일 */
+        .random-button {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+.random-button:hover {
+    background-color: #0056b3; /* 버튼 호버 시 색상 */
+}
+
+
+/* ========================== 반응형 디자인 ========================== */
+
+@media (max-width: 768px) {
+    .roulette-container {
+        padding: 15px;
+    }
+
+    #roulette_canvas,
+    #name-canvas {
+        width: 250px; /* 캔버스 크기 축소 */
+        height: 250px;
+    }
+
+    .random-button {
+        padding: 8px 16px; /* 버튼 크기 축소 */
+        font-size: 14px; /* 글씨 크기 축소 */
+    }
+
+    #result-display {
+        font-size: 16px; /* 결과 표시 글씨 크기 축소 */
+    }
+}
