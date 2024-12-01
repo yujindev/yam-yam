@@ -8,7 +8,7 @@ import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 
-public class ModifyPwAction implements Action{
+public class ModifyPasswordAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -34,7 +34,7 @@ public class ModifyPwAction implements Action{
 		String user_id = (String)session.getAttribute("user_id");
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.checkMember(id,nickname);
+		MemberVO member = dao.checkMember(id, nickname);
 		
 		boolean check = false;
 		
@@ -49,7 +49,7 @@ public class ModifyPwAction implements Action{
 		
 		request.setAttribute("check", check);
 		//JSP 경로 반환
-		return "redirect:/modifyPw.jsp";
+		return "member/modifyPassword.jsp";
 	}
 
 }

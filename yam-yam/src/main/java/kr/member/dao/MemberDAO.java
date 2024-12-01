@@ -190,7 +190,41 @@ public class MemberDAO {
 		}
 		
 	}
+	
 	//회원 탈퇴(회원 정보 삭제)
+	public void deleteMember(long mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//auto commit 해제
+			conn.setAutoCommit(false);
+			
+			sql = "UPDATE member SET auth=0 WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, mem_num);
+			pstmt.executeUpdate();
+			
+			sql = "DELETE FROM member_detail WHERE mem_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setLong(1, mem_num);
+			pstmt2.executeUpdate();
+			
+			//모든 SQL문의 실행이 성공하면 커밋
+			conn.commit();
+		}catch(Exception e) {
+			//SQL문이 하나라도 실패하면 롤백
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, conn);
+		}
+	}
+	
 	
 	
 	/* ============ 관리자 ============ */
