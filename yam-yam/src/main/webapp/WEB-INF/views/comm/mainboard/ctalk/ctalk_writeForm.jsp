@@ -32,20 +32,21 @@ $(function(){
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 			<h2>게시판 글쓰기</h2>
-			<form id="write_form" action="ctalk_write.do" method="post" enctype="multipart/form-data">
+			<form id="write_form" action="ctalk_write.do" method="post" enctype="multipart/form-data" class="mt-3 w-80 m-0auto">
 				<ul>
-					<li><label for="ctalk_title">제목</label> <input type="text"
-						name="ctalk_title" id="ctalk_title" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="ctalk_title"  class="form-ttl">제목</label>
+					<input type="text" name="ctalk_title" id="ctalk_title" maxlength="50" class="input-check w-95 p-05 ml-auto block-box">
 					</li>
 					
-					<li>
-					<label for="ctalk_article">내용</label> 
-					<textarea rows="5" cols="40" name="ctalk_article" id="ctalk_article" class="input-check"></textarea>
+					<li class="flex-box">
+					<label for="ctalk_article"  class="form-ttl">내용</label> 
+					<textarea rows="5" cols="40" name="ctalk_article" id="ctalk_article" class="input-check w-95 p-05 ml-auto block-box"></textarea>
 					</li>
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="등록"> 
-					<input type="button" value="목록" onclick="location.href='list.do'">
+				<div class="flex-box f-end mt-3">
+					<input type="submit" value="등록" class="btn btn-primary"> 
+					<input type="button" value="목록" onclick="location.href='list.do'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
