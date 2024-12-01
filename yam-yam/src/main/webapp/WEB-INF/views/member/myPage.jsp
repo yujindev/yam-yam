@@ -73,7 +73,8 @@
 
 							<li class="mb-1 p-1">
 								<button class="btn-primary1"
-									onclick="location.href='${pageContext.request.contextPath}/member/modifyForm.do'">
+									onclick="location.href='${pageContext.request.contextPath}/chat/chatList.do'">
+									
 									<img
 										src="${pageContext.request.contextPath}/images/elsemypage.png"
 										alt="수정 아이콘" class="btn-icon1"> 1:1 채팅목록 
