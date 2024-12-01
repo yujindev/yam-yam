@@ -9,29 +9,17 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
-<!-- 필터처리 추후 필요
-<script type="text/javascript">
- 	window.onload=function(){
- 		const myForm = document.getElementById('search_form');
- 		//이벤트 연결
- 		myForm.onsubmit = function(){
- 			const keyword = document.getElementById('keyword');
- 			if(keyword.value.trim()==''){
- 				alert('검색어를 입력하세요!');
- 				keyword.value='';
- 				keyword.focus();
- 				return false;
- 			}
- 		};
- 	};
-</script>
--->
+
+
 </head>
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 			<h2>맛집랭킹</h2>
+			<c:if test="${!empty user_num && (user_auth == 9 || user_num == fplace.mem_num)}">
+			<input type="button" value="식당등록" onclick="location.href='writeForm.do'">
+			</c:if>
 		<!-- 필터 시작 -->
 		<form action="list.do" method="get">
     <div class="filter-container">
@@ -62,11 +50,7 @@
 		
 		<!-- 필터 끝 -->
 		<!-- 목록 생성 -->
-		<div class="list-space align-right">
-			<c:if test="${!empty user_num && user_auth == 9}">
-				<input type="button" value="식당등록" onclick="location.href='writeForm.do'">
-			</c:if>
-		</div>
+		
 		
 		<c:if test="${count == 0}">
 			<div class="result-display">

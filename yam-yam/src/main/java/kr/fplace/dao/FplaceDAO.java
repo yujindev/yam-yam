@@ -12,6 +12,7 @@ import kr.fplace.vo.BmstoreVO;
 import kr.fplace.vo.FpMenuVO;
 import kr.fplace.vo.FplaceVO;
 import kr.fplace.vo.ReviewsVO;
+import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -126,95 +127,7 @@ public class FplaceDAO {
 		return count;
 	}
 
-//	//전체 식당 목록
-//	public List<FplaceVO> getListFplace(int startRow, int endRow, String fp_filter1, String fp_filter2, String fp_filter3) throws Exception{
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		List<FplaceVO> list =null;
-//		String sql = null;
-//		String sub_sql = "";
-//		int cnt = 0;
-//
-//		try {
-//			conn = DBUtil.getConnection();
-//
-//			if(!"".equals(fp_filter1) || !"".equals(fp_filter2) || !"".equals(fp_filter3)) {
-//				sub_sql += " where ";
-//			}
-//			
-//			if(!"".equals(fp_filter1)) {
-//				sub_sql += " INSTR(?,fp_filter1) > 0";
-//			}
-//
-//			if(!"".equals(fp_filter1) && !"".equals(fp_filter2)) {
-//				sub_sql += " OR ";
-//			}
-//			
-//			if(!"".equals(fp_filter2)) {
-//				sub_sql += " INSTR(?,fp_filter2) > 0 ";
-//			}
-//
-//			if(!"".equals(fp_filter2) && !"".equals(fp_filter3)) {
-//				sub_sql += " OR ";
-//			}
-//			
-//			if(!"".equals(fp_filter1) && "".equals(fp_filter2) && !"".equals(fp_filter3)) {
-//				sub_sql += " OR ";
-//			}
-//			
-//			if(!"".equals(fp_filter3)) {
-//				sub_sql += " case when length(fp_filter3) >= length(?) then instr(fp_filter3,?) "
-//						+ "else instr(?,fp_filter3) end  > 0";
-//			}
-//
-//			sql = "select * from (select a.*, rownum rnum from "
-//					+ "(select * from fplace join member using(mem_num) " + sub_sql
-//					+ " order by fp_num desc)a) where rnum >= ? and rnum <= ?";
-//			System.out.println("SQL : " + sql);
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			if(!"".equals(fp_filter1)) {
-//				pstmt.setString(++cnt, fp_filter1);		}
-//
-//			if(!"".equals(fp_filter2)) {
-//				pstmt.setString(++cnt, fp_filter2);
-//			}
-//
-//			if(!"".equals(fp_filter3)) {
-//				pstmt.setString(++cnt, fp_filter3);
-//				pstmt.setString(++cnt, fp_filter3);
-//				pstmt.setString(++cnt, fp_filter3);
-//			}
-//			pstmt.setInt(++cnt, startRow); // 번호가 달라지기 때문에 1,2,3으로 지정하면 안됨
-//			pstmt.setInt(++cnt, endRow); // 번호가 달라지기 때문에 1,2,3으로 지정하면 안됨
-//			rs = pstmt.executeQuery();
-//			list = new ArrayList<FplaceVO>();
-//
-//			while (rs.next()) {
-//				FplaceVO fplace = new FplaceVO();
-//				fplace.setFp_num(rs.getInt("fp_num"));
-//				fplace.setFp_name(rs.getString("fp_name"));
-//				fplace.setFp_phone(rs.getString("fp_phone"));
-//				fplace.setFp_time(rs.getString("fp_time"));
-//				fplace.setFp_loc(rs.getString("fp_loc"));
-//				fplace.setFp_storeimg(rs.getString("fp_storeimg"));
-//				fplace.setFp_filter1(rs.getString("fp_filter1"));
-//				fplace.setFp_filter2(rs.getString("fp_filter2"));
-//				fplace.setFp_filter3(rs.getString("fp_filter3"));
-//				fplace.setMem_num(rs.getLong("mem_num"));
-//				fplace.setFp_avgscore(rs.getLong("fp_avgscore"));
-//				list.add(fplace);
-//			}
-//		}catch (Exception e) {
-//			throw new Exception(e);
-//		}finally {
-//			DBUtil.executeClose(rs, pstmt, conn);
-//		}
-//
-//		return list;
-//	}
-	
+	//전체 식당 목록
 	public List<FplaceVO> getListFplace(int startRow, int endRow, String fp_filter1, String fp_filter2, String fp_filter3) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
@@ -320,39 +233,46 @@ public class FplaceDAO {
 
 
 
-	//식당상세
-	public FplaceVO getFplace(long fp_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		FplaceVO fplace = null;
-		String sql = null;
-		try {
-			conn = DBUtil.getConnection();
-			sql = "select * from fplace where fp_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, fp_num);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				fplace = new FplaceVO();
-				fplace.setFp_num(rs.getInt("fp_num"));
-				fplace.setFp_name(rs.getString("fp_name"));
-				fplace.setFp_phone(rs.getString("fp_phone"));
-				fplace.setFp_time(rs.getString("fp_time"));
-				fplace.setFp_loc(rs.getString("fp_loc"));
-				fplace.setFp_storeimg(rs.getString("fp_storeimg"));
-				fplace.setFp_filter1(rs.getString("fp_filter1"));
-				fplace.setFp_filter2(rs.getString("fp_filter2"));
-				fplace.setFp_filter3(rs.getString("fp_filter3"));
+	// 식당상세
+	public FplaceVO getFplace(long fp_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    FplaceVO fplace = null;
+	    String sql = null;
 
-			}
-		}catch (Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
+	    try {
+	        conn = DBUtil.getConnection();
+	        
+	        // SQL문에 mem_num 추가
+	        sql = "SELECT fp_num, fp_name, fp_phone, fp_time, fp_loc, fp_storeimg, " +
+	              "fp_filter1, fp_filter2, fp_filter3, mem_num " +
+	              "FROM fplace WHERE fp_num = ?";
+	        
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(1, fp_num);
+	        rs = pstmt.executeQuery();
 
-		return fplace;
+	        if (rs.next()) {
+	            fplace = new FplaceVO();
+	            fplace.setFp_num(rs.getInt("fp_num"));
+	            fplace.setFp_name(rs.getString("fp_name"));
+	            fplace.setFp_phone(rs.getString("fp_phone"));
+	            fplace.setFp_time(rs.getString("fp_time"));
+	            fplace.setFp_loc(rs.getString("fp_loc"));
+	            fplace.setFp_storeimg(rs.getString("fp_storeimg"));
+	            fplace.setFp_filter1(rs.getString("fp_filter1"));
+	            fplace.setFp_filter2(rs.getString("fp_filter2"));
+	            fplace.setFp_filter3(rs.getString("fp_filter3"));
+	            fplace.setMem_num(rs.getLong("mem_num")); // 작성자 정보 추가
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return fplace;
 	}
 
 	//파일 삭제
@@ -377,13 +297,16 @@ public class FplaceDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sub_sql = "";
 		int cnt = 0;
 
 		try {
 			conn =DBUtil.getConnection();
-
+			if(fplace.getFp_storeimg()!=null && !"".equals(fplace.getFp_storeimg())) {
+				sub_sql += ",fp_storeimg=?";
+			}
 			sql = "update fplace set fp_name=?, fp_phone=?, fp_time=?, fp_loc=?, "
-					+ "	fp_filter1=?, fp_filter2=?,fp_filter3=?, fp_storeimg=? "
+					+ "	fp_filter1=?, fp_filter2=?,fp_filter3=?" +sub_sql
 					+" where fp_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -394,7 +317,10 @@ public class FplaceDAO {
 			pstmt.setString(++cnt, fplace.getFp_filter1());
 			pstmt.setString(++cnt, fplace.getFp_filter2());
 			pstmt.setString(++cnt, fplace.getFp_filter3());
-			pstmt.setString(++cnt, fplace.getFp_storeimg());
+			
+			if(fplace.getFp_storeimg()!=null && !"".equals(fplace.getFp_storeimg())) {
+				pstmt.setString(++cnt, fplace.getFp_storeimg());
+			}
 			pstmt.setLong(++cnt, fplace.getFp_num());
 			pstmt.executeUpdate();
 		}catch (Exception e) {
@@ -410,31 +336,49 @@ public class FplaceDAO {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
+		PreparedStatement pstmt5 = null;
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 
-			/* 북마크 삭제
-				sql = "delete from zboard_fav where board_num=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setLong(1, board_num);
-				pstmt.executeUpdate();
+			//북마크 삭제
+			sql = "DELETE FROM bmstore WHERE fp_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, fp_num);
+			pstmt.executeUpdate();
+		
 
-				//댓글 삭제
-				sql = "delete from zboard_reply where board_num=?";
-				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setLong(1, board_num);
-				pstmt2.executeUpdate();
-			 */
+			//댓글 삭제
+			sql ="DELETE FROM reviews WHERE fp_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setLong(1, fp_num);
+			pstmt2.executeUpdate();
+			
 
 			//식당메뉴 삭제
-
-			//부모글 삭제
-			sql = "delete from fplace where fp_num=?";
+			sql = "delete from fpmenu where fp_num=?";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setLong(1, fp_num);
 			pstmt3.executeUpdate();
+			
+			//예약건 삭제 
+			sql = "delete from reserv where fp_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setLong(1, fp_num);
+			pstmt4.executeUpdate();
+
+			
+			//예약시간, 아덜스? 
+			
+			
+			
+			//부모글 삭제
+			sql = "delete from fplace where fp_num=?";
+			pstmt5 = conn.prepareStatement(sql);
+			pstmt5.setLong(1, fp_num);
+			pstmt5.executeUpdate();
 			conn.commit();
 
 		}catch (Exception e) {
@@ -442,6 +386,8 @@ public class FplaceDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt5, null);
+			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
@@ -1099,5 +1045,109 @@ public class FplaceDAO {
 		}
 	}
 	
+	//관리자
+	//식당 전체내용 개수, 검색 내용 개수
+	public int getFplaceCountByAdmin(String keyfield, String keyword)throws Exception{
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		try {
+			//커넥션 풀로부터 커넥셔능ㄹ 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				//검색처리
+				if(keyfield.equals("1")) sub_sql += "where fp_name like '%' || ? || '%'";
+			}
+		
+			//sql 문 작성
+			sql = "select count(*) from fplace " + sub_sql ;
+			//pre어쩌구 생성
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(1, keyword);
+			}
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count =rs.getInt(1);
+			}
+		}catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 
+		return count;
+	}
+	//식당 목록,검색 목록
+	public List<FplaceVO> getListFplaceByAdmin(int start,int end, String keyfield,String keyword) throws Exception{
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		List<FplaceVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				//검색처리
+				if(keyfield.equals("1")) sub_sql += "where fp_name like '%' || ? || '%'";
+			}
+		
+			//sql 문 작성
+					sql = "SELECT * FROM (" +
+			        	      "   SELECT a.*, rownum rnum " +
+			        	      "   FROM (" +
+			        	      "       SELECT f.*, COALESCE(r.avg_score, 0) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
+			        	      "       FROM (" +
+			        	      "           SELECT fp_num, AVG(reviews_score) AS avg_score, COUNT(reviews_score) AS review_count " +
+			        	      "           FROM reviews " +
+			        	      "           GROUP BY fp_num" +
+			        	      "       ) r " +
+			        	      "       RIGHT OUTER JOIN fplace f ON r.fp_num = f.fp_num " + sub_sql +
+			        	      "       ORDER BY fp_avgscore DESC, f.fp_num DESC" + // 평균 별점 우선 정렬 후, 같은 별점일 경우 식당 번호로 정렬
+			        	      "   ) a" +
+			        	      ") WHERE rnum >= ? AND rnum <= ?";
+
+
+			pstmt = conn.prepareStatement(sql);
+			
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, keyword);
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			//sql문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<FplaceVO>();
+			
+			while(rs.next()) {
+				FplaceVO fplace = new FplaceVO();
+				fplace.setFp_num(rs.getInt("fp_num"));
+	            fplace.setFp_name(rs.getString("fp_name"));
+	            fplace.setFp_filter1(rs.getString("fp_filter1"));
+	            fplace.setFp_filter2(rs.getString("fp_filter2"));
+	            fplace.setFp_filter3(rs.getString("fp_filter3"));
+	            fplace.setFp_avgscore(rs.getDouble("fp_avgscore")); // 평균 별점 설정
+	            fplace.setReviews_count(rs.getInt("fp_review_count")); /*rs.getInt()안에 sql문의 알리아스 넣어주기*/
+	            list.add(fplace);
+			}
+		}catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+		DBUtil.executeClose(rs, pstmt, conn);
+	}
+	return list;
+}
+	
+	
+	
+	
 }

@@ -74,7 +74,8 @@
 					<input type="text" name="fp_loc" id="fp_loc" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="fp_filter1">필터1 (식사, 간식)</label></li>
+					<li>
+					<label for="fp_filter1">필터1 (식사, 간식)</label></li>
 					<li>
 					    <label><input type="radio" name="fp_filter1" value="식사">식사</label>
 					    <label><input type="radio" name="fp_filter1" value="간식">간식</label>

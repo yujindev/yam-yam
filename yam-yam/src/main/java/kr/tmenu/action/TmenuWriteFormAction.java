@@ -1,4 +1,4 @@
-package kr.fplace.action;
+package kr.tmenu.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class WriteFormAction implements Action{
+public class TmenuWriteFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -16,10 +16,11 @@ public class WriteFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		if(user_auth !=9 && user_auth != 7) {//관리자로 로그인하지 않은 경우
+		if(user_auth !=9 ) {//관리자로 로그인하지 않은 경우
 			return "common/notice.jsp";
 		}
-		return "fplace/writeForm.jsp";
+		
+		return "tmenu/tmenu_writeForm.jsp";
 	}
 
 }

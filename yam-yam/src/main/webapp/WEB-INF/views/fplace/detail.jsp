@@ -1,5 +1,3 @@
-식당정보 수정전 
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -78,18 +76,22 @@
 			<script type="text/javascript">
 				$(document).on('click', '#fpmenu-write-btn', function() {
 					const userNum = '${user_num}'; // 서버에서 로그인 여부를 가져옴
+					const userAuth = '${user_auth}';//사용자권한
+					const memNum = '${fplace.mem_num}'; // 작성자의 사용자 ID 가져옴 (서버에서 전달)
 					if (!userNum) {
 						//비로그인 상태라면 로그인 페이지로 리다이렉트
 						alert('로그인 후 이용할 수 있습니다.');
 						window.location.href = '${pageContext.request.contextPath}/member/loginForm.do';
 						return;
-					}else{
-					// 로그인 상태라면 리뷰 작성 폼 표시 
+					}else if(userNum == memNum || userAuth == 9){
+					// 로그인 상태라면 메뉴 작성 폼 표시 
 					$('#menu-form').show();
+					}else{
+						alert('작성할 권한 없음')
 					}
 				});
 
-				// 식당정보 작성 취소 버튼 클릭 시 폼 숨기기
+				// 메뉴정보 작성 취소 버튼 클릭 시 폼 숨기기
 				$(document).on('click', '#fpmenu-cancel-btn', function() {
 					$('#menu-form').hide();
 					$('#fpmenu_name').val('');
@@ -99,7 +101,7 @@
 			</script>
 
 			<!-- 메뉴 작성 버튼 -->
-			<c:if test="${!empty user_num && user_auth == 9}">
+			<c:if test="${!empty user_num && (user_auth == 9 || user_num == fplace.mem_num)}">
 				<div class="list-space align-right">
 					<button id="fpmenu-write-btn">메뉴 등록</button>
 				</div>

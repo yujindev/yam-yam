@@ -12,11 +12,13 @@ constraint mem_num_fk foreign key (mem_num) references member(mem_num)
 );
 create sequence fplace_seq;
 --오늘의 메뉴
-create table TMENU (
-tm_num number not null, 
-tm_menu varchar2(50) not null, 
-constraint pk_tm_menu primary key (tm_num),
-constraint uk_tm_menu unique (tm_num, tm_menu) 
+CREATE TABLE tmenu (
+    tm_num NUMBER NOT NULL,
+    tm_menu VARCHAR2(50) NOT NULL,
+    mem_num NUMBER NOT NULL,
+    CONSTRAINT tmenu_tm_num_pk PRIMARY KEY (tm_num),
+    CONSTRAINT tmenu_tm_menu_uk UNIQUE (tm_menu),
+    CONSTRAINT tmenu_mem_num_fk FOREIGN KEY (mem_num) REFERENCES member(mem_num)
 );
 create sequence TMENU_seq;
 

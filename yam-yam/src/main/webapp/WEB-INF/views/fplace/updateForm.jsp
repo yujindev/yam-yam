@@ -11,6 +11,54 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			// 기존 등록된 이미지 경로 저장
+		    let originalPath = "${!empty fplace.fp_storeimg ? pageContext.request.contextPath.concat('/upload/').concat(fplace.fp_storeimg) : ''}";
+		    
+		    // 파일 선택 필드 비활성화
+		    $('#fp_storeimg').prop('disabled', true);
+
+		    // 파일 삭제 버튼
+		    $('#file_del').click(function() {
+		        let choice = confirm('이미지를 삭제하시겠습니까?');
+		        if (choice) {
+		            $.ajax({
+		                url: 'deleteFile.do',
+		                type: 'post',
+		                data: { fp_num: ${fplace.fp_num} },
+		                dataType: 'json',
+		                success: function(param) {
+		                    if (param.result === 'logout') {
+		                        alert('로그인 후 사용하세요');
+		                    } else if (param.result === 'success') {
+		                        $('#file_detail').hide(); // 파일 정보 숨기기
+		                        $('#preview_img').attr('src', ''); // 미리보기 이미지 제거
+		                        $('#fp_storeimg').prop('disabled', false); // 파일 선택 활성화
+		                    } else {
+		                        alert('파일 삭제 중 오류가 발생했습니다.');
+		                    }
+		                },
+		                error: function() {
+		                    alert('네트워크 오류가 발생했습니다.');
+		                }
+		            });
+		        }
+		    });
+
+		    // 파일 선택 이벤트
+		    $('#fp_storeimg').change(function() {
+		        let my_photo = this.files[0];
+		        if (!my_photo) {
+		            $('#preview_img').attr('src', originalPath);
+		            return;
+		        }
+		        if (my_photo.size > 1024 * 1024) {
+		            alert('이미지 크기는 1024KB 이하여야 합니다.');
+		            $('#fp_storeimg').val(''); // 파일 입력 초기화
+		            $('#preview_img').attr('src', originalPath); // 기존 이미지 복구
+		            return;
+		        }
+		    });
+			
 			//식당정보 유효성 체크 
 			$('#update_form').submit(function(){
 				const items = document.querySelectorAll('.input-check');
@@ -101,48 +149,21 @@
 				    <label><input type="checkbox" name="fp_filter3" value="모임">모임</label>
 					</li>
 
-
-
-					<li><label for="fp_storeimg">식당이미지</label> 
-					<input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
-					<c:if test="${!empty fplace.fp_storeimg}">
-										<div id="file_detail">
-							(${fplace.fp_storeimg}) 파일이 등록되어 있습니다.
-							<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" width="100">
-							<input type="button" value="파일삭제" id="file_del">
-							<script type="text/javascript">
-								$('#file_del').click(function(){
-									let choice = confirm('삭제하시겠습니까?');
-									if(choice){
-										//서버와 통신
-										$.ajax({
-											url:'deleteFile.do',
-											type :'post',
-											data:{fp_num:${fplace.fp_num}},
-											dataType:'json',
-											success:function(param){
-												if(param.result == 'logout'){
-													alert('로그인 후 사용하세요');
-												}else if(param.result == 'success'){
-													$('#file_detail').hide();
-												}else if(param.result == 'wrongAccess'){
-													alert('잘못된 접속입니다.');
-												}else{
-													alert('파일 삭제 오류 발생')
-												}
-											},
-											error:function(){
-												alert('네트워크 오류 발생');
-											}
-										});
-									}
-								});
-							</script>
-					</div>
-					</c:if>
-					</li>
-					
-				</ul>
+	                <li><label for="fp_storeimg">식당이미지</label>
+	                <input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
+	                <c:if test="${!empty fplace.fp_storeimg}">
+	                    <div id="file_detail">
+	                        (${fplace.fp_storeimg}) 파일이 등록되어 있습니다.
+	                        <img id="preview_img" src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" width="100">
+	                        <input type="button" value="파일삭제" id="file_del">
+	                    </div>
+	                </c:if>
+	                <c:if test="${empty fplace.fp_storeimg}">
+	                    <img id="preview_img" src="" width="100" style="display:none;">
+	                </c:if>
+	                </li>
+	            </ul>
+	            
 				<div class="align-center">
 					<input type="submit" value="수정"> 
 					<input type="button" value="식당 정보" onclick="location.href='detail.do?fp_num=${fplace.fp_num}'">

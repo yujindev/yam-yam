@@ -15,17 +15,19 @@ public class DeleteAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Long user_num = (Long)session.getAttribute("user_num");
+	    Integer user_auth = (Integer)session.getAttribute("user_auth");
         if (user_num == null) {//로그인 되지 않은 경우
             return "redirect:/member/loginForm.do";
         }
+        if(user_auth !=9 && user_auth != 7) {//관리자로 로그인하지 않은 경우
+			return "common/notice.jsp";
+		}
+        
         long fp_num = Long.parseLong(request.getParameter("fp_num"));
         
         FplaceDAO dao = FplaceDAO.getInstance();
         FplaceVO db_fplace = dao.getFplace(fp_num);
-        Integer user_auth = (Integer)session.getAttribute("user_auth");
-		if(user_auth !=9 ) {//관리자로 로그인하지 않은 경우
-			return "common/notice.jsp";
-		}else {
+        
         dao.deleteFplace(fp_num);
         //파일 삭제
         FileUtil.removeFile(request, db_fplace.getFp_storeimg());
@@ -33,8 +35,7 @@ public class DeleteAction implements Action{
         request.setAttribute("notice_msg", "식당정보 삭제 완료!");
         request.setAttribute("notice_url", request.getContextPath()+"/fplace/list.do");
         
-        
-		}
+     
 		return "common/alert_view.jsp";
 	}
 

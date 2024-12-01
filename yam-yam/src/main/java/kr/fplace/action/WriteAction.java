@@ -19,7 +19,7 @@ public class WriteAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		if(user_auth !=9 ) {//관리자로 로그인하지 않은 경우
+		if(user_auth !=9 && user_auth != 7 ) {//관리자로 로그인하지 않은 경우
 			return "common/notice.jsp";
 		}else {
 		
