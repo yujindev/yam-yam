@@ -4,7 +4,8 @@
 
 <header class="flex-box">
 	<h1>
-		<a class="m-0auto pb-1" href="${pageContext.request.contextPath}/main/main.do"><img
+		<a class="m-0auto pb-1"
+			href="${pageContext.request.contextPath}/main/main.do"><img
 			src="${pageContext.request.contextPath}/images/logo.svg" alt="로고"></a>
 	</h1>
 	<nav class="ml-auto bg-gr100">
@@ -13,26 +14,56 @@
 			<li class="nav_menu">
 				<button class="nav_menu_title">오늘의 메뉴</button>
 				<ul class="nav_smenu">
-					<li><a href="#">룰렛</a></li>
-					<li><a href="#">제비뽑기</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/tmenu/roulette.do">룰렛</a></li>
+					<li><a href="${pageContext.request.contextPath}/tmenu/draw.do">제비뽑기</a></li>
 				</ul>
 			</li>
 			<li class="nav_menu">
 				<button class="nav_menu_title">식당찾기</button>
 				<ul class="nav_smenu">
-					<li><a href="${pageContext.request.contextPath}/fplace/list.do">맛집랭킹</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/fplace/list.do">맛집랭킹</a></li>
+					<li><a href="#">식당정보</a></li>
+				</ul>
+			</li>
+
+			<c:if test="${user_auth==9}">
+				<li class="nav_menu">
+					<button class="nav_menu_title">관리자 메뉴</button>
+					<ul class="nav_smenu">
+						<li><a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/fplace/fplaceAdminList.do">식당관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/tmenu/tmenuList.do">오늘의 메뉴 관리</a></li>
+						<li><a>채팅관리</a></li>
+					</ul>
+				</li>
+			</c:if>
+			<li class="nav_menu">
+				<button class="nav_menu_title">식당찾기</button>
+				<ul class="nav_smenu">
+					<li><a
+						href="${pageContext.request.contextPath}/fplace/list.do">맛집랭킹</a></li>
 					<li><a href="#">식당정보</a></li>
 				</ul>
 			</li>
 			<li class="nav_menu">
 				<button class="nav_menu_title">커뮤니티</button>
 				<ul class="nav_smenu">
-					<li><a href="#">전체 글 보기</a></li>
-					<li><a href="#">사용자 맛집추천</a></li>
-					<li><a href="#">잡담</a></li>
-					<li><a href="#">밥친구 찾기</a></li>
-					<li><a href="#">오늘 뭐 보지?</a></li>
-					<li><a href="#">도시락존</a></li>
+					<li><a href="${pageContext.request.contextPath}/main_board/list.do">전체 글 보기</a></li>
+					<li><a href="${pageContext.request.contextPath}/ctalk_board/list.do">잡담</a></li>
+					<li><a href="${pageContext.request.contextPath}/cmenu_board/list.do">맛집추천</a></li>
+					<li><a href="${pageContext.request.contextPath}/cbob_board/list.do">밥친구 찾기</a></li>
+					<li><a href="${pageContext.request.contextPath}/cmov_board/list.do">오늘뭐 보지?</a></li>
+					<li><a href="${pageContext.request.contextPath}/czone_board/list.do">도시락존</a></li>
+				</ul>
+			</li>
+			<li class="nav_menu">
+				<button class="nav_menu_title">MyPage</button>
+				<ul class="nav_smenu">
+					<li><a
+						href="${pageContext.request.contextPath}/member/myPage.do">마이
+							페이지</a></li>
 				</ul>
 			</li>
 			<li class="nav_menu">
@@ -45,14 +76,14 @@
 				</ul>
 			</li>
 			<c:if test="${user_auth==9}">
-				<li class="nav_menu">
-					<button class="nav_menu_title">관리자 메뉴</button>
-					<ul class="nav_smenu">
-						<li><a
-							href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a></li>
-						<li><a>채팅관리</a></li>
-					</ul>
-				</li>
+			<li class="nav_menu">
+        <button class="nav_menu_title">관리자 메뉴</button>
+        <ul class="nav_smenu">
+            <li><a
+                href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a></li>
+            <li><a href="${pageContext.request.contextPath}/fplace/adminReviewsList.do">리뷰관리</a></li>
+        </ul>
+     </li>
 			</c:if>
 			<li class="nav_menu">
 				<button class="btn-nav">
@@ -63,10 +94,11 @@
 	</nav>
 	<ul class="btn_area flex-box">
 		<c:if test="${user_num == null}">
-		<li><button type="button" onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
-				<img src="${pageContext.request.contextPath}/images/icon-login.png"
-					alt="">
-			</button></li>
+			<li><button type="button"
+					onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
+					<img src="${pageContext.request.contextPath}/images/icon-login.png"
+						alt="">
+				</button></li>
 		</c:if>
 		<li><button type="button">
 				<img src="${pageContext.request.contextPath}/images/icon-search.png"
@@ -76,7 +108,9 @@
 			<li>
 				<button type="button"
 					onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
-					<img src="${pageContext.request.contextPath}/images/icon-profile.png" alt="">
+					<img
+						src="${pageContext.request.contextPath}/images/icon-profile.png"
+						alt="">
 				</button>
 			</li>
 		</c:if>
