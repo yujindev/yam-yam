@@ -1,4 +1,31 @@
 $(function() {
+	
+	//웹소켓 생성
+	const message_socket = new WebSocket("ws://localhost:8080/yam-yam/webSocket");
+	message_socket.onopen = function(evt){
+		message_socket.send('one:');
+	};
+	//서버로부터 메시지를 받으면 호출되는 함수 지정
+	message_socket.onmessage = function(evt){
+		//메시지 알림
+		let data = evt.data;
+		if(data.substring(0,4) == 'one:') {
+			selectData;
+		}
+	};
+	
+	
+	//message_socket.onclose = function(evt){
+		//alert('채팅이 종료되었습니다.');
+	//};
+	
+	
+	//엔터키 처리 이벤트 연결 
+	$('#message').keydown(function(event){
+		if(event.keyCode == 13 && !event.shiftKey){
+			$('#chatting_form').trigger('submit');
+		}
+	});
 
 	//채팅 내역
 	function selectData() {
@@ -23,7 +50,7 @@ $(function() {
 						}
 
 						if (item.chat_sender_num == $('#user_num').val()) {
-							output += '<div class="from-position">' + item.sender_nickname;
+							output += '<div class="from-position ml-auto">' + item.sender_nickname;
 						} else {
 							output += '<div class="to-position">' + item.sender_nickname;
 						}
