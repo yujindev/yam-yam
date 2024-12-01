@@ -85,7 +85,7 @@ a:hover{
 }
 /* 공통 등록, 수정 폼
 --------------------------*/
-form{
+/* form{
 	width:600px;
 	margin:0 auto;
 	border:1px solid #000;
@@ -117,7 +117,7 @@ input[id="zipcode"]{
 }
 input[type="number"]{
 	width:100px;
-}
+} */
 .form-notice{
 	margin-left:130px;
 }
@@ -434,4 +434,10 @@ header .btn_area {
 
 header .btn_area li {
   height: fit-content;
+}
+
+/* ==============================게시======================================== */
+
+.form-ttl {
+    vertical-align: top;
 }
