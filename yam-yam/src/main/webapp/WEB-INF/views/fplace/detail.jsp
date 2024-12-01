@@ -22,9 +22,11 @@
 			<h2>식당정보</h2>
 			
 			<!-- 로그인한 회원이 관리자면 식당정보 수정, 삭제 가능 -->
-			<c:if test="${!empty user_num && user_auth == 9}">
+			<c:if test="${!empty user_num && (user_auth == 9 || (user_auth == 7 && fplace.mem_num == user_num))}">
 				<input type="button" value="식당 정보 수정"
 					onclick="location.href='updateForm.do?fp_num=${fplace.fp_num}'">
+			</c:if>
+			<c:if test="${!empty user_num && user_auth == 9}">
 				<input type="button" value="식당 정보 삭제" id="delete_btn">
 				<script type="text/javascript">
 				const delete_btn = document.getElementById('delete_btn');

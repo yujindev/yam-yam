@@ -10,6 +10,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<h2>제비뽑기</h2>
    <div id="canvas-container">
     <canvas id="name-canvas" width="400" height="400"></canvas>
     <img id="shuffle-gif" src="../images/tmenudraw2.gif" style="align-content:center; display: none; width: 500px; height: 500px;" alt="섞는 중">
@@ -19,5 +20,6 @@
     </div>
 </div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

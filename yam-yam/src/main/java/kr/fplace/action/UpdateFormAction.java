@@ -18,14 +18,15 @@ public class UpdateFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		if(user_auth !=9 ) {//관리자로 로그인하지 않은 경우
-			return "common/notice.jsp";
-		}
-			
-		long fp_num =Long.parseLong(request.getParameter("fp_num"));
 		
-		FplaceDAO dao = FplaceDAO.getInstance();
+		long fp_num =Long.parseLong(request.getParameter("fp_num"));
+		FplaceDAO dao =FplaceDAO.getInstance();
 		FplaceVO fplace = dao.getFplace(fp_num);
+		
+		if (user_auth != 9 && fplace.getMem_num() != user_num) {
+		    return "common/notice.jsp";
+		}
+
 		
 		request.setAttribute("fplace", fplace);
 		

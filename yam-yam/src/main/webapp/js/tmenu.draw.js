@@ -76,10 +76,10 @@ $(function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
         ctx.drawImage(resultImage, 0, 0, canvas.width, canvas.height); // 3번 이미지 표시
 
-        ctx.font = "30px Arial";
+        ctx.font = "25px Arial";
         ctx.fillStyle = "black"; // 결과 텍스트를 검정색으로 설정
         ctx.textAlign = "center";
-        ctx.fillText("결과: " + selectedMenu.label, canvas.width / 2, canvas.height / 2);
+        ctx.fillText(selectedMenu.label, canvas.width / 2, canvas.height / 2);
     }
 
     // 제비뽑기 버튼 클릭 이벤트

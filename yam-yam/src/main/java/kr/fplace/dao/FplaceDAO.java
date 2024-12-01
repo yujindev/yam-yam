@@ -12,7 +12,6 @@ import kr.fplace.vo.BmstoreVO;
 import kr.fplace.vo.FpMenuVO;
 import kr.fplace.vo.FplaceVO;
 import kr.fplace.vo.ReviewsVO;
-import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -338,6 +337,9 @@ public class FplaceDAO {
 		PreparedStatement pstmt3 = null;
 		PreparedStatement pstmt4 = null;
 		PreparedStatement pstmt5 = null;
+		PreparedStatement pstmt6 = null;
+		PreparedStatement pstmt7 = null;
+		
 		String sql = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -363,22 +365,30 @@ public class FplaceDAO {
 			pstmt3.setLong(1, fp_num);
 			pstmt3.executeUpdate();
 			
-			//예약건 삭제 
-			sql = "delete from reserv where fp_num=?";
+			//예약시간 삭제
+			sql = "delete from fplace_time where fp_num=?";
 			pstmt4 = conn.prepareStatement(sql);
 			pstmt4.setLong(1, fp_num);
 			pstmt4.executeUpdate();
-
 			
-			//예약시간, 아덜스? 
-			
-			
-			
-			//부모글 삭제
-			sql = "delete from fplace where fp_num=?";
+			//예약건 삭제 
+			sql = "delete from reserv where fp_num=?";
 			pstmt5 = conn.prepareStatement(sql);
 			pstmt5.setLong(1, fp_num);
 			pstmt5.executeUpdate();
+
+			
+			//others 삭제
+			sql = "delete from others where fp_num=?";
+			pstmt6 = conn.prepareStatement(sql);
+			pstmt6.setLong(1, fp_num);
+			pstmt6.executeUpdate();
+			
+			//부모글 삭제
+			sql = "delete from fplace where fp_num=?";
+			pstmt7 = conn.prepareStatement(sql);
+			pstmt7.setLong(1, fp_num);
+			pstmt7.executeUpdate();
 			conn.commit();
 
 		}catch (Exception e) {
@@ -386,6 +396,8 @@ public class FplaceDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt7, null);
+			DBUtil.executeClose(null, pstmt6, null);
 			DBUtil.executeClose(null, pstmt5, null);
 			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
@@ -1045,6 +1057,113 @@ public class FplaceDAO {
 		}
 	}
 	
+	
+	
+	
+	/*---------------식당 리스트 관리-------------------*/
+	//사용자(식당목록 맛집랭킹X)
+	public int getFplaceCountByUser(String keyfield, String keyword) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    int count = 0;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            if (keyfield.equals("1")) sub_sql += "WHERE fp_name LIKE '%' || ? || '%'";
+	            else if (keyfield.equals("2")) sub_sql += "WHERE fp_loc LIKE '%' || ? || '%'";
+	        }
+	        
+	        sql = "select count(*) from fplace " + sub_sql ;
+
+	        pstmt = conn.prepareStatement(sql);
+	        if (keyword != null && !"".equals(keyword)) {
+	            pstmt.setString(1, keyword);
+	        }
+
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return count;
+	}
+	//사용자
+	//식당 목록,검색 목록
+	public List<FplaceVO> getListFplaceByUser(int startRow, int endRow, String keyfield, String keyword) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<FplaceVO> list = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    int cnt = 0;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            if (keyfield.equals("1")) sub_sql += "WHERE f.fp_name LIKE '%' || ? || '%'";
+	            else if (keyfield.equals("2")) sub_sql += "WHERE f.fp_loc LIKE '%' || ? || '%'";
+	        }
+	        
+
+	        sql = "SELECT * FROM (" +
+	              " SELECT a.*, rownum rnum " +
+	              " FROM (" +
+	              "   SELECT f.*, COALESCE(r.avg_score, 0) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
+	              "   FROM (" +
+	              "       SELECT fp_num, AVG(reviews_score) AS avg_score, COUNT(reviews_score) AS review_count " +
+	              "       FROM reviews " +
+	              "       GROUP BY fp_num" +
+	              "   ) r " +
+	              "   RIGHT OUTER JOIN fplace f ON r.fp_num = f.fp_num " + sub_sql +
+	              "   ORDER BY f.fp_num DESC" +  // 등록 순으로 정렬 (최신 등록 순)
+	              " ) a" +
+	              ") WHERE rnum >= ? AND rnum <= ?";
+
+	        pstmt = conn.prepareStatement(sql);
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            pstmt.setString(++cnt, keyword);
+	        }
+	        pstmt.setInt(++cnt, startRow);
+	        pstmt.setInt(++cnt, endRow);
+
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<>();
+	        while (rs.next()) {
+	            FplaceVO fplace = new FplaceVO();
+	            fplace.setFp_num(rs.getInt("fp_num"));
+	            fplace.setFp_name(rs.getString("fp_name"));
+	            fplace.setFp_phone(rs.getString("fp_phone"));
+	            fplace.setFp_time(rs.getString("fp_time"));
+	            fplace.setFp_loc(rs.getString("fp_loc"));
+	            fplace.setFp_filter1(rs.getString("fp_filter1"));
+	            fplace.setFp_filter2(rs.getString("fp_filter2"));
+	            fplace.setFp_filter3(rs.getString("fp_filter3"));
+	            fplace.setFp_storeimg(rs.getString("fp_storeimg"));
+	            fplace.setFp_avgscore(rs.getDouble("fp_avgscore")); // 평균 평점
+	            fplace.setReviews_count(rs.getInt("fp_review_count")); // 리뷰 수
+	            list.add(fplace);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return list;
+	}
+
+
 	//관리자
 	//식당 전체내용 개수, 검색 내용 개수
 	public int getFplaceCountByAdmin(String keyfield, String keyword)throws Exception{
@@ -1061,6 +1180,7 @@ public class FplaceDAO {
 			if(keyword != null && !"".equals(keyword)) {
 				//검색처리
 				if(keyfield.equals("1")) sub_sql += "where fp_name like '%' || ? || '%'";
+				 else if (keyfield.equals("2")) sub_sql += "WHERE mem_num LIKE '%' || ? || '%'";
 			}
 		
 			//sql 문 작성
@@ -1082,6 +1202,7 @@ public class FplaceDAO {
 
 		return count;
 	}
+	
 	//식당 목록,검색 목록
 	public List<FplaceVO> getListFplaceByAdmin(int start,int end, String keyfield,String keyword) throws Exception{
 		Connection conn =null;
@@ -1098,6 +1219,7 @@ public class FplaceDAO {
 			if(keyword != null && !"".equals(keyword)) {
 				//검색처리
 				if(keyfield.equals("1")) sub_sql += "where fp_name like '%' || ? || '%'";
+				else if (keyfield.equals("2")) sub_sql += "WHERE mem_num LIKE '%' || ? || '%'";
 			}
 		
 			//sql 문 작성
@@ -1135,6 +1257,7 @@ public class FplaceDAO {
 	            fplace.setFp_filter1(rs.getString("fp_filter1"));
 	            fplace.setFp_filter2(rs.getString("fp_filter2"));
 	            fplace.setFp_filter3(rs.getString("fp_filter3"));
+	            fplace.setMem_num(rs.getLong("mem_num"));
 	            fplace.setFp_avgscore(rs.getDouble("fp_avgscore")); // 평균 별점 설정
 	            fplace.setReviews_count(rs.getInt("fp_review_count")); /*rs.getInt()안에 sql문의 알리아스 넣어주기*/
 	            list.add(fplace);
@@ -1146,7 +1269,107 @@ public class FplaceDAO {
 	}
 	return list;
 }
-	
+	//식당관리자
+	//식당관리자 식당 개수
+	public int getFplaceCountByManager(Long userNum, String keyfield, String keyword) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    int count = 0;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            if (keyfield.equals("1")) sub_sql += "AND fp_name LIKE '%' || ? || '%'";
+	        }
+
+	        sql = "SELECT COUNT(*) FROM fplace WHERE mem_num = ? " + sub_sql;
+
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(1, userNum);
+	        int cnt = 1;
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            pstmt.setString(++cnt, keyword);
+	        }
+
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return count;
+	}
+	//식당관리자 식당리스트
+	public List<FplaceVO> getListFplaceByManager(Long userNum, int start, int end, String keyfield, String keyword) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<FplaceVO> list = null;
+	    String sql = null;
+	    String sub_sql = "";
+	    int cnt = 0;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            if (keyfield.equals("1")) sub_sql += "AND fp_name LIKE '%' || ? || '%'";
+	        }
+
+	        sql = "SELECT * FROM (" +
+	              "    SELECT a.*, rownum rnum " +
+	              "    FROM (" +
+	              "        SELECT f.*, COALESCE(r.avg_score, 0) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
+	              "        FROM (" +
+	              "            SELECT fp_num, AVG(reviews_score) AS avg_score, COUNT(reviews_score) AS review_count " +
+	              "            FROM reviews " +
+	              "            GROUP BY fp_num" +
+	              "        ) r " +
+	              "        RIGHT OUTER JOIN fplace f ON r.fp_num = f.fp_num " +
+	              "        WHERE f.mem_num = ? " + sub_sql +
+	              "        ORDER BY fp_avgscore DESC, f.fp_num DESC" +
+	              "    ) a" +
+	              ") WHERE rnum >= ? AND rnum <= ?";
+
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(++cnt, userNum);
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            pstmt.setString(++cnt, keyword);
+	        }
+	        pstmt.setInt(++cnt, start);
+	        pstmt.setInt(++cnt, end);
+
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<FplaceVO>();
+
+	        while (rs.next()) {
+	            FplaceVO fplace = new FplaceVO();
+	            fplace.setFp_num(rs.getInt("fp_num"));
+	            fplace.setFp_name(rs.getString("fp_name"));
+	            fplace.setFp_filter1(rs.getString("fp_filter1"));
+	            fplace.setFp_filter2(rs.getString("fp_filter2"));
+	            fplace.setFp_filter3(rs.getString("fp_filter3"));
+	            fplace.setFp_avgscore(rs.getDouble("fp_avgscore"));
+	            fplace.setReviews_count(rs.getInt("fp_review_count"));
+	            list.add(fplace);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return list;
+	}
+
 	
 	
 	

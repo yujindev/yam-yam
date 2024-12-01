@@ -29,11 +29,12 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 	<h2>관리자 식당 관리</h2>
-	<form id="search_form" action="fplaceAdminList.do" method="get">
+	<form id="search_form" action="fplaceList.do" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield">
-					<option value="1" <c:if test="${param.keyfield==1}"></c:if>>식당이름</option>
+					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>식당이름</option>
+					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>식당운영자 회원번호</option>
 				</select>
 			</li>
 			<li>
@@ -61,6 +62,7 @@
 	 			<th>별점</th>
 	 			<th>리뷰 개수</th>
 	 			<th>필터 정보</th>
+	 			<th>식당관리자(번호)</th>
 	 		</tr>
 	 		<c:forEach var="fplace" items="${list}">
 	 		<tr>
@@ -68,6 +70,7 @@
 	 			<td>${fplace.fp_avgscore}</td>
 	 			<td>${fplace.reviews_count}개</td>
 	 			<td>${fplace.fp_filter1}, ${fplace.fp_filter2}, ${fplace.fp_filter3}</td>
+	 			<td>${fplace.mem_num}</td>
 	 		</tr>
 	 		</c:forEach>
 	 	</table>
@@ -75,5 +78,7 @@
 	</c:if>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

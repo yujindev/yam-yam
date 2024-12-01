@@ -17,26 +17,23 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 			<h2>맛집랭킹</h2>
-			<c:if test="${!empty user_num && (user_auth == 9 || user_num == fplace.mem_num)}">
-			<input type="button" value="식당등록" onclick="location.href='writeForm.do'">
-			</c:if>
 		<!-- 필터 시작 -->
-		<form action="list.do" method="get">
+		<form action="list.do" method="get" class="w-100">
     <div class="filter-container">
-        <div class="filter">
+        <div class="filter flex-box">
             <button type="button" class="filter-btn">전체</button>
             <label><input type="checkbox" name="fp_filter1" value="식사">식사</label>
             <label><input type="checkbox" name="fp_filter1" value="간식">간식</label>
         </div>
-        <div class="filter">
-            <button type="button" class="filter-btn">전체</button>
+        <div class="filter flex-box">
+            <button type="button" class="filter-btn">전체</button><br>
             <label><input type="checkbox" name="fp_filter2" value="한식">한식</label>
             <label><input type="checkbox" name="fp_filter2" value="중식">중식</label>
             <label><input type="checkbox" name="fp_filter2" value="일식">일식</label>
             <label><input type="checkbox" name="fp_filter2" value="양식">양식</label>
             <label><input type="checkbox" name="fp_filter2" value="아시안">아시안</label>
         </div>
-        <div class="filter">
+        <div class="filter flex-box">
             <button type="button" class="filter-btn">전체</button>
             <label><input type="checkbox" name="fp_filter3" value="혼밥">혼밥</label>
             <label><input type="checkbox" name="fp_filter3" value="친구">친구</label>
@@ -93,5 +90,7 @@
 		<!-- 목록 끝 -->
 		</div>
 	</div>
+<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

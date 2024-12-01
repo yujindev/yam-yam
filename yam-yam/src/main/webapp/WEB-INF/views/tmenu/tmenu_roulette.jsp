@@ -10,6 +10,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<h2>룰렛</h2>
 	 <!-- 룰렛 컨테이너 -->
     <div class="roulette-container">
         <!-- 화살표 이미지 -->
@@ -29,5 +30,6 @@
         -->
     </div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

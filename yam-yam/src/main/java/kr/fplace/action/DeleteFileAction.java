@@ -23,19 +23,18 @@ public class DeleteFileAction implements Action{
 		Long user_num =(Long)session.getAttribute("user_num");
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 
-		if(user_num==null) {
-			mapAjax.put("result", "logout");
-		}else if (user_auth != 9) {
-		        mapAjax.put("result", "wrongAccess");
-		}else {//로그인이 된 경우
-			//전송된 데이터 인코딩 처리
-			request.setCharacterEncoding("utf-8");
-			//전송된 데이터 반환
-			long fp_num = Long.parseLong(request.getParameter("fp_num"));
+		request.setCharacterEncoding("utf-8");
+		//전송된 데이터 반환
+		long fp_num = Long.parseLong(request.getParameter("fp_num"));
 
-			FplaceDAO dao = FplaceDAO.getInstance();
-			FplaceVO db_fplace = dao.getFplace(fp_num);
+		FplaceDAO dao = FplaceDAO.getInstance();
+		FplaceVO db_fplace = dao.getFplace(fp_num);
 
+	
+		if (user_num == null || (user_auth != 9 && user_auth != 7)){ // 로그인이 되지 않은 경우, 관리자 또는 식당관리자도 아닌경우
+            mapAjax.put("result", "logout");
+        }else if(user_num!=null && (user_num == db_fplace.getMem_num() || user_auth == 9)) {
+        	//로그인한 회원번호와 작성자 회원번호 일치  자바빈(vO) 생성
 			 if (db_fplace != null) {
 			dao.deleteFile(fp_num);
 			//파일삭제

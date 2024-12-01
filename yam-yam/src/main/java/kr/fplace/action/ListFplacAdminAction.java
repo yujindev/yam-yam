@@ -11,7 +11,7 @@ import kr.fplace.dao.FplaceDAO;
 import kr.fplace.vo.FplaceVO;
 import kr.util.PagingUtil;
 
-public class AdminFplaceListAction implements Action {
+public class ListFplacAdminAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
