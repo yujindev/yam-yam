@@ -8,6 +8,9 @@
 <title>내 식당 관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	window.onload=function(){
 		const myForm = document.getElementById('search_form');
@@ -25,8 +28,8 @@
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<div class="page-main">
 	<div class="content-main">
 		<h2>내 식당 관리</h2>
 		<form id="search_form" action="fplaceManagerList.do" method="get">

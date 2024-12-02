@@ -99,12 +99,13 @@ $(function () {
 	            if(param.result == 'logout'){
 					alert('로그인해야 작성할 수 있습니다.');
 				}else if(param.result === 'success') {
+					alert('메뉴가 등록되었습니다.');
 					//폼 초기화
 					$('#fpmenu_name').val('');
 					$('#fpmenu_price').val('');
 					$('#fpmenu_img').val('');
 										
-					//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째 페이지의 게시글 목록을 다시 호출함
+					//목록 다시 호풀
 					selectMenuList(1);
 				} else {
 	                alert('메뉴 등록에 실패했습니다.');

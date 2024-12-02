@@ -7,6 +7,8 @@
 <title>랜덤 메뉴 등록</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 		$(function(){
@@ -29,8 +31,8 @@
 
 </head>
 <body>
-<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<div class="page-main">
 		<div class="content-main">
 			<h2>랜덤 메뉴 등록</h2>
 			<form id="tmenuWrite_form" action="tmenuWrite.do" method="post">

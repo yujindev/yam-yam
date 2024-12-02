@@ -8,6 +8,8 @@
 <title>식당 검색</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script type="text/javascript">
 	window.onload=function(){
 		const myForm = document.getElementById('search_form');
@@ -25,8 +27,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 	<h2>식당 검색</h2>
 	<form id="search_form" action="fplaceUserList.do" method="get">

@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/image-scroll.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.fpmenu.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.reviews.js"></script>
@@ -16,8 +18,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 			<h2>식당정보</h2>
 			
@@ -244,7 +246,7 @@
 		
 		<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
 		<div class="align-left">
-		<span> 리뷰${fplace.reviews_count }</span>
+		<span> 리뷰${count}</span>
 		
 		</div>
 

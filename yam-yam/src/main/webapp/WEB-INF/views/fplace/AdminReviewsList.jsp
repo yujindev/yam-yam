@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>리뷰목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
 	window.onload=function(){
 		const myForm = document.getElementById('search_form');
@@ -24,8 +26,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>리뷰목록(관리자 전용)</h2>
 		<form id="search_form" action="adminReviewsList.do" method="get">
