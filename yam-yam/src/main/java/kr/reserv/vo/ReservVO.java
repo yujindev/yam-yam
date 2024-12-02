@@ -1,6 +1,7 @@
 package kr.reserv.vo;
 
 import kr.fplace.vo.FplaceVO;
+import kr.member.vo.MemberVO;
 
 public class ReservVO {
 
@@ -13,6 +14,30 @@ public class ReservVO {
 	
 	private FplaceVO fplaceVO;
 	private String fp_name;
+	
+	private MemberVO memberVO;
+	private String mem_nickname;
+	private String mem_id;
+	
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	
 	
 	public String getFp_name() {
 		return fp_name;

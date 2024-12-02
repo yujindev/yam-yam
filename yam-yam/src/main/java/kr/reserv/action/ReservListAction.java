@@ -26,6 +26,10 @@ public class ReservListAction implements Action{
 		ReservDAO dao = ReservDAO.getInstance();
 		int rs_now = dao.getReservCount(mem_num);
 		List<ReservVO> reserv = null;
+		
+		if(mem_num==null) {
+			mem_num=0L;
+		}
 		if(rs_now > 0) {
 			reserv = dao.getReservList(mem_num);
 		}else{

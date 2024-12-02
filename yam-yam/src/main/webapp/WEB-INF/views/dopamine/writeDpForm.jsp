@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 글쓰기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -60,7 +61,6 @@
 		</form>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
 

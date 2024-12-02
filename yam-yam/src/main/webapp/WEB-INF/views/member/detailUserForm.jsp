@@ -44,7 +44,6 @@
 					<label>아이디</label>${member.mem_id}
 				</li>
 				<li>
-				<li>
 					<label>닉네임</label>${member.mem_nickname}
 				</li>
 				<li>

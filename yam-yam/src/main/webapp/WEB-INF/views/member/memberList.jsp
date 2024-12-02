@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
 	window.onload=function(){
 		const myForm = document.getElementById('search_form');

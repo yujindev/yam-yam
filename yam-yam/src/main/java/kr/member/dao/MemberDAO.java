@@ -132,6 +132,7 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				member = new MemberVO();
+				member.setMem_num(rs.getLong("mem_num")); //회원번호
 				member.setMem_nickname(rs.getString("mem_nickname")); //닉네임
 				member.setMem_id(rs.getString("mem_id")); //아이디
 				member.setMem_pw(rs.getString("mem_pw")); //비밀번호

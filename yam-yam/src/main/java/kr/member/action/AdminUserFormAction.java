@@ -29,7 +29,6 @@ public class AdminUserFormAction implements Action{
 		MemberVO member = dao.getMember(mem_num);
 		
 		request.setAttribute("member", member);
-		request.setAttribute("mem_num", mem_num);
 		
 		//JSP 경로 반환
 		return "member/detailUserForm.jsp";

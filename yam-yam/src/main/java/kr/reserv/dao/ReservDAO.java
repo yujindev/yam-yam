@@ -164,42 +164,50 @@ public class ReservDAO {
 		return list;
 	}
 	
-	//식당관리자 예약 보기
-	public List<ReservVO> AllReservList(long fp_num, int start, int end, String keyfield, String keyword) throws Exception{
+	
+	//식당 관리자의 mem_num 조회하여 fp_num 불러오기
+	public Long getFpNumByMemNum(Long mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    Long fp_num = null;
+
+	    try {
+	        conn = DBUtil.getConnection();
+	        sql = "SELECT fp_num FROM fplace WHERE mem_num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(1, mem_num);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            fp_num = rs.getLong("fp_num");
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return fp_num;
+	}
+	
+	//식당관리자 예약 갯수세기
+	public int AllReservCount(long fp_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<ReservVO> list = null;
 		String sql = null;
-		String sub_sql = "";
+		int count = 0;
 		
 		try {
-			conn = DBUtil.getConnection();
-			
-			if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1"))
-					sub_sql += "and status=0";
-				else if(keyfield.equals("2"))
-					sub_sql += "and status=1";
-				else if(keyfield.equals("3"))
-					sub_sql += "and status=2";
-			}
-			
-			sql = "select * from reserv where fp_num=?"+sub_sql;
+			conn=DBUtil.getConnection();
+			sql = "select count(*) from reserv where fp_num=?";
 			pstmt=conn.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery();
-			list = new ArrayList<ReservVO>();
-			while(rs.next()) {
-				ReservVO reserv = new ReservVO();
-				reserv.setFp_num(rs.getLong("fp_num"));
-				reserv.setMem_num(rs.getLong("mem_num"));
-				reserv.setRs_cnt(rs.getInt("rs_cnt"));
-				reserv.setRs_num(rs.getLong("rs_num"));
-				reserv.setRs_time(rs.getString("rs_time"));
-				reserv.setRs_status(rs.getInt("rs_status"));
-				
-				list.add(reserv);
+			pstmt.setLong(1, fp_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -207,7 +215,51 @@ public class ReservDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
-		return list;
+		return count;
+	}
+	
+	//식당관리자 예약 보기
+	public List<ReservVO> AllReservList(long fp_num, int start, int end) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<ReservVO> list = null;
+	    String sql = null;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        sql = "SELECT r.fp_num, f.fp_name, r.mem_num, m.mem_id, m.mem_nickname, r.rs_cnt, r.rs_num, r.rs_time, r.rs_status " +
+	        	      "FROM reserv r " +
+	        	      "JOIN member m ON r.mem_num = m.mem_num " +
+	        	      "JOIN fplace f ON r.fp_num = f.fp_num " +
+	        	      "WHERE r.fp_num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(1, fp_num); // fp_num 바인딩
+
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<ReservVO>();
+	        while (rs.next()) {
+	            ReservVO reserv = new ReservVO();
+	            reserv.setFp_num(rs.getLong("fp_num"));
+	            reserv.setFp_name(rs.getString("fp_name"));
+	            reserv.setMem_num(rs.getLong("mem_num"));
+	            reserv.setMem_id(rs.getString("mem_id"));
+	            reserv.setMem_nickname(rs.getString("mem_nickname"));
+	            reserv.setRs_cnt(rs.getInt("rs_cnt"));
+	            reserv.setRs_num(rs.getLong("rs_num"));
+	            reserv.setRs_time(rs.getString("rs_time"));
+	            reserv.setRs_status(rs.getInt("rs_status"));
+
+	            list.add(reserv);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
 	}
 	
 	//식당관리자 예약 상태 관리
