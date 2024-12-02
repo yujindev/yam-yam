@@ -104,7 +104,7 @@ $.ajax({
 				output += '<h2 class="sreserv-title">현재 예약 내역</h2>';
 				output += '<div class="sreserv-count-wrapper">';
 				output += '<div class="sreserv-count">'+param.rs_now+'<small><small>건</small></small></div>';
-				output += '</div>';
+				output += '</div>';  
 				output += '<div class="sreserv-items">';
 			$(param.reserv).each(function(index,item){
 				output += '<div class="sreserv-item">';

@@ -21,7 +21,7 @@
     padding: 20px;
     margin: 20px;
 }
-
+     
 /* 가게 정보 */
 .store-info {
     text-align: center;

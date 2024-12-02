@@ -15,7 +15,7 @@ import kr.reserv.vo.ReservVO;
 import kr.util.StringUtil;
 
 public class ReservListAction implements Action{
-
+   
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
