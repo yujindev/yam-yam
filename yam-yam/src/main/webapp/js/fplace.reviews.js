@@ -29,8 +29,11 @@ $(function(){
 				
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output += '<h3><a href="../others/saveStore.do?mem_id='+item.mem_id+'">'+item.mem_id + '</a></h3>';
-					output += '<h3>'+item.fp_name + '</h3>';
+					output += '<div class="account-info">';
+					output += '<img src="../images/icon-account.png">';
+					output += '<h3><a href="../others/saveStore.do?mem_id='+item.mem_id+'">'+item.mem_nickname + '</a></h3>';
+					output += '</div>';
+					//output += '<h3>'+item.fp_name + '</h3>';
 					output += '<div class="sub-item">';
 					output += '<p>'+item.reviews_con+'</p>';
 					if (item.reviews_img1) {
@@ -46,9 +49,9 @@ $(function(){
 					}else{
 						// 북마크 버튼
 						if (item.bookmarked) {
-							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/fav02.gif" width="50">';
+							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/icon-flag-o.png" width="20">';
 						} else {
-							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/fav01.gif" width="50">';
+							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/icon-flag-g.png" width="20">';
 						}
 					}
 					output += '<span class="output_brcount"> '+item.reviews_count+'</span>'; 
@@ -76,7 +79,7 @@ $(function(){
 			},
 			error:function(){
 				$('#loading').hide();
-				alert('네트워크 오류 발생1');
+				alert('네트워크 오류 발생');
 			}
 		});
 	}
@@ -118,7 +121,7 @@ $(function(){
 					alert('댓글 등록 오류 발생');
 				}
 			},error:function(){
-				alert('네트워크 오류 발생2');
+				alert('네트워크 오류 발생');
 			}
 		});
 		//기본 이벤트 제거
@@ -206,8 +209,8 @@ $(function(){
 	            } else if (param.result === 'success') {
 					// 북마크 상태 업데이트
 					const newSrc = param.status === 'yesBmreviews'
-					             ? '../images/fav02.gif'
-					             : '../images/fav01.gif';
+					             ? '../images/icon-flag-o.png'
+					             : '../images/icon-flag-g.png';
 					               button.attr('src', newSrc); // 클릭된 버튼의 이미지 변경
 	                //$('.output_brcount').text(param.count); // 북마크 개수 업데이트
 					countElement.text(param.count); // 해당 리뷰의 북마크 개수 업데이트
@@ -216,7 +219,7 @@ $(function(){
 	            }
 	        },
 	        error: function () {
-	            alert('네트워크 오류 발생!');
+	            alert('네트워크 오류 발생');
 	        }
 	    });
 	});

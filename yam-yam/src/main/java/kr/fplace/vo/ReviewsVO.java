@@ -8,16 +8,11 @@ public class ReviewsVO {
 	private int reviews_score;
 	private String reviews_img1;
 	private Date reviews_date;
-	
 	private long mem_num;
 	private long fp_num;
 	
 	private String mem_id;
 	private String fp_name;       // 가게 이름
-	
-	private boolean isBookmarked; 
-	private int reviews_count;
-	
 	private String mem_nickname;
 	
 	public String getMem_nickname() {
@@ -26,6 +21,8 @@ public class ReviewsVO {
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
+	private boolean isBookmarked; 
+	private int reviews_count;
 	
 	public String getMem_id() {
 		return mem_id;

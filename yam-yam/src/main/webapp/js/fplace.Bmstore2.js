@@ -1,33 +1,16 @@
 $(function(){
-	/*======================================
-	 * 좋아요 선택 여부와 선택한 총 개수를 읽기
-	 *====================================== */
-	function selectBmstore(){
-		//서버와 통신
-		$.ajax({
-			url:'getBmstore.do',
-			type:'post',
-			data:{fp_num:$('.output_bmstore').attr('data-num')},
-			dataType:'json',
-			success:function(param){
-				displayBmstore(param);
-			},
-			error:function(){
-				alert('네트워크 오류 발생');
-			}
-		});
-	}
+	let clickedElement;
 	/*======================================
 	 * 좋아요 등록 (및 삭제) 이벤트 연결
 	 *====================================== */	
 	$('.output_bmstore').click(function(){
-		//const clickedElement = $(this); // 클릭된 요소 저장
+		clickedElement = $(this); // 클릭된 요소 저장
 		//const fpNum = clickedElement.attr('data-num'); // 클릭된 요소의 데이터
 		//서버와 통신
 		$.ajax({
 			url:'writeBmstore.do',
 			type:'post',
-			data:{fp_num:$(this).attr('data-num')},
+			data:{fp_num:clickedElement.attr('data-num')},
 			dataType:'json',
 			success:function(param){
 				if(param.result=='logout'){
@@ -54,13 +37,8 @@ $(function(){
 			output = '../images//icon-flag-g.png';
 		}
 		//문서 객체에 설정
-		$('.output_bmstore').attr('src',output);
-		$('#output_bscount').text(param.count);
+		clickedElement.attr('src',output);
 	}
-	/*======================================
-     * 좋아요 표시 함수
-	 *====================================== */	
-	selectBmstore();
 });
 
 

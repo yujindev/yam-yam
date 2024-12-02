@@ -55,9 +55,11 @@
 
 			<%--가게 북마크--%>
 			<div class="bookmark-container">
- 				<img id="output_bmstore" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
- 				<h2>${fplace.fp_name}</h2>
- 			</div>	
+				<img class="output_bmstore" data-num="${fplace.fp_num}"
+					src="${pageContext.request.contextPath}/images/icon-flag-g.png.gif"
+					width="auto">
+				<h2>${fplace.fp_name}</h2>
+			</div>
 			<br>
 
 			<%--리뷰 별 노출--%>
@@ -292,8 +294,8 @@
 					</div>
 
 					<div id="re_second" class="align-right">
-						<input type="submit" value="등록"> <input type="button"
-							value="취소" id="review-cancel-btn">
+						<input type="submit" value="등록"> 
+						<input type="button" value="취소" id="review-cancel-btn">
 					</div>
 				</c:if>
 			</form>

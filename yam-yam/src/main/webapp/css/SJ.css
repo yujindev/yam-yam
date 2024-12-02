@@ -1,16 +1,17 @@
 @charset "UTF-8";
 
 /*가게상세 - 리뷰*/
+/* 리뷰 박스 */
 .item {
     display: flex;
     flex-direction: column;
     position: relative;
-    max-width: 1000px; /* 가로 폭 제한 */
+    max-width: 800px; /* 너비를 조금 줄임 */
     margin: 0 auto 16px auto; /* 가운데 정렬 */
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 16px;
+    padding: 8px 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -33,15 +34,50 @@
 
 .item img {
     border-radius: 4px;
-    margin-top: 8px;
-    max-width: 100%;
+    margin-top: 5px;
     height: auto;
+    width: auto;
 }
 
 .modify-date {
     font-size: 12px;
     color: #888;
     margin-top: 8px;
+}
+
+/* 이미지를 포함한 전체 컨테이너 */
+.account-info {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 10px; /* 이미지와 텍스트 간 간격 */
+    text-align: center; /* 텍스트 정렬 */
+    padding: 0px 10px; /* 박스 내부 여백 최소화 */
+}
+
+/* 이미지 스타일 */
+.account-info img {
+    width: 40px; /* 이미지 너비 */
+    height: 40px; /* 이미지 높이 */
+    border-radius: 50%; /* 동그란 이미지 형태로 만들기 */
+    object-fit: cover; /* 이미지 비율 유지하면서 잘림 방지 */
+}
+
+/* 텍스트 스타일 */
+.account-info h3 {
+    margin: 0; /* 기본 마진 제거 */
+    font-size: 1rem; /* 텍스트 크기 조절 */
+    font-weight: bold; /* 텍스트 두껍게 */
+    align-self: flex-end; /* 텍스트를 아래로 배치 */
+    margin-bottom: 11px; /* 추가적으로 미세 조정 */
+}
+
+.account-info a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #333; /* 링크 색상 지정 */
+}
+
+.account-info a:hover {
+    color: #ff8800; /* 링크에 호버(마우스 오버) 시 색상 변경 */
 }
 
 /* 북마크 및 삭제 버튼 우측 상단 */
@@ -68,7 +104,7 @@
 .delete-btn {
     background-color: transparent;
     border: none;
-    color: #ff6666;
+    color: #FF7800;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
@@ -111,6 +147,218 @@ hr {
     background-color: #0056b3;
 }
 
+/* 리뷰 헤더 스타일 - 버튼과 텍스트를 박스 안에 맞게 정렬 */
+/* 부모 요소: flexbox로 두 div를 가로로 배치 */
+.review-header {
+   /*  display: flex; 가로 정렬
+    justify-content: space-between; 왼쪽과 오른쪽 끝 정렬
+    align-items: flex-start; 수직 정렬을 위쪽으로 맞춤
+    padding: 10px 20px; /* 내부 여백 */
+    max-width: 800px; /* 콘텐츠 너비 제한 */
+    margin: 0 auto 16px auto; /* 중앙 정렬 */
+}
+
+.reviews_right {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    
+}
+
+/* 리뷰 작성 버튼 스타일 */
+#review-write-btn {
+    background-color: #FF7800; /* 버튼 배경색 */
+    color: white; /* 버튼 글자 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 20px; /* 버튼 둥글게 */
+    padding: 10px 20px; /* 버튼 여백 */
+    font-size: 14px; /* 글자 크기 */
+    font-weight: bold; /* 글자 굵게 */
+    cursor: pointer; /* 마우스 포인터 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 애니메이션 */
+	margin-right: 0px; /* 오른쪽 끝에서 __px 왼쪽으로 이동 */
+	margin-bottom: 0px; /* 버튼과 아래 콘텐츠 간 간격 */
+}
+
+#review-write-btn:hover {
+    background-color: #e67600; /* 호버 상태에서 색상 변화 */
+    transform: scale(1.05); /* 약간 확대 */
+}
+
+.reviews_left {
+	display: flex;
+	 flex-direction: column; /* 수직 정렬 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+#reviews_count {
+  	margin-left: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0;
+    line-height: 1;
+
+}
+
+/* 반응형 - 작은 화면에서 정렬 */
+@media screen and (max-width: 768px) {
+    .review-header {
+        flex-direction: column; /* 수직 정렬 */
+        align-items: flex-start; /* 좌측 정렬 */
+        gap: 10px; /* 요소 간 간격 */
+    }
+
+    .align-right {
+        align-self: flex-end; /* 버튼을 우측에 유지 */
+    }
+}
+/*리뷰작성 - 전체*/
+/* 전체 리뷰 작성 섹션 스타일 */
+#reply_div {
+    background-color: #f9f9f9;
+    padding: 50px 40px; /* 상하좌우 여백 추가 */
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 40px auto;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 모든 내부 요소를 수직 가운데 정렬 */
+    gap: 20px;
+}
+
+/* 제목 스타일 */
+.reviews-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+/* 가게 이름 스타일 */
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* 별점 스타일 */
+.rating {
+    display: flex;
+    justify-content: center; /* 별점을 가운데 정렬 */
+    margin-bottom: 20px;
+}
+
+.stars {
+    display: flex;
+    gap: 5px; /* 별 사이 간격 */
+}
+
+.stars input[type="radio"] {
+    display: none; /* 기본 라디오 버튼 숨김 */
+}
+
+.stars label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.stars input[type="radio"]:checked ~ label {
+    color: #ffaa00; /* 선택된 별 색상 */
+}
+
+/* 텍스트 영역 스타일 */
+#reviews_con {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 10px;
+    resize: none;
+}
+
+/* 질문 텍스트 중앙 정렬 */
+label[for="reviews_con"] {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: center;
+    display: block;
+}
+
+/* 글자 수 표시 */
+#reviews_first {
+    width: 100%;
+    text-align: right;
+    color: #999;
+    font-size: 0.875rem;
+}
+
+/* 사진 업로드 섹션 */
+.photo-upload {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.photo-upload label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* 등록 및 취소 버튼 스타일 */
+#re_second {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center; /*버튼을 중앙에 배치*/
+    gap: 20px;
+}
+
+#re_second input[type="submit"],
+#re_second input[type="button"] {
+    border: none;
+    padding: 10px 100px; /* 버튼 높이를 줄이고 길이를 늘림 */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 40%; /* 버튼 너비 조절 */
+}
+
+#re_second input[type="submit"] {
+    background-color: #FF7800;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+#re_second input[type="submit"]:hover {
+    background-color: #ff8800;
+}
+
+#re_second input[type="button"] {
+    background-color: #ccc;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+#re_second input[type="button"]:hover {
+    background-color: #bbb;
+}
+
+
+/* 로그인하지 않은 경우 텍스트 영역 비활성화 스타일 */
+#reviews_con[disabled] {
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+}
 /*리뷰작성 - 별점*/
 /* 기본 별점 컨테이너 스타일 */
 .rating {
@@ -225,102 +473,120 @@ label {
 
 /* Ranking table without border */
 .ranking-table {
+	border: none;
+	width: 90%; /* 너비를 줄임 */
+    max-width: 800px; /* 최대 너비 설정 */
+    margin: 20px auto; /* 가운데 정렬 및 위아래 간격 */
+    background-color: #fff;
+    border-spacing: 0 10px; /* 카드 간격 */
+}
+
+.ranking-table tr, 
+.ranking-table td {
+    border: none; /* 테이블 전체의 테두리 제거 */
+}
+
+.ranking-table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
-    /* No borders on table */
+    border-spacing: 0 10px; /* Space between cards */
 }
 
 .table-row {
     display: flex;
     align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #f0f0f0; /* Border only for rows */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative; /* For absolute positioning of rank number */
+    /* Removed box-shadow */
 }
 
-.table-row:last-child {
-    border-bottom: none;
-}
-
-/* Rank number (smaller size) */
+/* Rank number */
 .rank-number {
     background-color: #f57c00;
     color: white;
-    font-size: 16px;  /* Smaller rank number */
+    font-size: 14px; /* Smaller rank number */
     font-weight: bold;
-    padding: 8px;
-    text-align: center;
-    width: 40px;  /* Smaller size */
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    position: absolute;
+    top: 5px;
+    left: 5px; /* Overlap with image */
+    z-index: 2; /* Ensure it appears on top */
 }
 
-/* Image cell */
+/* Image placeholder */
 .image-cell {
     width: 80px;
     height: 80px;
     border-radius: 8px;
-    object-fit: cover;
+    background-color: #ddd; /* Placeholder color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 15px;
+    position: relative;
 }
 
-/* Details cell */
+/* Details section */
 .details-cell {
     flex: 1;
 }
 
 .category {
     font-size: 14px;
-    color: #777;
+    color: #888;
 }
 
 .name {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    margin: 5px 0;
+    margin: 7px 0;
     color: #333;
 }
 
-.name a {
-    text-decoration: none;
-    color: #333;
+.avg-score{
+    margin: 7px 0;
 }
 
-.name a:hover {
+.r-count{
+    margin: 7px 0;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 14px;
     color: #f57c00;
 }
 
-.rating, .store-reviews {
-    margin-top: 5px;
+.store-reviews {
     font-size: 14px;
-    color: #555;
+    color: #777;
 }
 
 /* Bookmark icon */
 #output_bmstore {
     cursor: pointer;
     transition: transform 0.3s ease;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #output_bmstore:hover {
     transform: scale(1.1);
-}
-
-/* Alignment */
-.align-right {
-    text-align: right;
-}
-
-.align-center {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #888;
 }
 
 /* Responsive */
@@ -331,12 +597,52 @@ label {
     }
 
     .rank-number {
-        margin-right: 0;
-        margin-bottom: 10px;
+        top: -10px; /* Adjust position for smaller screens */
+        left: 5px;
     }
 
     .image-cell {
         margin-right: 0;
         margin-bottom: 10px;
     }
+}
+
+/*메인페이지*/
+.restaurant-recommendation {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.restaurant-card {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.restaurant-name {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: bold;
 }

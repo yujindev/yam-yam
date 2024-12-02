@@ -34,14 +34,13 @@ public class ListReviewsAction implements Action {
 		
 		HttpSession session = request.getSession();
 		Long user_num = (Long)session.getAttribute("user_num");
-		if(user_num==null) {
-			user_num = 0L;
-		}
 		
+		if(user_num==null) { user_num = 0L; } //이거 없으면 로그인 안할때 리뷰가 안뜨는 오류남!
+		 
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, Integer.parseInt(rowCount));
 		List<ReviewsVO> list = null;
 		if(count > 0) {
-			list = dao.getListReviews(page.getStartRow(), page.getEndRow(),fp_num, user_num);
+			list = dao.getListReviews(page.getStartRow(), page.getEndRow(), fp_num, user_num);
 		}else {
 			list = Collections.emptyList();
 		}

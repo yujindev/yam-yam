@@ -21,9 +21,10 @@ public class DetailAction implements Action{
 		//html 태그를 허용하지 않음 필요한가?
 		//fplace.setFp_name(StringUtil.useNoHtml(fplace.getFp_name()));
 		
+		//리뷰 개수 
+		int count = dao.getReviewsCount(fp_num);
+		request.setAttribute("count",count);
 		request.setAttribute("fplace", fplace);
-		
-		
 		
 		return "fplace/detail.jsp";
 	}

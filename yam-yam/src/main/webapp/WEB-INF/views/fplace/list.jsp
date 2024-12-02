@@ -74,13 +74,14 @@
 			                <p class="name">
 			                	<a href="detail.do?fp_num=${fplace.fp_num}">${fplace.fp_name}</a>
 			                </p>
-			                <p>⭐ ${fplace.fp_avgscore}</p> 
-			                <p>리뷰${fplace.reviews_count}개</p> <!-- !!vo랑 같아야 함!! -->
+			                <p class="avg-score">⭐ ${fplace.fp_avgscore}</p> 
+			                <p class="r-count">리뷰 ${fplace.reviews_count}개</p> <!-- !!vo랑 같아야 함!! -->
 			            </td>
 			            
 	           			 <!-- 북마크 -->
 			            <td>
-			                <img id="output_bmstore" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
+			            	<c:if test="${fplace.isBookmarked == 0}"><img class="output_bmstore" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/icon-flag-g.png" width="auto"></c:if>
+			                <c:if test="${fplace.isBookmarked > 0}"><img class="output_bmstore" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/icon-flag-o.png" width="auto"></c:if>
 			            </td>
        				</tr>
    			 	</c:forEach>

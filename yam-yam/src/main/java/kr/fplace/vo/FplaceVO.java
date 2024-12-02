@@ -12,10 +12,18 @@ public class FplaceVO {
 	private String fp_filter3;// 필터3
 	private long mem_num;//회원번호
 	
-	private double fp_avgscore; //리뷰 평정
+	private double fp_avgscore; //리뷰 평점
 	private int rank; // 순위
 	private int reviews_count;
 	
+	private int isBookmarked; 
+	
+	public int getIsBookmarked() {
+		return isBookmarked;
+	}
+	public void setBookmarked(int isBookmarked) {
+		this.isBookmarked = isBookmarked;
+	}
 	public double getFp_avgscore() {
 		return fp_avgscore;
 	}
@@ -94,6 +102,15 @@ public class FplaceVO {
 	public void setReviews_count(int reviews_count) {
 		this.reviews_count = reviews_count;
 	}
+	/*
+	 * @Override public String toString() { return "FplaceVO [fp_num=" + fp_num +
+	 * ", fp_name=" + fp_name + ", fp_phone=" + fp_phone + ", fp_time=" + fp_time +
+	 * ", fp_storeimg=" + fp_storeimg + ", fp_loc=" + fp_loc + ", fp_filter1=" +
+	 * fp_filter1 + ", fp_filter2=" + fp_filter2 + ", fp_filter3=" + fp_filter3 +
+	 * ", mem_num=" + mem_num + ", fp_avgscore=" + fp_avgscore + ", rank=" + rank +
+	 * ", reviews_count=" + reviews_count + ", isBookmarked=" + isBookmarked + "]";
+	 * }
+	 */
 	
 	
 }
