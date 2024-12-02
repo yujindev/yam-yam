@@ -38,7 +38,7 @@ $(function(){
 					output += '<p>'+item.reviews_con+'</p>';
 					if (item.reviews_img1) {
 					      // 이미지 경로가 존재하는 경우 이미지 태그로 렌더링
-					     output += '<img src="../upload/'+item.reviews_img1+'" width="200" height="200">';
+					     output += '<img src="../upload/'+item.reviews_img1+'" class="w-20">';
 					}
 					output+='<div class="top-actions">';
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부

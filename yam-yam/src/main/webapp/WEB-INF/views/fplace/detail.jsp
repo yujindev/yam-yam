@@ -240,66 +240,67 @@
 				     initForm(); // 폼 초기화
  				});
 		</script>
-
-		<!-- 리뷰 작성 버튼 -->
-		<div class="list-space align-right">
-			<button id="review-write-btn">리뷰 작성</button>
+	<div class="content-main">
+		<div class="w-80 m-0auto">
+			<!-- 리뷰 작성 버튼 -->
+			<div class="list-space align-right">
+				<button id="review-write-btn">리뷰 작성</button>
+			</div>
+			<!-- 리뷰 작성 시작	 -->
+			<div id="reply_div" style="display: none;">
+				<span class="reviews-title">리뷰 작성</span>
+				<form id="reviews_form" enctype="multipart/form-data">
+					<input type="hidden" name="fp_num" value="${fplace.fp_num}"
+						id="fp_num">
+	
+					<h3>${fplace.fp_name}</h3>
+	
+	
+						<div class="rating">
+						<div class="stars">
+							<input type="radio" id="star5" name="reviews_score" value="5">
+							<label for="star5" class="star" title="5점">★</label> <input
+								type="radio" id="star4" name="reviews_score" value="4"> <label
+								for="star4" class="star" title="4점">★</label> <input type="radio"
+								id="star3" name="reviews_score" value="3"> <label
+								for="star3" class="star" title="3점">★</label> <input type="radio"
+								id="star2" name="reviews_score" value="2"> <label
+								for="star2" class="star" title="2점">★</label> <input type="radio"
+								id="star1" name="reviews_score" value="1"> <label
+								for="star1" class="star" title="1점">★</label>
+						</div>
+					</div>
+	
+					어떤 점이 좋았나요?
+					<!-- reviews_con -->
+					<textarea rows="5" cols="50" name="reviews_con" id="reviews_con" class="rep-content"
+						<c:if test="${empty user_num}">disabled="disabled"</c:if>>
+						<c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if>
+					</textarea>
+					<c:if test="${!empty user_num}">
+						<div id="reviews_first">
+							<span class="letter-count">300/300</span>
+						</div>
+	
+						<div class="photo-upload">
+							<label for="reviews_img1">사진 :</label> 
+							<input type="file" id="reviews_img1" name="reviews_img1" accept="image/*">
+						</div>
+	
+						<div id="re_second" class="align-right">
+							<input type="submit" value="등록"> 
+							<input type="button" value="취소" id="review-cancel-btn">
+						</div>
+					</c:if>
+				</form>
+			</div>
+			<!-- 리뷰 작성 끝 -->
+			
+			<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
+			<div class="fw-800 m-1">
+				<span> 리뷰${count}</span>
+			</div>
 		</div>
-		<!-- 리뷰 작성 시작	 -->
-		<div id="reply_div" style="display: none;">
-			<span class="reviews-title">리뷰 작성</span>
-			<form id="reviews_form" enctype="multipart/form-data">
-				<input type="hidden" name="fp_num" value="${fplace.fp_num}"
-					id="fp_num">
-
-				<h3>${fplace.fp_name}</h3>
-
-
-					<div class="rating">
-					<div class="stars">
-						<input type="radio" id="star5" name="reviews_score" value="5">
-						<label for="star5" class="star" title="5점">★</label> <input
-							type="radio" id="star4" name="reviews_score" value="4"> <label
-							for="star4" class="star" title="4점">★</label> <input type="radio"
-							id="star3" name="reviews_score" value="3"> <label
-							for="star3" class="star" title="3점">★</label> <input type="radio"
-							id="star2" name="reviews_score" value="2"> <label
-							for="star2" class="star" title="2점">★</label> <input type="radio"
-							id="star1" name="reviews_score" value="1"> <label
-							for="star1" class="star" title="1점">★</label>
-					</div>
-				</div>
-
-				어떤 점이 좋았나요?
-				<!-- reviews_con -->
-				<textarea rows="5" cols="50" name="reviews_con" id="reviews_con" class="rep-content"
-					<c:if test="${empty user_num}">disabled="disabled"</c:if>>
-					<c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if>
-				</textarea>
-				<c:if test="${!empty user_num}">
-					<div id="reviews_first">
-						<span class="letter-count">300/300</span>
-					</div>
-
-					<div class="photo-upload">
-						<label for="reviews_img1">사진 :</label> 
-						<input type="file" id="reviews_img1" name="reviews_img1" accept="image/*">
-					</div>
-
-					<div id="re_second" class="align-right">
-						<input type="submit" value="등록"> 
-						<input type="button" value="취소" id="review-cancel-btn">
-					</div>
-				</c:if>
-			</form>
-		</div>
-		<!-- 리뷰 작성 끝 -->
-		
-		<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
-		<div class="align-left">
-			<span> 리뷰${count}</span>
-		</div>
-		
 		<!-- 리뷰 목록 출력 시작 -->
 		<div id="output"></div>
 		<div class="paging-button" style="display: none;">
@@ -309,7 +310,7 @@
 			<img src="${pageContext.request.contextPath}/images/loading.gif"
 				width="50" height="50">
 		</div><!-- 리뷰 목록 출력 끝 -->
-
+</div> <!-- content-main 끝  -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div> <!-- page main 끝  -->
 <jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
