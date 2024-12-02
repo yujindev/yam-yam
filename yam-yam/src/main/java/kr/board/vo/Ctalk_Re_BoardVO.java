@@ -7,6 +7,14 @@ public class Ctalk_Re_BoardVO {
 	private String ctalk_re_mdate;
 	private long mem_num;
 	private long ctalk_num;
+	private String mem_nickname;
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	
 	public long getCtalk_re_num() {
 		return ctalk_re_num;

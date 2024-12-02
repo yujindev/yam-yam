@@ -79,7 +79,7 @@
 			<div id="reply_div">
 				<span class="re-title">댓글달기</span>
 				<form id="re_form">
-					<input type="hidden" name="cbob_num" value="${cbob.cbob_num}" id="cbob_num">
+					<input type="hidden" name="cbob_num" value="${cbob.mem_nickname}" id="cbob_num">
 					<textarea rows="3" cols="50" name="cbob_re_content" id="cbob_re_content" class="rep-content"
 					<c:if test="${empty user_num}"> disabled = "disabled" </c:if>
 					><c:if test="${empty user_num}">로그인 해야 작성할수있습니다.</c:if></textarea>

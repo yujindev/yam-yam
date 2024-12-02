@@ -7,7 +7,14 @@ public class Czone_Re_BoardVO {
 	private String czone_re_mdate;
 	private long mem_num;
 	private long czone_num;
+	private String mem_nickname;
 	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	public long getCzone_re_num() {
 		return czone_re_num;
 	}

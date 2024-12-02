@@ -7,7 +7,15 @@ public class Cmov_Re_BoardVO {
 	private String cmov_re_mdate;
 	private long mem_num;
 	private long cmov_num;
-	
+	private String mem_nickname;
+
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+
 	public long getCmov_re_num() {
 		return cmov_re_num;
 	}

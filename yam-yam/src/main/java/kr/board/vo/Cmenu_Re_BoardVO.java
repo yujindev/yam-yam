@@ -7,7 +7,15 @@ public class Cmenu_Re_BoardVO {
 	private String cmenu_re_mdate;
 	private long mem_num;
 	private long cmenu_num;
-	
+	private String mem_nickname;
+
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+
 	public long getCmenu_re_num() {
 		return cmenu_re_num;
 	}
@@ -44,5 +52,5 @@ public class Cmenu_Re_BoardVO {
 	public void setCmenu_num(long cmenu_num) {
 		this.cmenu_num = cmenu_num;
 	}
-	
+
 }
