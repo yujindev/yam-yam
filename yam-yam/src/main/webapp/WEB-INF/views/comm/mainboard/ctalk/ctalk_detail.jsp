@@ -30,6 +30,11 @@
 						${ctalk.ctalk_num}<br>
 						조회 : ${ctalk.ctalk_hit}
 					</li>
+					<li>
+					<c:if test="${!empty ctalk.ctalk_date}">
+						</c:if>
+						작성일 : ${ctalk.ctalk_date}
+					</li>
 				</ul>
 				
 				<hr size="1" noshade="noshade" width="100%">
@@ -44,13 +49,11 @@
 					<hr size="1" noshade="noshade" width="100%">
 					<ul class="detail-sub">
 						<li>
-						<c:if test="${!empty ctalk.ctalk_date}">
-						</c:if>
-						작성일 : ${ctalk.ctalk_date}
+						
 						<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
 						<c:if test="${user_num == ctalk.mem_num}">
-							<input type="button" value="수정" onclick="location.href='updateForm.do?ctalk_num=${ctalk.ctalk_num}'">
-							<input type="button" value="삭제" id="delete_btn">
+							<input type="button" value="수정" onclick="location.href='updateForm.do?ctalk_num=${ctalk.ctalk_num}'" class="btn btn-primary">
+							<input type="button" value="삭제" id="delete_btn" class="btn btn-line-primary">
 						<script type="text/javascript">
 							const delete_btn = document.getElementById('delete_btn');
 							delete_btn.onclick=function(){
