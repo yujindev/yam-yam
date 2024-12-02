@@ -19,12 +19,12 @@
     justify-content: center; /* 세로 가운데 정렬 */
     margin: 0;
     padding: 20px;
-    width: 180px;
+    width: 150px;
     max-width: 180px;
     background-color: #fff;
     border-radius: 15px;
     border: 2px solid #ff7800;
-    position: absolute; /* 절대 위치로 조정 */
+    position: fixed; /* 절대 위치로 조정 */
     top: 200px; /* 화면 기준 위에서부터 200px */
     right: 100px; /* 화면 기준 오른쪽에서부터 100px */
     z-index: 1000; /* 다른 요소보다 위에 표시 */

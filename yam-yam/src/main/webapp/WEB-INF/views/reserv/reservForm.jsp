@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 <style>
@@ -34,6 +36,7 @@
 		border-radius : 50%;
 		border : 2px solid orange;
 	}--%>
+	
 /* 핑크 박스 내부 스타일링 */
 
 .reservation-container {
@@ -82,8 +85,7 @@
 
 /* 예약 시간 선택 */
 .time-selection {
-    flex: 1;
-    max-width: 50%;
+    max-width: calc(40% - 50px);
     text-align: center;
 }
 
@@ -95,10 +97,11 @@
 }
 
 .reserv-time-select label {
-    display: flex;
+	flex: 0 0 8%;
     align-items: center;
     background-color: #f5f5f5;
-    padding: 10px 15px;
+    width: 20%;
+    padding: 0;
     border-radius: 5px;
     border: 1px solid #ddd;
     cursor: pointer;
@@ -166,12 +169,12 @@ p {
 /* datepicker 전체 컨테이너 */
 #datepicker {
     font-family: 'Arial', sans-serif;
-    width: 100%;
     max-width: 600px;
     margin: 0 auto;
     padding: 30px;
     background-color: #fff;
     border:none;
+    width:60%;
 }
 
 /* 달력 헤더 (월/년도 표시) */
@@ -399,7 +402,7 @@ p {
 			<p class="store-time">${fplace.fp_time}</p>
 			<p class="store-loc">${fplace.fp_loc}</p>
 		</div>
-		<form action="reserv.do" method="post">
+		<form action="reserv.do" method="post" class="m-0auto">
 		<input type="hidden" name="fp_num" value="${fplace.fp_num}">
 		<div class="input-group">
 			<label for="rs-cnt">예약 인원</label>
