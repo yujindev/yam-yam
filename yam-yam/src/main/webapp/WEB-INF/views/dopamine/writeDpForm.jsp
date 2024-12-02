@@ -15,7 +15,7 @@
 			for(let i=0;i<items.length;i++){
 				if(items[i].value.trim()==''){
 					const label = document.querySelector(
-							       'label[for="'+items[i].user_id+'"]');
+							       'label[for="'+items[i].id+'"]');
 					alert(label.textContent + ' 필수 입력');
 					items[i].value='';
 					items[i].focus();

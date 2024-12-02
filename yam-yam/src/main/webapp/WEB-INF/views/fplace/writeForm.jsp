@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 		$(function(){
-			//게시판  유효성 체크 
+			//유효성 체크 
 			$('#write_form').submit(function(){
 				const items = document.querySelectorAll('.input-check');
 				for(let i=0; i<items.length;i++){
