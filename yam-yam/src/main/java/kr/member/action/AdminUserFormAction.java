@@ -20,7 +20,7 @@ public class AdminUserFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		if(user_auth!=9) {//관리자가 아님
-			return "common/notice.jsp";
+			return "common/not_admin.jsp";
 		}
 		//전송된 데이터 반환
 		long mem_num = Long.parseLong(request.getParameter("mem_num"));
@@ -29,6 +29,7 @@ public class AdminUserFormAction implements Action{
 		MemberVO member = dao.getMember(mem_num);
 		
 		request.setAttribute("member", member);
+		request.setAttribute("mem_num", mem_num);
 		
 		//JSP 경로 반환
 		return "member/detailUserForm.jsp";

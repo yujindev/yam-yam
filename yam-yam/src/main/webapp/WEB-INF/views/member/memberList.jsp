@@ -69,9 +69,6 @@
 					<c:if test="${member.mem_auth>0}">
 					<a href="adminUserForm.do?mem_num=${member.mem_num}">${member.mem_id}</a>
 					</c:if>
-					<c:if test="${member.mem_auth == 0}">
-					${member.mem_id}
-					</c:if>
 				</td>
 				<td>${member.mem_nickname}</td>
 				<td>${member.mem_phone}</td>
@@ -80,6 +77,7 @@
 					<c:if test="${member.mem_auth == 0}">탈퇴</c:if>
 					<c:if test="${member.mem_auth == 1}">경고</c:if>
 					<c:if test="${member.mem_auth == 2}">일반</c:if>
+					<c:if test="${member.mem_auth == 7}">식당 사장님</c:if>
 					<c:if test="${member.mem_auth == 9}">운영자</c:if>
 				</td>
 			</tr>

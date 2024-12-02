@@ -19,7 +19,7 @@ public class AdminUserAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}		
 		if(user_auth != 9) {//관리자가 아닌 경우
-			return "common/notice.jsp";
+			return "common/not_admin.jsp";
 		}
 		
 		/* ============ 관리자 로그인 ============ */
@@ -27,13 +27,13 @@ public class AdminUserAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
 		Long mem_num = Long.parseLong(request.getParameter("mem_num"));
-		int auth = Integer.parseInt(request.getParameter("mem_auth"));
+		int mem_auth = Integer.parseInt(request.getParameter("mem_auth"));
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		dao.updateMemberByAdmin(auth, mem_num);
+		dao.updateMemberByAdmin(mem_auth, mem_num);
 		
 		request.setAttribute("notice_msg", "회원등급이 수정되었습니다.");
-		request.setAttribute("notice_url", request.getContextPath()+"/member/adminUserForm.do?mem_num="+mem_num);
+		request.setAttribute("notice_url", request.getContextPath()+"/member/adminList.do");
 		
 		return "common/alert_view.jsp";
 	}
