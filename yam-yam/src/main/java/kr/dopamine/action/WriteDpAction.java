@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.dopamine.dao.DopamineDAO;
 import kr.dopamine.vo.DopamineVO;
+import kr.util.FileUtil;
 
 public class WriteDpAction implements Action{
 
@@ -31,6 +32,7 @@ public class WriteDpAction implements Action{
 		dopamine.setDp_category(Integer.parseInt(request.getParameter("dp_category")));
 		dopamine.setDp_title(request.getParameter("dp_title"));
 		dopamine.setDp_content(request.getParameter("dp_content"));
+		dopamine.setDp_file(FileUtil.uploadFile(request, "dp_file"));
 	    dopamine.setMem_num(user_num);
 		
 		DopamineDAO dao = DopamineDAO.getInstance();

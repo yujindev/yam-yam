@@ -43,7 +43,7 @@
 				<li>  
 					<label for="dp_content">내용</label>
 					<textarea rows="5" cols="40" name="dp_content" id="dp_content" class="input-check">${dopamine.dp_content}</textarea>
-					<input type="file" name="dp_content" id="dp_content_image" accept="image/gif,image/png,image/jpeg">
+					<input type="file" name="dp_file" id="dp_file" accept="image/gif,image/png,image/jpeg">
 				</li>
 			</ul> 
 			<div class="align-center">

@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>modify pw</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -52,7 +53,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
+	<div class="align-center">
 		<h2>비밀번호 수정</h2>
 		<form id="password_form" action="modifyPassword.do" method="post">
 			<ul>

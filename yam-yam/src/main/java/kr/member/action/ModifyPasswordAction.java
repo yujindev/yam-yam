@@ -26,9 +26,9 @@ public class ModifyPasswordAction implements Action{
 		String id = request.getParameter("mem_id");
 		String nickname = request.getParameter("mem_nickname");
 		//현재 비밀번호
-		String origin_pw = request.getParameter("origin_pw");
+		String origin_pw = request.getParameter("origin_passwd");
 		//새 비밀번호
-		String pw = request.getParameter("mem_pw");
+		String pw = request.getParameter("passwd");
 		
 		//현재 로그인한 아이디
 		String user_id = (String)session.getAttribute("user_id");

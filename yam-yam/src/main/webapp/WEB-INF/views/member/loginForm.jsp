@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -41,7 +42,8 @@
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="로그인">
+				<input type="submit" value="로그인">				
+				<input type="button" value="회원가입" onclick="location.href='registerUserForm.do'">
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 		</form>

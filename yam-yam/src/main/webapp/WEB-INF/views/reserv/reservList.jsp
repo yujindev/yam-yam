@@ -4,7 +4,7 @@
 /* 테이블 스타일 */
 /* 예약 내역 제목 */
 .reserv-title {
-    font-size: 24px;
+    font-size: 20px;
     color: #ff7800;
     text-align: center;
     font-weight: bold;
@@ -19,8 +19,8 @@
     justify-content: center; /* 세로 가운데 정렬 */
     margin: 0;
     padding: 20px;
-    width: 150px;
-    max-width: 180px;
+    width: 140px;
+    max-width: 140px;
     background-color: #fff;
     border-radius: 15px;
     border: 2px solid #ff7800;
@@ -32,12 +32,6 @@
 }
 
 /* 예약 건수 */
-.reserv-count {
-    font-size: 28px;
-    color: #ff7800;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 /* 예약 항목 스타일 */
 .reserv-details {
@@ -51,14 +45,14 @@
 
 /* 항목 이름 */
 .reserv-label {
-    font-size: 16px;
+    font-size: 14px;
     color: #ff7800;
     margin-bottom: 5px;
 }
 
 /* 예약 정보 */
 .reserv-info {
-    font-size: 15px;
+    font-size: 13px;
     color: #757575;
     margin-bottom: 10px;
 }
@@ -80,7 +74,7 @@
     display: inline-block;
     background-color: #ff7800;
     color: white;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     padding: 0px;
     border-radius: 50%;

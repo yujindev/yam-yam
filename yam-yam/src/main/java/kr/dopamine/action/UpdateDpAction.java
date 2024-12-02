@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.dopamine.dao.DopamineDAO;
 import kr.dopamine.vo.DopamineVO;
+import kr.util.FileUtil;
 
 public class UpdateDpAction implements Action{
 
@@ -25,18 +26,23 @@ public class UpdateDpAction implements Action{
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		long dp_num = Long.parseLong(
-				request.getParameter("dp_num"));
+		long dp_num = Long.parseLong(request.getParameter("dp_num"));
 
 		DopamineDAO dao = DopamineDAO.getInstance();
-		DopamineVO dopamine = dao.getDp(dp_num);
+		DopamineVO db_dp = dao.getDp(dp_num);
 
-		DopamineVO board = new DopamineVO();
-		dopamine.setDp_num(dp_num);
-		board.setDp_title(request.getParameter("dp_title"));
-		board.setDp_content(request.getParameter("dp_content"));
+		DopamineVO dp = new DopamineVO();
+		dp.setDp_num(dp_num);
+		dp.setDp_title(request.getParameter("dp_title"));
+		dp.setDp_content(request.getParameter("dp_content"));
+		dp.setDp_file(FileUtil.uploadFile(request, "dp_file"));
 
-		dao.modifyDp(board);
+		dao.modifyDp(dp);
+		
+		if(dp.getDp_file()!=null && !"".equals(dp.getDp_file())) {
+		//새 파일로 교체할 때 원래 파일 제거
+		FileUtil.removeFile(request, db_dp.getDp_file());
+	}
 
 		return "redirect:/dopamine/detail.do?dp_num="+dp_num;
 	}

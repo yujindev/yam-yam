@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
 import kr.dopamine.vo.DopamineVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -173,6 +170,7 @@ public class DopamineDAO {
 				dopamine.setDp_num(rs.getInt("dp_num"));
 				dopamine.setDp_title(rs.getString("dp_title"));
 				dopamine.setDp_content(rs.getString("dp_content"));
+				dopamine.setDp_file(rs.getString("dp_file"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -190,12 +188,13 @@ public class DopamineDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO dopamine (dp_num, dp_category, dp_title, dp_content, mem_num) VALUES (dopamine_seq.nextval, ?, ?, ?,?)";
+			sql = "INSERT INTO dopamine (dp_num, dp_category, dp_title, dp_content, dp_file, mem_num) VALUES (dopamine_seq.nextval, ?, ?, ?, ?, ?)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, dopamine.getDp_category());
 			pstmt.setString(2, dopamine.getDp_title());
 			pstmt.setString(3, dopamine.getDp_content());
-			pstmt.setLong(4, dopamine.getMem_num());
+			pstmt.setString(4, dopamine.getDp_file());
+			pstmt.setLong(5, dopamine.getMem_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -209,14 +208,23 @@ public class DopamineDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
 		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "update dopamine set dp_title=?,dp_content=? where dp_num=?";
+			if(dopamine.getDp_file()!=null 
+					&& !"".equals(dopamine.getDp_file())) {
+				sub_sql += ",dp_file=? ";
+			}
+			sql = "update dopamine set dp_title=?,dp_content=?"+ sub_sql +"where dp_num=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dopamine.getDp_title());
-			pstmt.setString(2, dopamine.getDp_content());
-			pstmt.setLong(3, dopamine.getDp_num());
+			pstmt.setString(++cnt, dopamine.getDp_title());
+			pstmt.setString(++cnt, dopamine.getDp_content());
+			if(dopamine.getDp_file()!=null && !"".equals(dopamine.getDp_file())) {
+			pstmt.setString(++cnt, dopamine.getDp_file());
+			}
+			pstmt.setLong(++cnt, dopamine.getDp_num());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);

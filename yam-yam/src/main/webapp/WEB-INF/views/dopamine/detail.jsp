@@ -16,6 +16,8 @@
 		<c:if test="${dopamine.dp_category != 1}">
 		<h2>${dopamine.dp_title}</h2>
 		<hr size="1" noshade="noshade" width="100%">
+		<img src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}" class="detail-img">
+		
 		<p>
 			${dopamine.dp_content}
 		</p>

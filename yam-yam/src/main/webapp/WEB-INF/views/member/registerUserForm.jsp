@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -131,7 +133,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
+	<div class="align-center">
 	<h2>회원 가입</h2>
 	<form id="register_form" action="registerUser.do" method="post">
 		<ul>
@@ -158,6 +160,7 @@
 				<input type="text" name="mem_phone" id="mem_phone" maxlength="15" class="input-check">
 			</li>				
 		</ul>
+		<br>
 		<div class="align-center">
 			<input type="submit" value="등록">
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">

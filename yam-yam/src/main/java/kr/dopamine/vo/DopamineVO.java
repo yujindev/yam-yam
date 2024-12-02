@@ -8,6 +8,14 @@ public class DopamineVO {
 	private String dp_content; //글 내용
 	private long mem_num; //회원번호
 	
+	private String dp_file;
+	
+	public String getDp_file() {
+		return dp_file;
+	}
+	public void setDp_file(String dp_file) {
+		this.dp_file = dp_file;
+	}
 	public long getDp_num() {
 		return dp_num;
 	}

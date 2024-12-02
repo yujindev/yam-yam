@@ -16,7 +16,7 @@ public class ModifyPasswordFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
-		return "member/modifyPasswordFrom.jsp";
+		return "member/modifyPasswordForm.jsp";
 	}
 
 }

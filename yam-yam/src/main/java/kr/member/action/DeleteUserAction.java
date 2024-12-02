@@ -21,21 +21,20 @@ public class DeleteUserAction implements Action{
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
-		String id = request.getParameter("id");
-		String phone = request.getParameter("phone");
-		String passwd = request.getParameter("passwd");
+		String id = request.getParameter("mem_id");
+		//String nickname = request.getParameter("mem_nickname");
+		String passwd = request.getParameter("mem_pw");
 		
 		//로그인한 아이디
 		String user_id = 
 				  (String)session.getAttribute("user_id");
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO db_member = dao.checkMember(id, user_id);
+		MemberVO db_member = dao.checkMember(id, null);
 		boolean check = false;
 		//사용자가 입력한 아이디가 존재하고 로그인한 아이디와 일치하는지
 		//체크, 입력한 이메일과 저장된 이메일 일치 여부 체크
-		if(db_member!=null && id.equals(user_id)
-				 && phone.equals(db_member.getMem_phone())) {
+		if(db_member!=null && id.equals(user_id)) {
 			//비밀번호 일치 여부 체크
 			check = db_member.isCheckedPw(passwd);
 		}
