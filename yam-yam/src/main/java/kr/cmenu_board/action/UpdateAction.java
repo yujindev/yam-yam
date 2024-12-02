@@ -40,6 +40,7 @@ public class UpdateAction implements Action{
 		board.setCmenu_filename2(FileUtil.uploadFile(request, "cmenu_filename2"));
 		board.setCmenu_name(request.getParameter("cmenu_name"));
 		board.setCmenu_loc(request.getParameter("cmenu_loc"));
+		board.setMem_nickname(request.getParameter("mem_nickname"));
 
 		CMENU_BoardDAO dao = CMENU_BoardDAO.getInstance();
 		dao.updatecmenuBoard(board);

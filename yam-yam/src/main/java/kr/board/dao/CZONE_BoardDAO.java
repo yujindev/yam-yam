@@ -365,6 +365,7 @@ public class CZONE_BoardDAO {
 				reply.setCzone_re_content(StringUtil.useBrNoHtml(rs.getString("czone_re_content")));
 				reply.setCzone_num(rs.getLong("czone_num"));
 				reply.setMem_num(rs.getLong("mem_num"));
+				reply.setMem_nickname(rs.getString("mem_nickname"));
 				list.add(reply);
 			}	
 		} catch (Exception e) {

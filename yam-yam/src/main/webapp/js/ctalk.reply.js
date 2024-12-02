@@ -26,25 +26,25 @@ $(function(){
 			}
 			
 			$(param.list).each(function(index,item){
-				let output = '<div class="item mt-1 p-1 bg-gr150 position-r">';
-				output += '<h4 class="fw-600 fs-12"><a href="#">' + item.ctalk_num + '</a></h4>';
-				output += '<div class = "sub-item">';
-				output += '<p class="p-1">' + item.ctalk_re_content + '</p>';
+                let output = '<div class="item mt-1 p-1 bg-gr150 position-r">';
+                output += '<h4 class="fw-600 fs-12"><a href="#">' + item.mem_nickname + '</a></h4>';
+                output += '<div class = "sub-item">';
+                output += '<p class="p-1">' + item.ctalk_re_content + '</p>';
 
-				if(item.ctalk_re_mdate){
-					output += '<span class = "modify-date fs-08 text-gr450 block-box text-r mr-2"> 최근 수정일 :' + item.ctalk_re_mdate + ' </span>';
-				} else{
-					output += '<span class = "modify-date fs-08 text-gr450 block-box text-r mr-2"> 등록일 :' + item.ctalk_re_date + ' </span>';
-				}
-				
-				if(param.user_num == item.mem_num){
-					output += ' <input type="button" data-renum="'+item.ctalk_re_num+'" class="modify-btn btn-edit btn-reEidt">'
-					output += ' <input type="button" data-renum="'+item.ctalk_re_num+'" class="delete-btn btn-close btn-reClose">'
-				}
-					output += '</div>';
-					output +='</div>';
-					$('#output').append(output);
-			}); 
+                if(item.ctalk_re_mdate){
+                    output += '<span class = "modify-date fs-08 text-gr450 block-box text-r mr-2"> 최근 수정일 :' + item.ctalk_re_mdate + ' </span>';
+                } else{
+                    output += '<span class = "modify-date fs-08 text-gr450 block-box text-r mr-2"> 등록일 :' + item.ctalk_re_date + ' </span>';
+                }
+
+                if(param.user_num == item.mem_num){
+                    output += ' <input type="button" data-renum="'+item.ctalk_re_num+'" class="modify-btn btn-edit btn-reEidt">'
+                    output += ' <input type="button" data-renum="'+item.ctalk_re_num+'" class="delete-btn btn-close btn-reClose">'
+                }
+                    output += '</div>';
+                    output +='</div>';
+                    $('#output').append(output);
+            });
 			if(currentPage >= Math.ceil(count/rowCount)){
 				// 다음 페이지가 없음
 				$('.paging-button').hide();

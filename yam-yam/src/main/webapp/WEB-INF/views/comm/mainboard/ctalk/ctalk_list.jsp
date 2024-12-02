@@ -14,7 +14,7 @@
 		myForm.onsubmit=function(){
 			const myForm = document.getElementById('keyword');
 			if (keyword.value.trim()=='') {
-				alert('검색어를 입력해라');
+				alert('검색어를 입력하세요');
 				keyword.value = '';
 				keyword.focus();
 				return false;

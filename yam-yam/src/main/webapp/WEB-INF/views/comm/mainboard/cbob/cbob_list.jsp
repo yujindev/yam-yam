@@ -25,34 +25,33 @@
   
 </head>
 <body>
-	<div class="page-main">
+<div class="page-main">
     	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     	<div class="content-main">
-    	<h2>밥친구찾기 게시판 목록</h2>
-    	<form action="list.do" id="search_form" method="get">
-    		<ul class="search">
+    	<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">
+    	<h2 class="fw-700 fs-16 m-1">밥친구 게시판 게시판</h2>
+    	<form action="list.do" id="search_form" method="get" class="text-c">
+    		<ul class="search w-100">
     			<li>
-    				<select name="keyfield">
+    				<select name="keyfield" class="search-cat">
     					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
     					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
-
     				</select>
     			</li>
-    			<li>
-    				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+    			<li class="ml-1">
+    				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input bg-gr150 w-80" placeholder="검색할 내용을 입력하세요.">
     			</li>
-    			<li>
-    				<input type="submit" value="검색">
+    			<li class="ml-1">
+    				<input type="submit" value="" class="btn-re icon-search">
     			</li>
     			
     		</ul>
     	</form>
-    	<div class="list-space align-right">
+	<div class="list-space flex-box f-end m-1">
     		<c:if test="${!empty user_num}">
-    		<input type="button" value="글쓰기" onclick="location.href='cbob_writeForm.do'">
+    		<input type="button" value="글쓰기" onclick="location.href='cbob_writeForm.do'" class="btn-re btn-line-primary ">
     		</c:if>
-    		<input type="button" value="목록" onclick="location.href='list.do'">
-    		<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+    		<!-- <input type="button" value="목록" onclick="location.href='list.do'" class="btn-re ml-1"> -->
     	</div>
     		<c:if test="${count == 0}">
     			<div class="result-display">
@@ -60,25 +59,23 @@
     			</div>
     		</c:if>
     		<c:if test="${count > 0}">
-    			<table>
-		             <tr>
-		                 <th>글번호</th>
-		                 <th>제목</th>
-		                 <th>작성일</th>
-		                 <th>조회</th>
-		             </tr>
-		             <c:forEach var="cbob" items="${list}">
-		                 <tr>
-		                     <td>${cbob.cbob_num}</td>
-		                     <td><a href="cbob_detail.do?cbob_num=${cbob.cbob_num}">${cbob.cbob_title}</a></td>
-		                     <td>${cbob.cbob_date}</td>
-		                     <td>${cbob.cbob_hit}</td>
-		                 </tr>
-		             </c:forEach>
-		            </table>
-		            <div class="align-center">${page}</div>
+    			<ul class="w-95 m-0auto">
+             <c:forEach var="cbob" items="${list}">
+                 <li class="mt-2">
+                 <a href="cbob_detail.do?cbob_num=${cbob.cbob_num}">
+                     <p class="fs-10 text-main">${cbob.cbob_num}</p>
+                     <p class="fs-12 fw-700 mt-1">${cbob.cbob_title}</p>
+                     <p class="fs-08 mt-1">${cbob.cbob_date}</p>
+                     <p class="fs-08 text-r">조회수 | ${cbob.cbob_hit}</p>
+                     <div class="bar pt-2"></div>
+                 </a>    
+                 </li>
+             </c:forEach>
+           </ul>
+		            <div class="align-center mt-3">${page}</div>
 		       </c:if>
     	</div>
+    	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
 </body>
 </html>

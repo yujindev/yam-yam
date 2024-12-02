@@ -26,26 +26,25 @@ $(function(){
 			}
 			
 			$(param.list).each(function(index,item){
-				let output = '<div class="item">';
-				output += '<h4>' + item.czone_num + '</h4>';
-				output += '<div class = "sub-item">';
-				output += '<p>' + item.czone_re_content + '</p>';
+				let output = '<div class="item mt-1 p-1 bg-gr150 position-r">';
+                output += '<h4 class="fw-600 fs-12"><a href="#">' + item.mem_nickname + '</a></h4>';
+                output += '<div class = "sub-item">';
+                output += '<p class="p-1">' + item.czone_re_content + '</p>';
 
-				if(item.cbob_re_mdate){
-					output += '<span class = "modify-date"> 최근 수정일 :' + item.czone_re_mdate + ' </span>';
-				} else{
-					output += '<span class = "modify-date"> 등록일 :' + item.czone_re_date + ' </span>';
-				}
-				
-				if(param.user_num == item.mem_num){
-					output += ' <input type="button" data-renum="'+item.czone_re_num+'" value="수정" class="modify-btn">'
-					output += ' <input type="button" data-renum="'+item.czone_re_num+'" value="삭제" class="delete-btn">'
-				}
-					output += '<hr size ="1" noshade width = "100%">' ;
-					output += '</div>';
-					output +='</div>';
-					$('#output').append(output);
-			}); 
+                if(item.czone_re_mdate){
+                    output += '<span class = "modify-date fs-08 text-gr450 block-box text-r mr-2"> 최근 수정일 :' + item.czone_re_mdate + ' </span>';
+                } else{
+                    output += '<span class = "modify-date fs-08 text-gr450 block-box text-r mr-2"> 등록일 :' + item.czone_re_date + ' </span>';
+                }
+
+                if(param.user_num == item.mem_num){
+                    output += ' <input type="button" data-renum="'+item.czone_re_num+'" class="modify-btn btn-edit btn-reEidt">'
+                    output += ' <input type="button" data-renum="'+item.czone_re_num+'" class="delete-btn btn-close btn-reClose">'
+                }
+                    output += '</div>';
+                    output +='</div>';
+                    $('#output').append(output);
+            });
 			if(currentPage >= Math.ceil(count/rowCount)){
 				// 다음 페이지가 없음
 				$('.paging-button').hide();
@@ -110,20 +109,19 @@ $('.paging-button input').click(function(){
 	// 댓글 수정 버튼 클릭시 수정폼 노출
 	$(document).on('click','.modify-btn',function(){
 		// 댓글 번호
-		let czonere_num = $(this).attr('data-renum');
+		let czone_re_num = $(this).attr('data-renum');
 		// 댓글 내용
 		let czone_re_content = $(this).parent().find('p').html().replace(/<br>/gi, '\n'); 
 																// g:지정문자열 모두 , i: 대소문자 무시
 		// 댓글 수정폼 UI
-		let modifyUI = '<form id="mre_form">';
+		let modifyUI = '<form id="mre_form" class="p-05">';
 		modifyUI += '<input type ="hidden" name="czone_re_num" id="czone_mre_num" value="'+czone_re_num+'">';
-		modifyUI += '<textarea rows="3" cols="50" name="czone_re_content" id="czone_mre_content" class="rep-content">'+czone_re_content+'</textarea>';
-		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
-		modifyUI += '<div id="mre_second" class="align-right">';
-		modifyUI += ' <input type="submit" value="수정">';
-		modifyUI += ' <input type="button" value="취소" class="re-reset">';
+		modifyUI += '<textarea rows="3" cols="50" name="czone_re_content" id="czone_mre_content" class="rep-content w-100">'+czone_re_content+'</textarea>';
+		modifyUI += '<div id="mre_first" class="no-float text-r w-100"><span class="letter-count">300/300</span></div>';
+		modifyUI += '<div id="mre_second" class="no-float text-r w-100">';
+		modifyUI += ' <input type="submit" value="수정" class="btn-re btn-line-primary">';
+		modifyUI += ' <input type="button" class="re-reset btn-close btn-reClose">';
 		modifyUI += "</div>";
-		modifyUI += '<hr size="1" noshade width="96%">';
 		modifyUI += '</form>';
 		
 		// 이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면 숨김 sub-item 클래스로 지정한 div를 환원 시키고 수정폼 제거

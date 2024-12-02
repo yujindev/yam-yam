@@ -24,7 +24,7 @@ public class DetailAction implements Action{
 		
 		cmenu.setCmenu_title(StringUtil.useNoHtml(cmenu.getCmenu_title()));
 		cmenu.setCmenu_article(StringUtil.useBrNoHtml(cmenu.getCmenu_article()));
-		
+		cmenu.setMem_nickname(StringUtil.useBrNoHtml(cmenu.getCmenu_article()));
 		request.setAttribute("cmenu", cmenu);
 		
 		return "comm/mainboard/cmenu/cmenu_detail.jsp";

@@ -338,6 +338,8 @@ public class CMENU_BoardDAO {
 				reply.setCmenu_re_content(StringUtil.useBrNoHtml(rs.getString("cmenu_re_content")));
 				reply.setCmenu_num(rs.getLong("cmenu_num"));
 				reply.setMem_num(rs.getLong("mem_num"));
+				reply.setMem_nickname(rs.getString("mem_nickname"));
+
 				list.add(reply);
 			}	
 		} catch (Exception e) {

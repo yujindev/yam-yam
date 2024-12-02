@@ -321,6 +321,7 @@ public class CMOV_BoardDAO {
 				reply.setCmov_re_content(StringUtil.useBrNoHtml(rs.getString("cmov_re_content")));
 				reply.setCmov_num(rs.getLong("cmov_num"));
 				reply.setMem_num(rs.getLong("mem_num"));
+				reply.setMem_nickname(rs.getString("mem_nickname"));
 				list.add(reply);
 			}	
 		} catch (Exception e) {
