@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/YJ.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/chat.js"></script> --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/chat.js"></script>
 </head>
 <body>
 	<div class=page-main>
@@ -34,12 +34,11 @@
 					<a class="w-90" href="showChat.do?chat_receiver_num=${user_num==chat.chat_receiver_num ? chat.chat_sender_num : chat.chat_receiver_num}">
 						<ul>
 							<li class="fw-800 fs-12">${chat.receiver_nickname} <span class="bg-gr100 text-main chat-unread">${chat.cnt}</span></li>
-							<li class="pt-2">${fn:substring(chat.chat_message,0,40)}
-							</li>
+							<li class="pt-2">${fn:substring(chat.chat_message,0,40)}</li>
 							<li class="text-r chat-sentat">${chat.chat_sent_at}</li>
 						</ul>
 					</a>
-					<button class="ml-auto btnClose"></button>
+					<button id="chatDeleteBtn" class="ml-auto btnClose"></button>
 				</li>
 				</c:forEach>
 				</ul>
@@ -47,5 +46,6 @@
 			</c:if>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
