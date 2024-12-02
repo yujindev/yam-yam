@@ -129,6 +129,7 @@ body,header,main,div,footer {
 /* ================= position =============== */
 .position-r {position:relative !important;}
 .position-a {position:absolute !important;}
+.position-f {position:fixed !important;}
 
 /* ================= flex =============== */
 

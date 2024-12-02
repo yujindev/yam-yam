@@ -19,13 +19,13 @@
 			<ul class="flex-box f-center pb-1">
 				<li class="tab selected">
 					<a href="${pageContext.request.contextPath}/others/saveStore.do?mem_id=${member.mem_id}">
-					<img src='${pageContext.request.contextPath}/images/icon-flag-g.png' class='icon'>
+					<img src='${pageContext.request.contextPath}/images/icon-flag-o.png' class='icon'>
 					<span>찜한식당</span>
 					</a>
 				</li>
 				<li class="tab">
 				<a href="${pageContext.request.contextPath}/others/saveReview.do?mem_id=${member.mem_id}">
-					<img src='${pageContext.request.contextPath}/images/icon-star-o.png' class='icon'>
+					<img src='${pageContext.request.contextPath}/images/icon-star-g.png' class='icon'>
 					<span>찜한리뷰</span>
 				</a>
 				</li>
