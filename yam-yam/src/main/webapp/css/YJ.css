@@ -3,8 +3,8 @@
 /* 기존 
 --------------------------------*/
 #chatting_message {
-	width: 80%;
-	height: 600px;
+	width: 70%;
+	height: 400px;
 	margin: 0 auto;
 	padding: 10px;
 	overflow: auto;
@@ -24,7 +24,7 @@
 }
 
 .from-position .item {
-	background-color: yellow;
+	background-color: var(--main-color);
 	padding: 10px;
 	min-height: 50px;
 	border-radius: 50px;
@@ -37,7 +37,7 @@
 }
 
 .to-position .item {
-	background-color: pink;
+	background-color: var(--gr300);
 	padding: 10px;
 	min-height: 50px;
 	border-radius: 20px;
@@ -68,6 +68,12 @@
 	border-bottom-left-radius: 0;
 	font-size: .8rem;
 	vertical-align: text-top;
+}
+
+#chatting_form .re-count {
+	bottom: -20px;
+  right: 0;
+  padding-right: 1rem;
 }
 
 /* .msg-box textarea{
