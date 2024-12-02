@@ -12,10 +12,29 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-<div class="page-main">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main">
 <div class="content-main">
-	<h4>메인 페이지</h4>
+
+	 <!-- 룰렛 섹션 -->
+    <div class="roulette-section">
+    	<h2>룰렛</h2>
+    	<a href="${pageContext.request.contextPath}/tmenu/roulette.do" class="roulette-link">
+        	<img src="${pageContext.request.contextPath}/images/roulette.png" alt="룰렛 이미지">
+        </a>
+    </div>
+
+    <!-- 커뮤니티 섹션 -->
+    <div class="community-section">
+        <h2>커뮤니티</h2>
+        <ul>
+            <li>오늘의 인기글 제목 예시입니다.</li>
+            <li>오늘의 인기글 제목 예시입니다.</li>
+            <li>오늘의 인기글 제목 예시입니다.</li>
+            <li>오늘의 인기글 제목 예시입니다.</li>
+        </ul>
+    </div>
+	
 	<!-- 식당추천 -->
 	<h2 class="section-title">맛집 추천</h2>
 	<c:if test="${count > 0}">
@@ -34,6 +53,12 @@
 	<c:if test="${count == 0}">
 		  <p>추천할 맛집이 없습니다.</p>
 	</c:if>
+	
+	<!-- 축제 이미지 배너 섹션 -->
+    <div class="banner-section">
+        <h2>축제 이미지 배너 슬라이드</h2>
+        <!-- 축제 배너 슬라이드 이미지 추가 -->
+    </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>

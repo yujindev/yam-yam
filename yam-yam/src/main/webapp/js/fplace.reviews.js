@@ -116,7 +116,8 @@ $(function(){
 					initForm();
 					$('.stars input[type="radio"]').prop('checked', false); //별점 작성 후 조기화
 					//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째 페이지의 게시글 목록을 다시 호출함
-					selectList(1)
+					selectList(1);
+					location.reload(); //리뷰 작성 버튼시 자동으로 새로고침
 				}else{
 					alert('댓글 등록 오류 발생');
 				}
