@@ -28,7 +28,7 @@ public class DetailAction implements Action{
 		
 		cmov.setCmov_title(StringUtil.useNoHtml(cmov.getCmov_title()));
 		cmov.setCmov_article(StringUtil.useBrNoHtml(cmov.getCmov_article()));
-		
+
 		request.setAttribute("cmov", cmov);
 		
 		return "comm/mainboard/cmov/cmov_detail.jsp";

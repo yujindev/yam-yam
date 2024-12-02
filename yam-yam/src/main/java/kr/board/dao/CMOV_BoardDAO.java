@@ -33,8 +33,8 @@ public class CMOV_BoardDAO {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, cmov_board.getCmov_title());
-			pstmt.setString(2, cmov_board.getCmov_article());
-			pstmt.setString(3, cmov_board.getCmov_link());
+			pstmt.setString(2, cmov_board.getCmov_link());	
+			pstmt.setString(3, cmov_board.getCmov_article());
 			pstmt.setLong(4, cmov_board.getMem_num());
 			pstmt.executeUpdate();
 

@@ -26,7 +26,7 @@ public class DetailAction implements Action{
 		
 		czone.setCzone_title(StringUtil.useNoHtml(czone.getCzone_title()));
 		czone.setCzone_article(StringUtil.useBrNoHtml(czone.getCzone_article()));
-		
+		czone.setCzone_loc(StringUtil.useBrNoHtml(czone.getCzone_loc()));
 		request.setAttribute("czone", czone);
 		
 		return "comm/mainboard/czone/czone_detail.jsp";

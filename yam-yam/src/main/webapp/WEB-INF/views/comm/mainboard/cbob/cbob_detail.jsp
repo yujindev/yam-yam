@@ -39,15 +39,19 @@
 				<img src="${pageContext.request.contextPath}/upload/${board.filename}" class="detail-img">		
 				</div>
 				</c:if>
-				${cbob.cbob_menu}
+				메뉴 : ${cbob.cbob_menu}
 				<br>
-				${cbob.cbob_meet}
+				<br>
+				만나는 시간 : ${cbob.cbob_meet}
+				<br>
 				<br>				
-				${cbob.cbob_gender1}
+				내 성별 : ${cbob.cbob_gender1}
 				<br>
-				${cbob.cbob_gender2}
 				<br>
-				${cbob.cbob_article}
+				상대 성별 :${cbob.cbob_gender2}
+				<br>
+				<br>
+				내용 : ${cbob.cbob_article}
 				</p>
 					<hr size="1" noshade="noshade" width="100%">
 					<ul class="detail-sub">

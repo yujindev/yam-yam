@@ -27,7 +27,7 @@
 						</c:if>
 					</li>
 					<li>
-						${czone.czone_num}<br>
+						${czone.mem_nickname}<br>
 						조회 : ${czone.czone_hit}
 					</li>
 				</ul>

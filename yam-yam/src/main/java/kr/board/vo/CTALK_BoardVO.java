@@ -12,6 +12,7 @@ public class CTALK_BoardVO {
 
 	private long mem_num;
 
+	
 	public long getCtalk_num() {
 		return ctalk_num;
 	}
@@ -60,4 +61,10 @@ public class CTALK_BoardVO {
 		this.mem_num = mem_num;
 	}
 
+	@Override
+	public String toString() {
+		return "CTALK_BoardVO [ctalk_num=" + ctalk_num + ", ctalk_title=" + ctalk_title + ", ctalk_article="
+				+ ctalk_article + ", ctalk_date=" + ctalk_date + ", ctalk_hit=" + ctalk_hit + ", mem_num=" + mem_num
+				+ "]";
+	}
 }

@@ -12,8 +12,16 @@ public class CZONE_BoardVO {
 	private long mem_num;
 	private String czone_filename;	//파일명
 
+	private String mem_nickname;
 	private String mem_img;
 	
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	public String getMem_img() {
 		return mem_img;
 	}

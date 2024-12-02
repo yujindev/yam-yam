@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영상추천 게시판 글쓰기</title>
+<title>도시락존 게시판 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -31,7 +31,7 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>영상추천 게시판 글쓰기</h2>
+			<h2>도시락존 게시판 글쓰기</h2>
 			<form id="write_form" action="czone_write.do" method="post" enctype="multipart/form-data">
 				<ul>
 					<li><label for="czone_title">제목</label> <input type="text"

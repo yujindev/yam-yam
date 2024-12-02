@@ -27,17 +27,21 @@ public class UpdateAction implements Action{
 
 		long cmov_num = Long.parseLong(request.getParameter("cmov_num"));
 		
-		CMOV_BoardDAO dao = CMOV_BoardDAO.getInstance();
-		CMOV_BoardVO cmov = dao.getBoard(cmov_num);
+		CMOV_BoardDAO cmovdao = CMOV_BoardDAO.getInstance();
+		CMOV_BoardVO cmov = cmovdao.getBoard(cmov_num);
 		if (user_num != cmov.getMem_num()) {
 			// 로그인한 회원번호와 작성자 회원번호 불일치
 			return "common/notice.jsp";
 		}
 		
-		CMOV_BoardVO cbob = new CMOV_BoardVO();
-		cbob.setCmov_num(cmov_num);
-		cbob.setCmov_title(request.getParameter("cmov_title"));
-		cbob.setCmov_article(request.getParameter("cmov_article"));
-		return "redirect:/mainboard/cmov/cmov_detail.do?cmov_num="+cmov_num;
+		CMOV_BoardVO board = new CMOV_BoardVO();
+		board.setCmov_num(cmov_num);
+		board.setCmov_title(request.getParameter("cmov_title"));
+		board.setCmov_article(request.getParameter("cmov_article"));
+		
+		CMOV_BoardDAO dao = CMOV_BoardDAO.getInstance();
+		dao.updatecmovBoard(cmov);
+		return "redirect:/cmov_board/cmov_detail.do?cmov_num="+cmov_num;
+
 	}
 }

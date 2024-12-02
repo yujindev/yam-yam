@@ -9,6 +9,7 @@ import kr.board.dao.CTALK_BoardDAO;
 import kr.board.vo.CMENU_BoardVO;
 import kr.board.vo.CTALK_BoardVO;
 import kr.controller.Action;
+import kr.util.FileUtil;
 
 public class UpdateAction implements Action{
 
@@ -34,7 +35,15 @@ public class UpdateAction implements Action{
 		board.setCmenu_num(cmenu_num);
 		board.setCmenu_title(request.getParameter("cmenu_title"));
 		board.setCmenu_article(request.getParameter("cmenu_article"));
+		board.setCmenu_star(Integer.parseInt(request.getParameter("cmenu_star")));
+		board.setCmenu_filename(FileUtil.uploadFile(request, "cmenu_filename"));
+		board.setCmenu_filename2(FileUtil.uploadFile(request, "cmenu_filename2"));
+		board.setCmenu_name(request.getParameter("cmenu_name"));
+		board.setCmenu_loc(request.getParameter("cmenu_loc"));
+
+		CMENU_BoardDAO dao = CMENU_BoardDAO.getInstance();
+		dao.updatecmenuBoard(board);
 	
-		return "redirect:/mainboard/cmenu/cmenu_detail.do?cmenu_num="+cmenu_num;
+		return "redirect:/cmenu_board/cmenu_detail.do?cmenu_num="+cmenu_num;
 	}
 }

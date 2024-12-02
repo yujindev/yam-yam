@@ -162,7 +162,9 @@ public class CMENU_BoardDAO {
 				cmenu_board.setCmenu_loc(rs.getString("cmenu_loc"));
 				cmenu_board.setCmenu_hit(rs.getInt("cmenu_hit"));
 				cmenu_board.setMem_num(rs.getInt("mem_num"));
+				System.out.println(cmenu_board);
 			}
+			
 		}catch (Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -212,7 +214,7 @@ public class CMENU_BoardDAO {
 			pstmt.setString(5, cmenu.getCmenu_filename2());
 			pstmt.setString(6, cmenu.getCmenu_name());
 			pstmt.setString(7, cmenu.getCmenu_loc());
-
+			pstmt.setLong(8, cmenu.getCmenu_num());
 			pstmt.executeUpdate();
 
 		}catch(Exception e) {

@@ -77,5 +77,9 @@
             </c:if>
             </div>
         </div>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+	
+	<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

@@ -15,6 +15,7 @@ public class CMENU_BoardVO {
 	private String cmenu_loc;
 	private int cmenu_hit;
 	
+	private long mem_num;
 	private String mem_img2;
 	private String mem_img3;
 		
@@ -97,6 +98,16 @@ public class CMENU_BoardVO {
 	public void setMem_num(long mem_num) {
 		this.mem_num = mem_num;
 	}
-	private long mem_num;
-
+	@Override
+	public String toString() {
+		return "CMENU_BoardVO [cmenu_num=" + cmenu_num + ", cmenu_title=" + cmenu_title + ", cmenu_article="
+				+ cmenu_article + ", cmenu_date=" + cmenu_date + ", cmenu_star=" + cmenu_star + ", cmenu_filename="
+				+ cmenu_filename + ", cmenu_filename2=" + cmenu_filename2 + ", cmenu_name=" + cmenu_name
+				+ ", cmenu_loc=" + cmenu_loc + ", cmenu_hit=" + cmenu_hit + ", mem_num=" + mem_num + ", mem_img2="
+				+ mem_img2 + ", mem_img3=" + mem_img3 + "]";
+	}
+	
+	
+	
+	
 }

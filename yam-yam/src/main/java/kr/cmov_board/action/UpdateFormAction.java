@@ -34,6 +34,7 @@ public class UpdateFormAction implements Action{
 		}
 		// 큰 따옴표 처리 (수정폼의 input 태그에만 명시)
 		cmov.setCmov_title(StringUtil.parseQuot(cmov.getCmov_title()));
+		cmov.setCmov_link(StringUtil.parseQuot(cmov.getCmov_link()));
 		request.setAttribute("cmov", cmov);
 		
 		return "comm/mainboard/cmov/cmov_updateForm.jsp";

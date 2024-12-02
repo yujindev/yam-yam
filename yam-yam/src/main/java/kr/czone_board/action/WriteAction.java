@@ -27,6 +27,7 @@ public class WriteAction implements Action{
 		CZONE_BoardVO czone_board = new CZONE_BoardVO();
 		czone_board.setCzone_title(request.getParameter("czone_title"));
 		czone_board.setCzone_article(request.getParameter("czone_article"));
+		czone_board.setCzone_loc(request.getParameter("czone_loc"));
 		czone_board.setCzone_filename(FileUtil.uploadFile(request, "czone_filename"));
 		czone_board.setMem_num(user_num);
 		

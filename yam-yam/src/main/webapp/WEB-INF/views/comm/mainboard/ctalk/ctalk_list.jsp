@@ -34,7 +34,7 @@
     			<li>
     				<select name="keyfield">
     					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-    					<option value="3" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
+    					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
 
     				</select>
     			</li>
@@ -51,7 +51,7 @@
     		<c:if test="${!empty user_num}">
     		<input type="button" value="글쓰기" onclick="location.href='ctalk_writeForm.do'">
     		</c:if>
-    		<input type="button" value="목록" onclick="location.href='ctalk_list.do'">
+    		<input type="button" value="목록" onclick="location.href='list.do'">
     		<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
     	</div>
     		<c:if test="${count == 0}">

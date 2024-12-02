@@ -41,13 +41,13 @@ $(function(){
 					value="${cmov.cmov_title}" name="cmov_title" id="cmov_title" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="cmov_link">링크</label> <input type="url"
+					<li><label for="cmov_link">링크</label> <input type="url" value="${cmov.cmov_link}"
 						name="cmov_link" id="cmov_link" maxlength="50" class="input-check">
 					</li>
 					
 					<li>
 					<label for="cmov_article">내용</label> 
-					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check">${cmv.cmov_article}</textarea>
+					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check">${cmov.cmov_article}</textarea>
 					</li>
 				</ul>
 				<div class="align-center">

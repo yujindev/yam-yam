@@ -32,7 +32,10 @@ public class UpdateAction implements Action{
 		board.setCtalk_num(ctalk_num);
 		board.setCtalk_title(request.getParameter("ctalk_title"));
 		board.setCtalk_article(request.getParameter("ctalk_article"));
-	
-		return "redirect:/mainboard/ctalk/ctalk_detail.do?ctalk_num="+ctalk_num;
+		
+		CTALK_BoardDAO dao = CTALK_BoardDAO.getInstance();
+		dao.updatectalkBoard(board);
+		  
+		return "redirect:/ctalk_board/ctalk_detail.do?ctalk_num="+ctalk_num;
 	}
 }

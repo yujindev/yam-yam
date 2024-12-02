@@ -27,9 +27,11 @@ public class UpdateFormAction implements Action{
 			// 로그인한 회원번호와 작성자 회원번호 불일치
 			return "common/notice.jsp";
 		}
+		
+		System.out.println(ctalkvo);
 		// 큰 따옴표 처리 (수정폼의 input 태그에만 명시)
 		ctalkvo.setCtalk_title(StringUtil.parseQuot(ctalkvo.getCtalk_title()));
-		request.setAttribute("ctalkvo", ctalkvo);
+		request.setAttribute("ctalk", ctalkvo);
 		
 		return "comm/mainboard/ctalk/ctalk_updateForm.jsp";
 	}

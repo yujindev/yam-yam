@@ -1,4 +1,4 @@
-\<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,15 +37,17 @@ $(function(){
 					<li><label for="cmov_title">제목</label> <input type="text"
 						name="cmov_title" id="cmov_title" maxlength="50" class="input-check">
 					</li>
-					
+											
 					<li><label for="cmov_link">링크</label> <input type="url"
 						name="cmov_link" id="cmov_link" maxlength="50" class="input-check">
 					</li>
-			
+					
 					<li>					
 					<label for="cmov_article">내용</label> 
 					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check"></textarea>
 					</li>
+					
+					
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> 

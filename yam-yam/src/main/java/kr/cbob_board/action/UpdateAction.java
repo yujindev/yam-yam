@@ -5,11 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.board.dao.CBOB_BoardDAO;
-import kr.board.dao.CMENU_BoardDAO;
-import kr.board.dao.CTALK_BoardDAO;
 import kr.board.vo.CBOB_BoardVO;
-import kr.board.vo.CMENU_BoardVO;
-import kr.board.vo.CTALK_BoardVO;
 import kr.controller.Action;
 
 public class UpdateAction implements Action{
@@ -32,10 +28,19 @@ public class UpdateAction implements Action{
 			return "common/notice.jsp";
 		}
 		
-		CBOB_BoardVO cbob = new CBOB_BoardVO();
-		cbob.setCbob_num(cbob_num);
-		cbob.setCbob_title(request.getParameter("cbob_title"));
-		cbob.setCbob_article(request.getParameter("cbob_article"));
-		return "redirect:/mainboard/cbob/cbob_detail.do?cbob_num="+cbob_num;
+		CBOB_BoardVO board = new CBOB_BoardVO();
+		board.setCbob_num(cbob_num);
+		board.setCbob_title(request.getParameter("cbob_title"));
+		board.setCbob_article(request.getParameter("cbob_article"));
+		board.setCbob_menu(request.getParameter("cbob_menu"));
+		board.setCbob_gender1(request.getParameter("cbob_gender1"));
+		board.setCbob_gender2(request.getParameter("cbob_gender2"));
+		board.setCbob_meet(request.getParameter("cbob_meet"));
+		board.setCbob_hit(Integer.parseInt(request.getParameter("cbob_hit")));
+		
+		CBOB_BoardDAO dao = CBOB_BoardDAO.getInstance();
+		dao.updatecbobBoard(board);
+		
+		return "redirect:/cbob_board/cbob_detail.do?cbob_num="+cbob_num;
 	}
 }

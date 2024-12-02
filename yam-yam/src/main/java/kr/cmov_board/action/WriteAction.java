@@ -27,10 +27,9 @@ public class WriteAction implements Action{
 		
 		CMOV_BoardVO cmov_board = new CMOV_BoardVO();
 		cmov_board.setCmov_title(request.getParameter("cmov_title"));
-		
-		cmov_board.setCmov_article(request.getParameter("cmov_article"));
 		cmov_board.setCmov_link(request.getParameter("cmov_link"));
-
+		cmov_board.setCmov_article(request.getParameter("cmov_article"));
+		
 		cmov_board.setMem_num(user_num);
 		
 		CMOV_BoardDAO dao = CMOV_BoardDAO.getInstance();

@@ -70,7 +70,7 @@
 		             <c:forEach var="cbob" items="${list}">
 		                 <tr>
 		                     <td>${cbob.cbob_num}</td>
-		                     <td><a href="cbob_deail.do?cbob_num=${cbob.cbob_num}">${cbob.cbob_title}</a></td>
+		                     <td><a href="cbob_detail.do?cbob_num=${cbob.cbob_num}">${cbob.cbob_title}</a></td>
 		                     <td>${cbob.cbob_date}</td>
 		                     <td>${cbob.cbob_hit}</td>
 		                 </tr>

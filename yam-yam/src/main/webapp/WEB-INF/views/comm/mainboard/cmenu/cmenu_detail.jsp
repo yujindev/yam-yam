@@ -38,7 +38,8 @@
 				<p>
 					<c:if test="${!empty cmenu.cmenu_filename}">
 				<div class="align-center">
-				<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename}" class="detail-img">		
+				<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename}" class="detail-img">
+				<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename2}" class="detail-img">		
 				</div>
 				</c:if>
 				${cmenu.cmenu_article}

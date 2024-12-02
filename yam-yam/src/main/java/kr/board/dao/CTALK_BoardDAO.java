@@ -150,6 +150,7 @@ public class CTALK_BoardDAO {
 				ctalk_board.setCtalk_hit(rs.getInt("ctalk_hit"));
 				ctalk_board.setCtalk_date(rs.getDate("ctalk_date"));
 				ctalk_board.setMem_num(rs.getInt("mem_num"));
+				
 			}
 		}catch (Exception e) {
 			throw new Exception(e);
@@ -193,8 +194,9 @@ public class CTALK_BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ctalk.getCtalk_title());
 			pstmt.setString(2, ctalk.getCtalk_article());
+			pstmt.setLong(3, ctalk.getCtalk_num());
 			
-			pstmt.executeUpdate();
+			pstmt.executeUpdate();   	
 
 		}catch(Exception e) {
 			throw new Exception(e);

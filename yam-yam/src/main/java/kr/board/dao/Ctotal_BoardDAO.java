@@ -44,12 +44,11 @@ public class Ctotal_BoardDAO {
 					+ "SELECT cmov_num board_num, cmov_title board_title, cmov_date board_date, mem_num, 'comm_mov' board_name FROM COMM_MOV "
 					+ "UNION ALL "
 					+ "SELECT czone_num board_num, czone_title board_title, czone_date board_date, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
-					+ "JOIN member USING(mem_num)WHERE mem_num=? " + sub_sql;
+					+ "JOIN member USING(mem_num)" + sub_sql;
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, mem_num);
 			if(keyword != null && !"".equals(keyword)) {
-				pstmt.setString(2, keyword);
+				pstmt.setString(1, keyword);
 			}    
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -96,13 +95,12 @@ public class Ctotal_BoardDAO {
 					+ "	SELECT cmov_num board_num, cmov_title board_title, cmov_date board_date, mem_num, 'comm_mov' board_name FROM COMM_MOV "
 					+ "	UNION ALL "
 					+ "	SELECT czone_num board_num, czone_title board_title, czone_date board_date, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
-					+ "	JOIN member USING(mem_num) WHERE mem_num=? " + sub_sql 
+					+ "	JOIN member USING(mem_num) " + sub_sql 
 					+ " ORDER BY board_date DESC)a) "
 					+ "	WHERE rnum >= ? AND rnum <= ? ";
 
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setLong(++cnt, mem_num);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, keyword);
 			}
