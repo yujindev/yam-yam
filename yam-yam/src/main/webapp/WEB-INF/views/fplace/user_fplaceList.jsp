@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>식당 검색</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+
 <script type="text/javascript">
 	window.onload=function(){
 		const myForm = document.getElementById('search_form');
@@ -28,22 +29,22 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<div class="page-main">
-		<div class="content-main">
-	<h2>식당 검색</h2>
-	<form id="search_form" action="fplaceUserList.do" method="get">
-		<ul class="search">
+<div class="page-main">
+<div class="content-main">
+	<h2 class="fw-700">식당 검색</h2>
+	<form id="search_form" action="fplaceUserList.do" method="get" class="text-c">
+		<ul class="search w-100">
 			<li>
-				<select name="keyfield">
+				<select name="keyfield" class="search-cat">
 					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>식당이름</option>
 					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>위치</option>
 				</select>
 			</li>
-			<li>
-				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+			<li class="ml-1">
+				<input type="search" class="search-input bg-gr150 w-40" size="10" name="keyword" id="keyword" placeholder="검색할 내용을 입력하세요." value="${param.keyword}">
 			</li>
-			<li>
-				<input type="submit" value="검색">
+			<li class="ml-1">
+				<input type="submit" value="" class="btn-re icon-search">
 			</li>
 		</ul>
 	</form>

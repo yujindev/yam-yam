@@ -273,7 +273,7 @@ main, .content-main {
             showSlide(currentIndex);
 
             // 3초마다 슬라이드 변경
-            setInterval(nextSlide, 2000);
+            setInterval(nextSlide, 3000);
         });
     </script>
 </div>

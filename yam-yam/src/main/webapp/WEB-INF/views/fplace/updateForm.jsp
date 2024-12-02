@@ -102,7 +102,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="content-main">
-			<h2>식당 정보 수정</h2>
+			<h2 class="fw-700">식당 정보 수정</h2>
 			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="fp_num" value="${fplace.fp_num}">
 				<ul>

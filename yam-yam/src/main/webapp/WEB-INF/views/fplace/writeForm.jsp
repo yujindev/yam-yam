@@ -9,6 +9,30 @@
 	href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<style>
+  /* 기본 ul, li 스타일 */
+  #write_form ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  #write_form ul li {
+    margin-bottom: 15px;
+  }
+
+  /* 가로 정렬 */
+  #write_form ul li label {
+    display: inline-flex; /* 라디오 버튼과 텍스트를 한 줄로 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 정렬 */
+    margin-right: 15px; /* 각 라디오 버튼 간 간격 추가 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  }
+
+  /* 추가적인 스타일 (라디오 버튼과 텍스트 간격 조정) */
+  input[type="radio"] {
+    margin-right: 5px; /* 라디오 버튼과 텍스트 간 간격 */
+  }
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 		$(function(){
@@ -57,7 +81,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="content-main">
-			<h2>식당 정보 저장</h2>
+			<h2 class="fw-700">식당 정보 저장</h2>
 			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 				<ul>
 					<li><label for="fp_name">식당이름</label> 
@@ -108,17 +132,29 @@
 					<input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
 					</li>
 					
-					<li><label for="">예약 가능 시간</label>
-					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
-					<span>11:00</span>
-					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
-					<span>11:30</span>
-					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
-					<span>12:00</span>
-					<input type="checkbox" name="ft_time" value="${fplace_time.ft_time}">
-					<span>12:30</span>
+					<li><label for="">예약 가능 시간</label> 
+					<br>
+					<!-- 11시 ~ 2시 --> 
+						<input type="checkbox" name="ft_time" value="11:00"> <span>11:00</span>
+						<input type="checkbox" name="ft_time" value="11:30"> <span>11:30</span>
+						<input type="checkbox" name="ft_time" value="12:00"> <span>12:00</span>
+						<input type="checkbox" name="ft_time" value="12:30"> <span>12:30</span>
+						<input type="checkbox" name="ft_time" value="13:00"> <span>13:00</span>
+						<input type="checkbox" name="ft_time" value="13:30"> <span>13:30</span>
+						<input type="checkbox" name="ft_time" value="14:00"> <span>14:00</span>
+
+						<!-- 5시 ~ 8시 --> 
+						<br>
+						<input type="checkbox" name="ft_time" value="17:00"> <span>17:00</span> 
+						<input type="checkbox" name="ft_time" value="17:30"> <span>17:30</span> 
+						<input type="checkbox" name="ft_time" value="18:00"> <span>18:00</span>
+						<input type="checkbox" name="ft_time" value="18:30"> <span>18:30</span>
+						<input type="checkbox" name="ft_time" value="19:00"> <span>19:00</span>
+						<input type="checkbox" name="ft_time" value="19:30"> <span>19:30</span>
+						<input type="checkbox" name="ft_time" value="20:00"> <span>20:00</span>
 					</li>
-					
+
+
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록"> 

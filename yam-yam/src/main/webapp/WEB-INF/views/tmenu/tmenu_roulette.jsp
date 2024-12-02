@@ -12,7 +12,8 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-	<h2>룰렛</h2>
+	<div class="content-main">
+	<h2 class="fw-700">룰렛</h2>
 	 <!-- 룰렛 컨테이너 -->
     <div class="roulette-container">
         <!-- 화살표 이미지 -->
@@ -26,7 +27,7 @@
             <button id="refresh_menu" class="random-button">메뉴 바꾸기</button>
         </div>
     </div>
-   
+   </div>
 </div>
  <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

@@ -34,7 +34,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="content-main">
-			<h2>랜덤 메뉴 등록</h2>
+			<h2 class="fw-700">랜덤 메뉴 등록</h2>
 			<form id="tmenuWrite_form" action="tmenuWrite.do" method="post">
 				<ul>
 					<li>
