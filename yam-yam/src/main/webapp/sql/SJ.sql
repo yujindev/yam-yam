@@ -28,12 +28,12 @@ CREATE TABLE BMREVIEWS (
     reg_date date default SYSDATE NOT NULL,
     
     CONSTRAINT BMREVIEWS_FK FOREIGN KEY (mem_num) REFERENCES MEMBER(mem_num),
-    CONSTRAINT BMREVIEWS_FK2 FOREIGN KEY (reviews_num) REFERENCES REVIEWS (reviews_num) 
+    CONSTRAINT BMREVIEWS_FK2 FOREIGN KEY (reviews_num) REFERENCES REVIEWS (reviews_num) ON DELETE CASCADE
 );
-CREATE TABLE bmreviews (
+/*CREATE TABLE bmreviews (
 	mem_num NUMBER NOT NULL,        -- 회원 번호 (외래 키)
 	reviews_num NUMBER NOT NULL,                   -- 리뷰 번호 (외래 키)
                         
     CONSTRAINT bmreviews_fk_reviews FOREIGN KEY (reviews_num) REFERENCES reviews (reviews_num) ON DELETE CASCADE,
     CONSTRAINT bmreviews_fk_mem FOREIGN KEY (mem_num) REFERENCES member (mem_num)
-);
+);*/

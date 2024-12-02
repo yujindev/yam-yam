@@ -32,9 +32,9 @@ $(function(){
 	function displayBmstore(param){
 		let output;
 		if(param.status == 'yesBmstore'){//북마크 선택
-			output = '../images//icon-flag-o.png';
+			output = '../images/icon-flag-o.png';
 		}else{//북마크 미선택
-			output = '../images//icon-flag-g.png';
+			output = '../images/icon-flag-g.png';
 		}
 		//문서 객체에 설정
 		clickedElement.attr('src',output);

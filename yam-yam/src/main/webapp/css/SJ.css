@@ -35,8 +35,8 @@
 .item img {
     border-radius: 4px;
     margin-top: 5px;
-    height: auto;
-    width: auto;
+    height: 30px;
+    width: 30px;
 }
 
 .modify-date {
@@ -261,7 +261,7 @@ h3 {
 }
 
 .stars label {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #ccc;
     cursor: pointer;
 }
@@ -329,10 +329,11 @@ label[for="reviews_con"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.2rem;
-    width: 40%; /* 버튼 너비 조절 */
+    text-align: center; /* 글자를 가운데 정렬 */
 }
 
 #re_second input[type="submit"] {
+	margin-left: 460px;
     background-color: #FF7800;
     color: #fff;
     transition: background-color 0.3s;

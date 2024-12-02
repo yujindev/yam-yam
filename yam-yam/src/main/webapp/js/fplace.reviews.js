@@ -44,17 +44,17 @@ $(function(){
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자 회원번호 일치
-						output +='<button data-renum="'+item.reviews_num+'" class="delete-btn" type="button">';
-						output +='<img src="../images/icon-close.png" alt="취소" style="width: 30px; height: 30px;">';
-						output +='</button>'
-						/*output += ' <input type="button" data-renum="'+item.reviews_num+'" value="삭제" class="delete-btn">';*/
-						output += '<img class="output_bmreviews disabled" src="../images/fav-disabled.gif" width="50">';
+						/*output +=`<button data-renum="${item.reviews_num}" class="delete-btn" type="button">
+						        		<img src="../images/icon-close.png" alt="취소" style="width: 30px; height: 30px;">
+						    	</button>`;*/
+						output += ' <input type="button" data-renum="'+item.reviews_num+'" value="삭제" class="delete-btn">';
+						output += '<img class="output_bmreviews disabled" src="../images/icon-bmark-x.svg">';
 					}else{
 						// 북마크 버튼
 						if (item.bookmarked) {
-							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/icon-flag-o.png" width="20">';
+							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/icon-bmark-o.svg" width="20">';
 						} else {
-							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/icon-flag-g.png" width="20">';
+							output += '<img class="output_bmreviews" data-num="' + item.reviews_num + '" src="../images/icon-bmark-g.svg" width="20">';
 						}
 					}
 					output += '<span class="output_brcount"> '+item.reviews_count+'</span>'; 
@@ -219,8 +219,8 @@ $(function(){
 	            } else if (param.result === 'success') {
 					// 북마크 상태 업데이트
 					const newSrc = param.status === 'yesBmreviews'
-					             ? '../images/icon-flag-o.png'
-					             : '../images/icon-flag-g.png';
+					             ? '../images/icon-bmark-o.svg'
+					             : '../images/icon-bmark-g.svg';
 					               button.attr('src', newSrc); // 클릭된 버튼의 이미지 변경
 	                //$('.output_brcount').text(param.count); // 북마크 개수 업데이트
 					countElement.text(param.count); // 해당 리뷰의 북마크 개수 업데이트

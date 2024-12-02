@@ -6,28 +6,44 @@
 <head>
 <meta charset="UTF-8">
 <title>식당 정보</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/image-scroll.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.fpmenu.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.reviews.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/image.scroll.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/image-scroll.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/fplace.fpmenu.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/fplace.reviews.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/image.scroll.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
 </head>
 <body>
 	<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-		<div class="flex-box f-center mb-1">
+			<div class="flex-box f-center mb-1">
 				<!-- 로그인한 회원이 관리자면 식당정보 수정, 삭제 가능 -->
-				<c:if test="${!empty user_num && (user_auth == 9 || (user_auth == 7 && fplace.mem_num == user_num))}">
-					<input type="button" value="식당 정보 수정" onclick="location.href='updateForm.do?fp_num=${fplace.fp_num}'" class="btn btn-primary">
+				<c:if
+					test="${!empty user_num && (user_auth == 9 || (user_auth == 7 && fplace.mem_num == user_num))}">
+					<input type="button" value="식당 정보 수정"
+						onclick="location.href='updateForm.do?fp_num=${fplace.fp_num}'"
+						class="btn btn-primary">
 				</c:if>
 				<c:if test="${!empty user_num && user_auth == 9}">
-					<input type="button" value="식당 정보 삭제" id="delete_btn" class="btn btn-line-gray ml-1">
+					<input type="button" value="식당 정보 삭제" id="delete_btn"
+						class="btn btn-line-gray ml-1">
 					<script type="text/javascript">
 					const delete_btn = document.getElementById('delete_btn');
 					//이벤트 연결
@@ -41,38 +57,45 @@
 				</c:if>
 			</div>
 			<!-- 식당정보 수정, 삭제 끝 -->
-			
-			<!-- 필터 -->	
-			<p class="text-c fs-08 text-gr500">${fplace.fp_filter1},${fplace.fp_filter2}, ${fplace.fp_filter3}</p>
+
+			<!-- 필터 -->
+			<p class="text-c fs-08 text-gr500">${fplace.fp_filter1},${fplace.fp_filter2},
+				${fplace.fp_filter3}</p>
 			<div class="flex-box f-center">
 				<h2 class="fw-700">${fplace.fp_name}</h2>
 				<%--가게 북마크--%>
 				<div class="bookmark-container">
-					<img class="output_bmstore ml-1" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/icon-flag-g.png.gif" width="auto">
+					<img class="output_bmstore ml-1" data-num="${fplace.fp_num}"
+						src="${pageContext.request.contextPath}/images/icon-flag-g.png.gif"
+						width="auto">
 				</div>
 			</div>
 			<!-- 식당이미지 -->
 			<div class="storimg w-50 m-0auto">
-				<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" class="max-100">
+				<img
+					src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}"
+					class="max-100">
 			</div>
-			
+
 
 			<!-- 식당정보 -->
 
 			<%--리뷰 별 노출--%>
 
 			<!-- 지도보기 , 예약 -->
-			<div class="flex-box f-center m-1">			
+			<div class="flex-box f-center m-1">
 				<button id="fpmenu-map-btn">길찾기</button>
-				<input type="button" value="예약" onclick="location.href='reservForm.do?fp_num=${fplace.fp_num}'" class="block-box btn btn-line-primary ml-1">
+				<input type="button" value="예약"
+					onclick="location.href='reservForm.do?fp_num=${fplace.fp_num}'"
+					class="block-box btn btn-line-primary ml-1">
 			</div>
-			<!-- 식당 상세 정보 -->	
+			<!-- 식당 상세 정보 -->
 			<ul class="w-50 m-0auto">
 				<li class="mb-2"><span class="fw-700 mr-1">위치</span>${fplace.fp_loc}</li>
 				<li class="mb-2"><span class="fw-700 mr-1">운영시간</span>${fplace.fp_time}</li>
 				<li class="mb-2"><span class="fw-700 mr-1">전화번호</span>${fplace.fp_phone}</li>
 			</ul>
-		
+
 			<!-- 메뉴 시작 -->
 			<h2 class="menu-title fw-700 fs-16">메뉴 정보</h2>
 			<script type="text/javascript">
@@ -103,7 +126,8 @@
 			</script>
 
 			<!-- 메뉴 작성 버튼 -->
-			<c:if test="${!empty user_num && (user_auth == 9 || user_num == fplace.mem_num)}">
+			<c:if
+				test="${!empty user_num && (user_auth == 9 || user_num == fplace.mem_num)}">
 				<div class="list-space align-right">
 					<button id="fpmenu-write-btn">메뉴 등록</button>
 				</div>
@@ -131,36 +155,38 @@
 						<input type="submit" value="등록"> <input type="button"
 							value="취소" id="fpmenu-cancel-btn">
 					</div>
-					
+
 				</form>
 			</div>
 			<!-- 메뉴 작성 폼 끝 -->
-		<!-- 메뉴 목록 출력 시작 -->
-        <div class="poster" style="display:flex;justify-content:center;">
-	        <div class="poster-main" style="width:60%;">
-	            <div class="place-xy scroll">
-	              <div id="post-scroll" class="slider"></div>
-	            </div>
-	            <br><br>
-	            <div class="btn-left left" style="display: none;">
-	                <button type="button" class="poster-btn">
-	                	<span>&lt;</span>
-	                </button>
-	            </div>
-	            <div class="btn-right right">
-	                <button type="button" class="poster-btn">
-	                	<span>&gt;</span>    
-	                </button>
-	            </div>
-	        </div>
-        </div>
-      <!-- 메뉴 끝 -->
+			<!-- 메뉴 목록 출력 시작 -->
+			<div class="poster" style="display: flex; justify-content: center;">
+				<div class="poster-main" style="width: 60%;">
+					<div class="place-xy scroll">
+						<div id="post-scroll" class="slider"></div>
+					</div>
+					<br>
+					<br>
+					<div class="btn-left left" style="display: none;">
+						<button type="button" class="poster-btn">
+							<span>&lt;</span>
+						</button>
+					</div>
+					<div class="btn-right right">
+						<button type="button" class="poster-btn">
+							<span>&gt;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- 메뉴 끝 -->
 
 
-		<!-- 지도 시작 -->
-		<div id="mapsize" style="display:flex;justify-content:center;">
-		<div id="fpmap" style="width: 70%; height: 500px;"></div>
-		</div>	<!-- content main div 끝 -->
+			<!-- 지도 시작 -->
+			<div id="mapsize" style="display: flex; justify-content: center;">
+				<div id="fpmap" style="width: 70%; height: 500px;"></div>
+			</div>
+			<!-- content main div 끝 -->
 		</div>
 		<!-- 지도 -->
 		<script type="text/javascript"
@@ -220,99 +246,101 @@
 
 		<!-- 리뷰 -->
 		<script type="text/javascript">
-            
-				$(document).on('click', '#review-write-btn', function () {
-				     const userNum = '${user_num}'; // 서버에서 로그인 여부를 가져옴
-				     if (!userNum) { 
-						//비로그인 상태라면 로그인 페이지로 리다이렉트
-						alert('로그인 후 이용할 수 있습니다.');
-				        window.location.href = '${pageContext.request.contextPath}/member/loginForm.do';
-				        return;
-					}
-				
-					// 로그인 상태라면 리뷰 작성 폼 표시 
-				 	$('#reply_div').show();
-				 	});
-				
-				// 리뷰 작성 취소 버튼 클릭 시 폼 숨기기
-				$(document).on('click', '#review-cancel-btn', function () {
-					$('#reply_div').hide();
-				     initForm(); // 폼 초기화
- 				});
+			$(document).on('click','#review-write-btn',function() {
+								const userNum = '${user_num}'; // 서버에서 로그인 여부를 가져옴
+								if (!userNum) {
+									//비로그인 상태라면 로그인 페이지로 리다이렉트
+									alert('로그인 후 이용할 수 있습니다.');
+									window.location.href = '${pageContext.request.contextPath}/member/loginForm.do';
+									return;
+								}
+
+								// 로그인 상태라면 리뷰 작성 폼 표시 
+								$('#reply_div').show();
+							});
+
+			// 리뷰 작성 취소 버튼 클릭 시 폼 숨기기
+			$(document).on('click', '#review-cancel-btn', function() {
+				$('#reply_div').hide();
+				initForm(); // 폼 초기화
+			});
 		</script>
-	<div class="content-main">
-		<div class="w-80 m-0auto">
-			<!-- 리뷰 작성 버튼 -->
-			<div class="list-space align-right">
-				<button id="review-write-btn">리뷰 작성</button>
-			</div>
-			<!-- 리뷰 작성 시작	 -->
-			<div id="reply_div" style="display: none;">
-				<span class="reviews-title">리뷰 작성</span>
-				<form id="reviews_form" enctype="multipart/form-data">
-					<input type="hidden" name="fp_num" value="${fplace.fp_num}"
-						id="fp_num">
-	
-					<h3>${fplace.fp_name}</h3>
-	
-	
+		<div class="content-main">
+			<div class="w-80 m-0auto">
+				<!-- 리뷰 작성 버튼 -->
+				<div class="list-space align-right">
+					<button id="review-write-btn">리뷰 작성</button>
+				</div>
+				<!-- 리뷰 작성 시작	 -->
+				<div id="reply_div" style="display: none;">
+					<span class="reviews-title">리뷰 작성</span>
+					<form id="reviews_form" enctype="multipart/form-data">
+						<input type="hidden" name="fp_num" value="${fplace.fp_num}"
+							id="fp_num">
+
+						<h3>${fplace.fp_name}</h3>
+
+
 						<div class="rating">
-						<div class="stars">
-							<input type="radio" id="star5" name="reviews_score" value="5">
-							<label for="star5" class="star" title="5점">★</label> <input
-								type="radio" id="star4" name="reviews_score" value="4"> <label
-								for="star4" class="star" title="4점">★</label> <input type="radio"
-								id="star3" name="reviews_score" value="3"> <label
-								for="star3" class="star" title="3점">★</label> <input type="radio"
-								id="star2" name="reviews_score" value="2"> <label
-								for="star2" class="star" title="2점">★</label> <input type="radio"
-								id="star1" name="reviews_score" value="1"> <label
-								for="star1" class="star" title="1점">★</label>
+							<div class="stars">
+								<input type="radio" id="star5" name="reviews_score" value="5">
+								<label for="star5" class="star" title="5점">★</label> <input
+									type="radio" id="star4" name="reviews_score" value="4">
+								<label for="star4" class="star" title="4점">★</label> <input
+									type="radio" id="star3" name="reviews_score" value="3">
+								<label for="star3" class="star" title="3점">★</label> <input
+									type="radio" id="star2" name="reviews_score" value="2">
+								<label for="star2" class="star" title="2점">★</label> <input
+									type="radio" id="star1" name="reviews_score" value="1">
+								<label for="star1" class="star" title="1점">★</label>
+							</div>
 						</div>
-					</div>
-	
-					어떤 점이 좋았나요?
-					<!-- reviews_con -->
-					<textarea rows="5" cols="50" name="reviews_con" id="reviews_con" class="rep-content"
-						<c:if test="${empty user_num}">disabled="disabled"</c:if>>
+						<br> 어떤 점이 좋았나요?
+						<!-- reviews_con -->
+						<textarea rows="5" cols="50" name="reviews_con" id="reviews_con"
+							class="rep-content"
+							<c:if test="${empty user_num}">disabled="disabled"</c:if>>
 						<c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if>
 					</textarea>
-					<c:if test="${!empty user_num}">
-						<div id="reviews_first">
-							<span class="letter-count">300/300</span>
-						</div>
-	
-						<div class="photo-upload">
-							<label for="reviews_img1">사진 :</label> 
-							<input type="file" id="reviews_img1" name="reviews_img1" accept="image/*">
-						</div>
-	
-						<div id="re_second" class="align-right">
-							<input type="submit" value="등록"> 
-							<input type="button" value="취소" id="review-cancel-btn">
-						</div>
-					</c:if>
-				</form>
+						<c:if test="${!empty user_num}">
+							<div id="reviews_first">
+								<span class="letter-count">300/300</span>
+							</div>
+
+							<div class="photo-upload">
+								<label for="reviews_img1">사진 :</label> <input type="file"
+									id="reviews_img1" name="reviews_img1" accept="image/*">
+							</div>
+							<br>
+							<div id="re_second" class="align-right">
+								<input type="submit" value="등록"> <input type="button"
+									value="취소" id="review-cancel-btn">
+							</div>
+						</c:if>
+					</form>
+				</div>
+				<!-- 리뷰 작성 끝 -->
+
+				<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
+				<div class="fw-800 m-1">
+					<span> 리뷰 ${count}개</span>
+				</div>
 			</div>
-			<!-- 리뷰 작성 끝 -->
-			
-			<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
-			<div class="fw-800 m-1">
-				<span> 리뷰${count}</span>
+			<!-- 리뷰 목록 출력 시작 -->
+			<div id="output"></div>
+			<div class="paging-button" style="display: none;">
+				<input type="button" value="다음글 보기">
 			</div>
+			<div id="loading" style="display: none;">
+				<img src="${pageContext.request.contextPath}/images/loading.gif"
+					width="50" height="50">
+			</div>
+			<!-- 리뷰 목록 출력 끝 -->
 		</div>
-		<!-- 리뷰 목록 출력 시작 -->
-		<div id="output"></div>
-		<div class="paging-button" style="display: none;">
-			<input type="button" value="다음글 보기">
-		</div>
-		<div id="loading" style="display: none;">
-			<img src="${pageContext.request.contextPath}/images/loading.gif"
-				width="50" height="50">
-		</div><!-- 리뷰 목록 출력 끝 -->
-</div> <!-- content-main 끝  -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-	</div> <!-- page main 끝  -->
-<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
+		<!-- content-main 끝  -->
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	</div>
+	<!-- page main 끝  -->
+	<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
 </body>
 </html>
