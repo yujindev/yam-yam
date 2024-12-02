@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/SJ.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore2.js"></script>
 
 
 </head>
