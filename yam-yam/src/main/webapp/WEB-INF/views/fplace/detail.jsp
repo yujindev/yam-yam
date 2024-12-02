@@ -244,12 +244,6 @@
 				     initForm(); // 폼 초기화
  				});
 		</script>
-		
-		<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
-		<div class="align-left">
-		<span> 리뷰${count}</span>
-		
-		</div>
 
 		<!-- 리뷰 작성 버튼 -->
 		<div class="list-space align-right">
@@ -292,8 +286,8 @@
 					</div>
 
 					<div class="photo-upload">
-						<label for="reviews_img1">사진 :</label> <input type="file"
-							id="reviews_img1" name="reviews_img1" accept="image/*">
+						<label for="reviews_img1">사진 :</label> 
+						<input type="file" id="reviews_img1" name="reviews_img1" accept="image/*">
 					</div>
 
 					<div id="re_second" class="align-right">
@@ -304,7 +298,12 @@
 			</form>
 		</div>
 		<!-- 리뷰 작성 끝 -->
-
+		
+		<!-- 리뷰 개수(안됨 dao에서 조인해야 할듯) -->
+		<div class="align-left">
+			<span> 리뷰${count}</span>
+		</div>
+		
 		<!-- 리뷰 목록 출력 시작 -->
 		<div id="output"></div>
 		<div class="paging-button" style="display: none;">

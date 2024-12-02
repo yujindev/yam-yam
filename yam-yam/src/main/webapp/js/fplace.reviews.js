@@ -44,7 +44,10 @@ $(function(){
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자 회원번호 일치
-						output += ' <input type="button" data-renum="'+item.reviews_num+'" value="삭제" class="delete-btn">';
+						output +='<button data-renum="'+item.reviews_num+'" class="delete-btn" type="button">';
+						output +='<img src="../images/icon-close.png" alt="취소" style="width: 30px; height: 30px;">';
+						output +='</button>'
+						/*output += ' <input type="button" data-renum="'+item.reviews_num+'" value="삭제" class="delete-btn">';*/
 						output += '<img class="output_bmreviews disabled" src="../images/fav-disabled.gif" width="50">';
 					}else{
 						// 북마크 버튼
