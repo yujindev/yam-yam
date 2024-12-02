@@ -29,7 +29,7 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
 	<h2>식당 검색</h2>
-	<form id="search_form" action="fplaceUserList.do" method="post">
+	<form id="search_form" action="fplaceUserList.do" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield">
