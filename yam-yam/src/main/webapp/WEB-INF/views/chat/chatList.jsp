@@ -11,7 +11,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/YJ.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/chat.js"></script>
+<script>
+$(function(){
+	//채팅방 삭제
+	$('.chatDeleteBtn').on('click',function(){
+		let notice = confirm('채팅방을 나가시겠습니까? 채팅방을 나가신 후에는 채팅내역이 복구되지 않습니다.');
+		if(notice) {
+			location.replace('chatDelete.do?chat_receiver_num='+$(this).attr('data-receiver')+'&chat_sender_num='+$(this).attr('data-sender'));
+			alert('채팅방이 삭제되었습니다.');
+		}
+	});
+});
+
+</script>
 </head>
 <body>
 	<div class=page-main>
@@ -38,7 +50,7 @@
 							<li class="text-r chat-sentat">${chat.chat_sent_at}</li>
 						</ul>
 					</a>
-					<button id="chatDeleteBtn" class="ml-auto btnClose"></button>
+					<button class="chatDeleteBtn ml-auto btnClose" data-receiver="${chat.chat_receiver_num}" data-sender="${chat.chat_sender_num}"></button>
 				</li>
 				</c:forEach>
 				</ul>

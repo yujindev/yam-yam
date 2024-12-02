@@ -139,7 +139,7 @@ public class ChatDAO {
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터바인딩
 			pstmt.setLong(1, chat_receiver_num);
-			pstmt.setLong(2, chat_receiver_num);
+			pstmt.setLong(2, chat_sender_num);
 			
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -306,7 +306,7 @@ public class ChatDAO {
 		return count;
 	}
 	//채팅 종료 (로그인한 유저가 특정회원과의 채팅한 내역을 삭제)
-	public void deleteChat(long chat_num) throws Exception{
+	public void deleteChat(long chat_receiver_num , long chat_sender_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -315,9 +315,12 @@ public class ChatDAO {
 			conn = DBUtil.getConnection();
 			
 			//채팅방 삭제
-			sql = "DELETE * FROM chat WHERE ";
+			sql = "DELETE FROM chat WHERE (chat_receiver_num=? AND chat_sender_num=?) OR (chat_receiver_num=? AND chat_sender_num=?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, chat_num);
+			pstmt.setLong(1, chat_receiver_num);
+			pstmt.setLong(2, chat_sender_num);
+			pstmt.setLong(3, chat_sender_num);
+			pstmt.setLong(4, chat_receiver_num);
 			pstmt.executeUpdate();
 			
 			
