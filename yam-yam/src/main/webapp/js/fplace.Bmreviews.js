@@ -13,7 +13,7 @@ $(function(){
 				displayBmreviews(param);
 			},
 			error:function(){
-				alert('네트워크 오류 발생11');
+				alert('네트워크 오류 발생');
 			}
 		});
 	}
@@ -33,11 +33,11 @@ $(function(){
 				}else if(param.result=='success'){
 					displayBmreviews(param);
 				}else{
-					alert('북마크 등록/삭제 오류 발생2');
+					alert('북마크 등록/삭제 오류 발생');
 				}
 			},
 			error:function(){
-				alert('네트워크 오류 발생!2');
+				alert('네트워크 오류 발생');
 			}
 		});
 	});
