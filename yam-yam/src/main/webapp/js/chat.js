@@ -15,11 +15,6 @@ $(function() {
 		}
 	};
 	
-	//
-	//message_socket.onclose = function(evt){
-		//alert('채팅이 종료되었습니다.');
-	//};
-	
 	
 	//엔터키 처리 이벤트 연결 
 	$('#message').keydown(function(event){
@@ -47,19 +42,20 @@ $(function() {
 						//날짜 추출
 						if (chat_sent_at != item.chat_sent_at.split('')[0]) {
 							chat_sent_at = item.chat_sent_at.split('')[0];
-							output += '<div class="date-position"><span>' + item.chat_sent_at + '</span></div>';
+							output += '<p class="date-position w-50">' + item.chat_sent_at.split(' ')[0] + '</p>';
 						}
 
 						if (item.chat_sender_num == $('#user_num').val()) {
-							output += '<div class="from-position ml-auto">' + item.sender_nickname;
+							output += '<div class="from-position ml-auto"><p class="fw-700">' + item.sender_nickname+'</p>';
 						} else {
-							output += '<div class="to-position">' + item.sender_nickname;
+							output += '<div class="to-position"><p class="fw-700">' + item.sender_nickname+'</p>';
 						}
 
 						output += '<div class="item">';
-						output += (item.chat_read != 0 ? '<b>①</b>' : '') + ' <span>' + item.chat_message + '</span>';
+						output += ' <p>' + item.chat_message + '</p>';
 						//시간표시
-						output += '<div class="align-right">' + item.chat_sent_at.split(' ')[1] + '</div>';
+						output += '<p class="text-r fs-08">' + item.chat_sent_at.split(' ')[1] + '</p>';
+						output += (item.chat_read != 0 ? '<span class="fw-800 text-main">1</span>' : '');
 						output += '</div>';
 						output += '</div>';
 
@@ -115,22 +111,33 @@ $(function() {
 				message_socket.close();
 			}
 		});
+		
 		//기본 이벤트 제거
 		event.preventDefault();
 	});
 	
-	
-	//채팅방 삭제
-	const chatDeleteBtn = document.getElementById('chatDeleteBtn');
-	
-	chatDeleteBtn.onclick = function(){
-		let notice = confirm('채팅방을 나가시겠습니까? 채팅방을 나가신 후에는 채팅내역이 복구되지 않습니다.');
-		if(notice) {
-			location.replace('delete.do?')
-		}
-	}
-	
-	//초기 데이터 호출
-	selectData();		
+	//채팅 메시지 글자 수 체크
+			$(document).on('keyup', 'textarea', function() {
+			    // 입력한 글자수 구하기
+			    let inputLength = $(this).val().length;
 
+			    if (inputLength > 300) { // 300자를 넘어선 경우
+			        $(this).val($(this).val().substring(0, 300)); // 초과한 부분 제거
+							alert('300자를 초과할 수 없습니다.');
+			        inputLength = 300; // 글자 수를 300으로 고정
+			    }
+
+			    // 남은 글자 수 계산
+			    let remain = 300 - inputLength;
+
+			    // 남은 글자 수 표시
+			    if ($(this).attr('id') === 'chatting_form') {
+			        $('#letter-count').text(remain + '/300'); // 등록폼 글자수
+			    } else {
+			        $('#letter-count').text(remain + '/300'); // 기본 글자수
+			    }
+			});
+	
+	
+	
 });
