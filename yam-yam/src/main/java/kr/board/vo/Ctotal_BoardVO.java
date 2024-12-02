@@ -7,7 +7,15 @@ public class Ctotal_BoardVO {
 	private String board_name;
 	private Date board_date; 
 	private long mem_num;
+	private int board_hit;
+	
 
+	public int getBoard_hit() {
+		return board_hit;
+	}
+	public void setBoard_hit(int board_hit) {
+		this.board_hit = board_hit;
+	}
 	public long getBoard_num() {
 		return board_num;
 	}
@@ -66,6 +74,16 @@ public class Ctotal_BoardVO {
 		case "comm_bob" : return "밥친구 찾기";
 		case "comm_mov" : return "영상추천";
 		case "comm_zone" : return "도시락존";
+		default : return "";
+		}
+	}
+	public String getHit() {
+		switch(board_name){
+		case "comm_talk" : return "ctalk_hit";
+		case "comm_menu" : return "cmenu_hit";
+		case "comm_bob" : return "cbob_hit";
+		case "comm_mov" : return "cmov_hit";
+		case "comm_zone" : return "czone_hit";
 		default : return "";
 		}
 	}

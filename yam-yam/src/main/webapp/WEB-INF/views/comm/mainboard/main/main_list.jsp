@@ -61,6 +61,7 @@
 		                 <th>카테고리</th>
 		                 <th>제목</th>
 		                 <th>작성일</th>
+		                 <th>조회수</th>
 		             </tr>
 		             <c:forEach var="board" items="${list}">
 		                 <tr>
@@ -70,6 +71,7 @@
 			                    <a href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">${board.board_title}</a>			                
 			                </td>
 		                     <td>${board.board_date}</td>
+		                     <td>${board.board_hit}</td>		                     
 		                 </tr>
 		             </c:forEach>
 		            </table>

@@ -35,15 +35,15 @@ public class Ctotal_BoardDAO {
 			}
 
 			sql = "SELECT COUNT(*) FROM "
-					+ "(SELECT ctalk_num board_num, ctalk_title board_title, ctalk_date board_date, mem_num, 'comm_talk' board_name FROM COMM_TALK "
+					+ "(SELECT ctalk_num board_num, ctalk_title board_title, ctalk_date board_date, ctalk_hit board_hit, mem_num, 'comm_talk' board_name FROM COMM_TALK "
 					+ "UNION ALL "
-					+ " SELECT cmenu_num board_num, cmenu_title board_title, cmenu_date board_date, mem_num, 'comm_menu' board_name FROM COMM_MENU "
+					+ " SELECT cmenu_num board_num, cmenu_title board_title, cmenu_date board_date, cmenu_hit board_hit, mem_num, 'comm_menu' board_name FROM COMM_MENU "
 					+ " UNION ALL "
-					+ "SELECT cbob_num board_num, cbob_title board_title, cbob_date board_date, mem_num, 'comm_bob' board_name FROM COMM_BOB "
+					+ "SELECT cbob_num board_num, cbob_title board_title, cbob_date board_date, cbob_hit board_hit, mem_num, 'comm_bob' board_name FROM COMM_BOB "
 					+ "UNION ALL "
-					+ "SELECT cmov_num board_num, cmov_title board_title, cmov_date board_date, mem_num, 'comm_mov' board_name FROM COMM_MOV "
+					+ "SELECT cmov_num board_num, cmov_title board_title, cmov_date board_date, cmov_hit board_hit, mem_num, 'comm_mov' board_name FROM COMM_MOV "
 					+ "UNION ALL "
-					+ "SELECT czone_num board_num, czone_title board_title, czone_date board_date, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
+					+ "SELECT czone_num board_num, czone_title board_title, czone_date board_date, czone_hit board_hit, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
 					+ "JOIN member USING(mem_num)" + sub_sql;
 
 			pstmt = conn.prepareStatement(sql);
@@ -86,15 +86,15 @@ public class Ctotal_BoardDAO {
 			sql = "SELECT * FROM( "
 					+ " SELECT a.*,rownum rnum FROM( "
 					+ "	SELECT * FROM "
-					+ "	(SELECT ctalk_num board_num, ctalk_title board_title, ctalk_date board_date, mem_num, 'comm_talk' board_name FROM COMM_TALK "
+					+ "	(SELECT ctalk_num board_num, ctalk_title board_title, ctalk_date board_date, ctalk_hit board_hit, mem_num, 'comm_talk' board_name FROM COMM_TALK "
 					+ "	UNION ALL "
-					+ "	SELECT cmenu_num board_num, cmenu_title board_title, cmenu_date board_date, mem_num, 'comm_menu' board_name FROM COMM_MENU "
+					+ "	SELECT cmenu_num board_num, cmenu_title board_title, cmenu_date board_date, cmenu_hit board_hit, mem_num, 'comm_menu' board_name FROM COMM_MENU "
 					+ "	UNION ALL "
-					+ "	SELECT cbob_num board_num, cbob_title board_title, cbob_date board_date, mem_num, 'comm_bob' board_name FROM COMM_BOB "
+					+ "	SELECT cbob_num board_num, cbob_title board_title, cbob_date board_date, cbob_hit board_hit, mem_num, 'comm_bob' board_name FROM COMM_BOB "
 					+ "	UNION ALL "
-					+ "	SELECT cmov_num board_num, cmov_title board_title, cmov_date board_date, mem_num, 'comm_mov' board_name FROM COMM_MOV "
+					+ "	SELECT cmov_num board_num, cmov_title board_title, cmov_date board_date, cmov_hit board_hit, mem_num, 'comm_mov' board_name FROM COMM_MOV "
 					+ "	UNION ALL "
-					+ "	SELECT czone_num board_num, czone_title board_title, czone_date board_date, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
+					+ "	SELECT czone_num board_num, czone_title board_title, czone_date board_date, czone_hit board_hit, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
 					+ "	JOIN member USING(mem_num) " + sub_sql 
 					+ " ORDER BY board_date DESC)a) "
 					+ "	WHERE rnum >= ? AND rnum <= ? ";
@@ -117,6 +117,7 @@ public class Ctotal_BoardDAO {
 				board.setBoard_name(rs.getString("board_name"));
 				board.setBoard_date(rs.getDate("board_date"));
 				board.setMem_num(rs.getLong("mem_num"));
+				board.setBoard_hit(rs.getInt("board_hit"));
 
 				list.add(board);
 			}
