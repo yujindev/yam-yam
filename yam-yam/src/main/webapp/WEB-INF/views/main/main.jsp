@@ -42,7 +42,7 @@
 			<div class="restaurant-recommendation">
 			    <div class="restaurant-grid">
 			        <div class="restaurant-card">
-			        	<a href="${pageContext.request.contextPath}/fplace/detail.do?fp_num=${fplace.fp_num}">
+			        	<a href="${pageContext.request.contextPath}/fplace/detail.do?fp_num=${fplace.fp_num}"></a>
 			            <img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}" class="image-cell">
 			            <p class="restaurant-name">${fplace.fp_name}</p>
     				</div>
@@ -58,7 +58,54 @@
     <div class="banner-section">
         <h2>축제 이미지 배너 슬라이드</h2>
         <!-- 축제 배너 슬라이드 이미지 추가 -->
+    <!-- 축제 이미지 배너 슬라이드 -->
+    <div class="festival-slider">
+        <c:forEach var="dopamine" items="${list2}">
+            <div class="slide">
+                <div class="festival-card">
+                   
+                    <img src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}" alt="축제정보" class="dopamie-cell">
+                </div>
+            </div>
+        </c:forEach>
     </div>
+</div>
+
+
+<script>
+$(document).ready(function () {
+    let currentIndex = 0;
+    const slides = $('.festival-slider .slide');
+    const totalSlides = slides.length;
+
+    // 슬라이드가 없을 경우 처리
+    if (totalSlides === 0) {
+        console.warn("No slides available.");
+        return;
+    }
+
+    // 특정 슬라이드 표시
+    function showSlide(index) {
+        slides.removeClass('active'); // 모든 슬라이드 숨김
+        slides.eq(index).addClass('active'); // 현재 슬라이드만 표시
+    }
+
+    // 다음 슬라이드로 이동
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    // 초기화
+    showSlide(currentIndex);
+
+    // 3초마다 슬라이드 변경
+    setInterval(nextSlide, 3000);
+});
+
+
+</script>
+    
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>

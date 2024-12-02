@@ -226,6 +226,16 @@ table {
     .align-center input[type="submit"]:hover, .align-center input[type="button"]:hover {
         background-color: #ff4500;
     }
+    
+.festival-slider .slide {
+    display: none;
+}
+.festival-slider .slide.active {
+    display: block;
+}
+ 
+    
+    
 /* 제비뽑기와 룰렛 애니메이션 스타일 */
 
 /* ========================== 룰렛 스타일 ========================== */

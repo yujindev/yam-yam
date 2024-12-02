@@ -252,5 +252,41 @@ public class DopamineDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	public List<DopamineVO> getListDpMain(int start, int end, String keyfield, String keyword, String dp_category) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<DopamineVO> list = new ArrayList<>();
+	    String sql = "SELECT dp_num, dp_title, dp_file FROM (" +
+	                 "  SELECT a.*, rownum rnum FROM (" +
+	                 "    SELECT * FROM dopamine WHERE dp_category = ? ORDER BY dp_num DESC" +
+	                 "  ) a WHERE rownum <= ?" +
+	                 ") WHERE rnum >= ?";
+
+	    try {
+	        conn = DBUtil.getConnection();
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, dp_category);
+	        pstmt.setInt(2, end);
+	        pstmt.setInt(3, start);
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            DopamineVO dopamine = new DopamineVO();
+	            dopamine.setDp_num(rs.getLong("dp_num"));
+	            dopamine.setDp_title(rs.getString("dp_title"));
+	            dopamine.setDp_file(rs.getString("dp_file"));
+	            list.add(dopamine);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
+	}
+
 
 }

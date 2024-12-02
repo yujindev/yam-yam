@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript">
@@ -86,6 +85,7 @@
 		</c:if>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
 

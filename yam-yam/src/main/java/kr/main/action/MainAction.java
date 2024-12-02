@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import kr.board.dao.Ctotal_BoardDAO;
 import kr.board.vo.Ctotal_BoardVO;
 import kr.controller.Action;
+import kr.dopamine.dao.DopamineDAO;
+import kr.dopamine.vo.DopamineVO;
 import kr.fplace.dao.FplaceDAO;
 import kr.fplace.vo.FplaceVO;
 import kr.util.PagingUtil;
@@ -55,6 +57,27 @@ public class MainAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		
+		
+		//도파민 
+		DopamineDAO ddao = DopamineDAO.getInstance();
+        
+        // 축제 글 개수 가져오기
+        int count2 = ddao.getDpCount(null, null, "3"); // 카테고리 3번 (축제 데이터)
+        
+        // 축제 글 목록 가져오기
+        List<DopamineVO> list2 = null;
+        if (count > 0) {
+            list2 = ddao.getListDpMain(1, 5, null, null, "3"); // 상위 5개의 축제 데이터 가져오기
+        }
+
+        // JSP에 전달할 데이터 설정
+        request.setAttribute("list", list);
+        request.setAttribute("count", count);
+        request.setAttribute("list2", list2);
+        request.setAttribute("count2", count2);
+
+   
+	
 		
 		return "main/main.jsp";
 	}
