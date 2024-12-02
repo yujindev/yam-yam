@@ -13,29 +13,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 <style>
-<%--
-	/* 달력 기본 스타일 */
-	.ui-datepicker-calendar th{
-		color: orange;
-	}
-	/* 요일 스타일 */
-	.ui-datepicker-calendar th{
-		color: orange;
-	}
-	/* 달력 글씨색 */
-	.ui-datepicker-calendar td.saturday a {
-		color: blue;
-	}
-	.ui-datepicker-calendar td.sunday a {
-		color: orange;
-	}
-	/* 선택한 날짜 스타일 */
-	.ui-datepicker-calendar td.selected a {
-		background-color: orange;
-		color: white !important;
-		border-radius : 50%;
-		border : 2px solid orange;
-	}--%>
 	
 /* 핑크 박스 내부 스타일링 */
 
