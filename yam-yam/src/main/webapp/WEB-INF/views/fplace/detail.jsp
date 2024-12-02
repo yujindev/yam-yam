@@ -18,10 +18,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/fplace.Bmstore.js"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>식당정보</h2>
+			<h2 class="fw-700">식당정보</h2>
 			
 			<!-- 로그인한 회원이 관리자면 식당정보 수정, 삭제 가능 -->
 			<c:if test="${!empty user_num && (user_auth == 9 || (user_auth == 7 && fplace.mem_num == user_num))}">
@@ -51,8 +51,8 @@
 			<br>
 			
 			<!-- 식당이미지 -->
-			<div class="storimg">
-				<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" width="400">
+			<div class="storimg w-50 m-0auto">
+				<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" class="max-100">
 			</div>
 
 			<%--가게 북마크--%>
@@ -315,8 +315,8 @@
 				width="50" height="50">
 		</div><!-- 리뷰 목록 출력 끝 -->
 
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div> <!-- page main 끝  -->
 <jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
