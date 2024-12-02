@@ -1,4 +1,9 @@
 
+/* ================ 폰트적용 =============== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+body,header,main,div,footer {
+	font-family: "Noto Sans KR", sans-serif;
+}
 /* ================= width =============== */
 
 .w-100 {width: 100% !important;}
