@@ -30,9 +30,9 @@ $(function(){
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
 			<h2 class="text-c">${user_nickname}님의 1:1채팅목록 </h2>
+			<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">
 			<div class="list-space align-right">
 				<input type="hidden" id="user_num" value="${user_num}">
-				<input type="button"value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 			<c:if test="${count == 0}">
 				<div class="result-display">표시할 채팅이 없습니다.</div>
@@ -42,7 +42,7 @@ $(function(){
 			<c:if test="${count>0}">
 				<ul class="chat-list-box">
 				<c:forEach var="chat" items="${list}">
-				<li class="chat-list-item flex-box bg-gr150">
+				<li class="chat-list-item flex-box bg-gr150 mb-2">
 					<a class="w-90" href="showChat.do?chat_receiver_num=${user_num==chat.chat_receiver_num ? chat.chat_sender_num : chat.chat_receiver_num}">
 						<ul>
 							<li class="fw-800 fs-12">${chat.receiver_nickname} <span class="bg-gr100 text-main chat-unread">${chat.cnt}</span></li>
@@ -50,7 +50,7 @@ $(function(){
 							<li class="text-r chat-sentat">${chat.chat_sent_at}</li>
 						</ul>
 					</a>
-					<button class="chatDeleteBtn ml-auto btnClose" data-receiver="${chat.chat_receiver_num}" data-sender="${chat.chat_sender_num}"></button>
+					<button class="chatDeleteBtn ml-auto btn-close" data-receiver="${chat.chat_receiver_num}" data-sender="${chat.chat_sender_num}"></button>
 				</li>
 				</c:forEach>
 				</ul>

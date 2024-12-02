@@ -58,6 +58,19 @@ public class MainAction implements Action{
 		request.setAttribute("count", count);
 		
 		
+		// 커뮤니티
+		String keyfield = request.getParameter("keyfield");
+		String keyword = request.getParameter("keyword");
+		Ctotal_BoardDAO dao3 = Ctotal_BoardDAO.getInstance();
+		int count3 = dao3.getCtotalCount(keyfield, keyword);
+		List<Ctotal_BoardVO> list3 = null;
+		if (count > 0) {
+			list3 = dao3.getListctotalBoard(count, count3, keyfield, keyword);
+		}
+		request.setAttribute("count3", count3);
+		request.setAttribute("list3", list3);
+		
+		
 		//도파민 
 		DopamineDAO ddao = DopamineDAO.getInstance();
         
@@ -71,8 +84,6 @@ public class MainAction implements Action{
         }
 
         // JSP에 전달할 데이터 설정
-        request.setAttribute("list", list);
-        request.setAttribute("count", count);
         request.setAttribute("list2", list2);
         request.setAttribute("count2", count2);
 

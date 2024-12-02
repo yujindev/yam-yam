@@ -55,7 +55,7 @@ $(function() {
 						output += ' <p>' + item.chat_message + '</p>';
 						//시간표시
 						output += '<p class="text-r fs-08">' + item.chat_sent_at.split(' ')[1] + '</p>';
-						output += (item.chat_read != 0 ? '<span class="fw-800 text-main">1</span>' : '');
+						output += (item.chat_read != 0 ? '<span class="fw-800 text-gr100">1</span>' : '');
 						output += '</div>';
 						output += '</div>';
 

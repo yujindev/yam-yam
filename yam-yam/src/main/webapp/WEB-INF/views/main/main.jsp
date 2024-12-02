@@ -195,11 +195,15 @@ main, .content-main {
             <div class="section community-section">
                 <h2>커뮤니티</h2>
                 <ul>
-                    <li>오늘의 인기글 제목 예시입니다.</li>
-                    <li>오늘의 인기글 제목 예시입니다.</li>
-                    <li>오늘의 인기글 제목 예시입니다.</li>
-                    <li>오늘의 인기글 제목 예시입니다.</li>
-                </ul>
+        			<c:forEach var="board" items="${list3}">
+            			<li>
+                		<strong>${board.category}</strong> - 
+                			<a href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">
+                   			${board.board_title}
+                			</a>
+            			</li>
+        			</c:forEach>
+   		 		</ul>
             </div>
         </div>
 

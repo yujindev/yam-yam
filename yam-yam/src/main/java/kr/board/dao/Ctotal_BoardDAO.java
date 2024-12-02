@@ -17,7 +17,7 @@ public class Ctotal_BoardDAO {
 	}
 	private Ctotal_BoardDAO() {}
 
-	public int getCtotalCount(String keyfield, String keyword, long mem_num) throws Exception{
+	public int getCtotalCount(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -64,7 +64,7 @@ public class Ctotal_BoardDAO {
 		return count;
 	}
 
-	public List<Ctotal_BoardVO> getListctotalBoard(int start, int end, String keyfield, String keyword, long mem_num) throws Exception {
+	public List<Ctotal_BoardVO> getListctotalBoard(int start, int end, String keyfield, String keyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -96,7 +96,7 @@ public class Ctotal_BoardDAO {
 					+ "	UNION ALL "
 					+ "	SELECT czone_num board_num, czone_title board_title, czone_date board_date, czone_hit board_hit, mem_num, 'comm_zone' board_name FROM COMM_ZONE) "
 					+ "	JOIN member USING(mem_num) " + sub_sql 
-					+ " ORDER BY board_date DESC)a) "
+					+ " ORDER BY board_hit DESC, board_date DESC)a) "
 					+ "	WHERE rnum >= ? AND rnum <= ? ";
 
 			pstmt = conn.prepareStatement(sql);
@@ -106,7 +106,6 @@ public class Ctotal_BoardDAO {
 			}
 			pstmt.setInt(++cnt, start); 
 			pstmt.setInt(++cnt, end);
-			rs = pstmt.executeQuery();
 			list = new ArrayList<Ctotal_BoardVO>();
 
 			rs = pstmt.executeQuery();

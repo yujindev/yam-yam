@@ -15,13 +15,6 @@ public class ListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		Long user_num = (Long)session.getAttribute("user_num");
-
-		if (user_num == null) { // 로그인이 되지 않은 경우
-			return "redirect:/member/loginForm.do";
-		} 
-
 		String pageNum = request.getParameter("page_num");
 		if (pageNum == null)pageNum = "1";
 
@@ -29,12 +22,12 @@ public class ListAction implements Action{
 		String keyword = request.getParameter("keyword");
 
 		Ctotal_BoardDAO dao = Ctotal_BoardDAO.getInstance();
-		int count = dao.getCtotalCount(keyfield, keyword, user_num);
+		int count = dao.getCtotalCount(keyfield, keyword);
 
 		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"list.do");
 		List<Ctotal_BoardVO> list = null;
 		if (count > 0) {
-			list = dao.getListctotalBoard(page.getStartRow(), page.getEndRow(), keyfield, keyword, user_num);
+			list = dao.getListctotalBoard(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 
 		}
 		request.setAttribute("count", count);
