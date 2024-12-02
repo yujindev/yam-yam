@@ -48,14 +48,6 @@
 					<li><a href="${pageContext.request.contextPath}/dopamine/dpList.do?dp_category=3">축제정보</a></li>
 				</ul>
 			</li>
-			
-			<li class="nav_menu">
-				<button class="nav_menu_title">MyPage</button>
-				<ul class="nav_smenu">
-					<li><a
-						href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
-				</ul>
-			</li>
 
 			<c:if test="${user_auth==9}">
 				<li class="nav_menu">
@@ -73,7 +65,7 @@
 			<li class="nav_menu">
 				<button class="nav_menu_title">식당관리자 메뉴</button>
 				<ul class="nav_smenu">
-					<li><a href="${pageContext.request.contextPath}">예약관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/fplace/adminReservList.do">예약관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/fplace/writeForm.do">식당등록</a></li>
 					<li><a href="${pageContext.request.contextPath}/fplace/fplaceManagerList.do">내식당</a></li>
 					</ul>
@@ -86,8 +78,8 @@
 		<c:if test="${user_num == null}">
 			<li><button type="button"
 					onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
-					<img src="${pageContext.request.contextPath}/images/icon-login.png"
-						alt="">
+					<img src="${pageContext.request.contextPath}/images/icon-login.svg"
+						alt="로그인" width="50px">
 				</button></li>
 		</c:if>
 		
@@ -95,10 +87,16 @@
 		<c:if test="${user_num != null}">
 			<li>
 				<button type="button"
+					onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+					<img
+						src="${pageContext.request.contextPath}/images/icon-profile.svg"
+						alt="마이페이지" width="50px">
+				</button>
+				<button type="button"
 					onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
 					<img
-						src="${pageContext.request.contextPath}/images/icon-profile.png"
-						alt="">
+						src="${pageContext.request.contextPath}/images/icon-logout.svg"
+						alt="로그아웃" width="50px">
 				</button>
 			</li>
 		</c:if>
