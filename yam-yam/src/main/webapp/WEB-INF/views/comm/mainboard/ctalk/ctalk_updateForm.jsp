@@ -33,25 +33,27 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>글 수정</h2>
-			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
+			<h2 class="fw-700">글 수정</h2>
+			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data" class="mt-3 w-80 m-0auto">
 			<input type="hidden" name="ctalk_num" value="${ctalk.ctalk_num}">
 				<ul>
-					<li><label for="ctalk_title">제목</label> <input type="text"
-					value="${ctalk.ctalk_title}" name="ctalk_title" id="ctalk_title" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="ctalk_title" class="form-ttl">제목</label>
+					<input type="text" value="${ctalk.ctalk_title}" name="ctalk_title" id="ctalk_title" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li>
-					<label for="ctalk_article">내용</label> 
-					<textarea rows="5" cols="40" name="ctalk_article" id="ctalk_article" class="input-check">${ctalk.ctalk_article}</textarea>
+					<li class="flex-box">
+					<label for="ctalk_article" class="form-ttl">내용</label> 
+					<textarea rows="20" cols="40" name="ctalk_article" id="ctalk_article" class="input-check w-90 p-05 ml-auto block-box">${ctalk.ctalk_article}</textarea>
 					</li>
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="수정"> 
-					<input type="button" value="글 상세" onclick="location.href='ctalk_detail.do?ctalk_num=${ctalk.ctalk_num}'">
+				<div class="flex-box f-end mt-3">
+					<input type="submit" value="수정" class="btn btn-primary"> 
+					<input type="button" value="수정 취소" onclick="location.href='ctalk_detail.do?ctalk_num=${ctalk.ctalk_num}'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
 </body>
 </html>

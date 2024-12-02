@@ -25,6 +25,9 @@ body,header,main,div,footer {
 .ml-auto {margin-left: auto !important;}
 .mr-auto {margin-right: auto !important;}
 .mt-05 {margin-top:.5rem !important;}
+.m-1 {margin: 1rem !important;}
+.m-2 {margin: 2rem !important;}
+.m-3 {margin: 3rem !important;}
 .mt-1 {margin-top:1rem !important;}
 .mt-2 {margin-top:2rem !important;}
 .mt-3 {margin-top:3rem !important;}
@@ -155,6 +158,11 @@ button,.btn {
 	color: var(--main-color);
 	background:transparent;
 }
+.btn-line-gray {
+	border : 1px solid var(--gr500);
+	color: var(--gr-500);
+	background:transparent;
+}
 /* 버튼에 아이콘 들어갈때 사용 */
 .btn-icon {
 	background-repeat:no-repeat;
@@ -194,8 +202,20 @@ button,.btn {
 
 /* ================= 아이콘 =============== */
 .icon {
+	border:none;
+	border-radius : 5px;
 	width: 32px;
 	height: 32px;
+}
+
+.icon-home {
+	background: url('../images/icon-home.png') no-repeat;
+	background-size: contain;
+}
+
+.icon-search {
+	background: url('../images/icon-search.png') no-repeat;
+	background-size: contain;
 }
 /* ===============기타 =============== */
 .bar {
@@ -214,4 +234,16 @@ button,.btn {
 	padding: 0;
 	margin: 0;
 	
+}
+
+/* ===============기타 =============== */
+
+.search-input {
+  border-radius: 5px;
+  border: none;
+  padding: 0.7rem;
+}
+.search-cat{
+  padding: .7rem;
+  border-radius: 5px;
 }

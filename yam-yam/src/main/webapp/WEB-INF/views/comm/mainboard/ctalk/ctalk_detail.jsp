@@ -16,6 +16,7 @@
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
+			<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">
 			<h2 class="fw-700">${ctalk.ctalk_title}</h2>
 			<ul class="">
 				<li class="fw-700 fs-12">
@@ -48,11 +49,11 @@
 				${ctalk.ctalk_article}
 			</article>
 
-			<div class="flex-box f-end p-1">
+			<div class="flex-box f-center p-1">
 					<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%> 
 					<c:if test="${user_num == ctalk.mem_num}">
-						<input type="button" value="수정"onclick="location.href='updateForm.do?ctalk_num=${ctalk.ctalk_num}'" class="btn">
-						<input type="button" value="삭제" id="delete_btn" class="btn btn-line-primary ml-1">
+						<input type="button" value="수정"onclick="location.href='updateForm.do?ctalk_num=${ctalk.ctalk_num}'" class="btn btn-line-primary mr-1">
+						<input type="button" value="삭제" id="delete_btn" class="btn btn-line-gray mr-1">
 						<script type="text/javascript">
 							const delete_btn = document
 									.getElementById('delete_btn');
@@ -65,6 +66,7 @@
 							};
 						</script>
 					</c:if>
+					<input type="button" value="글목록" onclick="location.href='list.do'" class="btn block-box">
 			</div>
 			<!-- 댓글시작 -->
 			<div class="bar"></div>
@@ -82,7 +84,7 @@
 							<span class="letter-count fs-08 text-gr300">300/300</span>
 						</div>
 						<div id="re_second" class="no-float w-10">
-							<input type="submit" value="등록" class="btn">
+							<input type="submit" value="등록" class="btn btn-primary">
 						</div>
 					</c:if>
 				</form>
