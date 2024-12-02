@@ -192,58 +192,65 @@ main, .content-main {
             </div>
 
             <!-- 커뮤니티 섹션 -->
-            <div class="section community-section">
-                <h2>커뮤니티</h2>
-                <ul>
-        			<c:forEach var="board" items="${list3}">
-            			<li>
-                		<strong>${board.category}</strong> - 
-                			<a href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">
-                   			${board.board_title}
-                			</a>
-            			</li>
-        			</c:forEach>
-   		 		</ul>
-            </div>
-        </div>
+			<div class="section community-section">
+				<h2>커뮤니티</h2>
+				<ul>
+					<c:forEach var="board" items="${list3}" varStatus="status">
+						<c:if test="${status.index < 15}">
+							<li><strong>${board.category}</strong> - <a
+								href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">
+									${board.board_title} </a></li>
+						</c:if>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
 
-        <!-- 하단 컨테이너 -->
-        <div class="bottom-container">
-            <!-- 맛집 추천 섹션 -->
-            <div class="section restaurant-recommendation-section">
-                <h2>맛집 추천</h2>
-                <div class="restaurant-recommendation">
-                    <c:if test="${count > 0}">
-                        <c:forEach var="fplace" items="${list}">
-                            <div class="restaurant-card">
-                                <a href="${pageContext.request.contextPath}/fplace/detail.do?fp_num=${fplace.fp_num}">
-                                    <img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}">
-                                </a>
-                                <p class="restaurant-name">${fplace.fp_name}</p>
-                            </div>
-                        </c:forEach>
-                    </c:if>
-                    <c:if test="${count == 0}">
-                        <p>추천할 맛집이 없습니다.</p>
-                    </c:if>
-                </div>
-            </div>
+    <!-- 하단 컨테이너 -->
+	<div class="bottom-container">
+		<!-- 맛집 추천 섹션 -->
+		<div class="section restaurant-recommendation-section">
+			<h2>맛집 추천</h2>
+			<div class="restaurant-recommendation">
+				<c:if test="${count > 0}">
+					<c:forEach var="fplace" items="${list}" varStatus="status">
+						<c:if test="${status.index < 6}">
+							<div class="restaurant-card">
+								<a
+									href="${pageContext.request.contextPath}/fplace/detail.do?fp_num=${fplace.fp_num}">
+									<img
+									src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}"
+									alt="${fplace.fp_name}">
+								</a>
+								<p class="restaurant-name">${fplace.fp_name}</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
 
-            <!-- 축제 이미지 배너 섹션 -->
-            <div class="section banner-section">
-                <h2>축제 정보</h2>
-                <div class="festival-slider">
-                    <c:forEach var="dopamine" items="${list2}">
-                        <div class="slide">
-                            <div class="festival-card">
-                                <img src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}" alt="축제정보">
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-</div>
+				<c:if test="${count == 0}">
+					<p>추천할 맛집이 없습니다.</p>
+				</c:if>
+			</div>
+		</div>
+
+		<!-- 축제 이미지 배너 섹션 -->
+						<div class="section banner-section">
+							<h2>축제 정보</h2>
+							<div class="festival-slider">
+								<c:forEach var="dopamine" items="${list2}">
+									<div class="slide">
+										<div class="festival-card">
+											<img
+												src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}"
+												alt="축제정보">
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
 </div>
     <script>
         $(document).ready(function () {

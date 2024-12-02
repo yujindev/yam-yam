@@ -243,5 +243,5 @@ $('.paging-button input').click(function(){
 	/* =========================
 	*	초기 데이터 호출
 	*  =========================*/		
-	//selectList(1);
+	selectList(1);
 });

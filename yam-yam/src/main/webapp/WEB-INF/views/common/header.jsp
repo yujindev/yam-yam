@@ -35,7 +35,7 @@
 					<li><a href="${pageContext.request.contextPath}/ctalk_board/list.do">잡담</a></li>
 					<li><a href="${pageContext.request.contextPath}/cmenu_board/list.do">맛집추천</a></li>
 					<li><a href="${pageContext.request.contextPath}/cbob_board/list.do">밥친구 찾기</a></li>
-					<li><a href="${pageContext.request.contextPath}/cmov_board/list.do">오늘뭐 보지?</a></li>
+					<li><a href="${pageContext.request.contextPath}/cmov_board/list.do">오늘 뭐 보지?</a></li>
 					<li><a href="${pageContext.request.contextPath}/czone_board/list.do">도시락존</a></li>
 				</ul>
 			</li>
