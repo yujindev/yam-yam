@@ -224,6 +224,7 @@
 
 		<!-- 리뷰 -->
 		<script type="text/javascript">
+            
 				$(document).on('click', '#review-write-btn', function () {
 				     const userNum = '${user_num}'; // 서버에서 로그인 여부를 가져옴
 				     if (!userNum) { 
@@ -281,10 +282,10 @@
 
 				어떤 점이 좋았나요?
 				<!-- reviews_con -->
-				<textarea rows="5" cols="50" name="reviews_con" id="reviews_con"
-					class="rep-content"
-					<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if
-						test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
+				<textarea rows="5" cols="50" name="reviews_con" id="reviews_con" class="rep-content"
+					<c:if test="${empty user_num}">disabled="disabled"</c:if>>
+					<c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if>
+				</textarea>
 				<c:if test="${!empty user_num}">
 					<div id="reviews_first">
 						<span class="letter-count">300/300</span>
@@ -315,5 +316,7 @@
 		</div><!-- 리뷰 목록 출력 끝 -->
 
 	</div> <!-- page main 끝  -->
+<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

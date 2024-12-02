@@ -224,9 +224,6 @@ public class FplaceDAO {
 		return list;
 	}
 
-
-
-
 	// 식당상세
 	public FplaceVO getFplace(long fp_num) throws Exception {
 		Connection conn = null;

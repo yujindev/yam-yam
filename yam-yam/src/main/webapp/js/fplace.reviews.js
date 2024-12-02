@@ -92,11 +92,17 @@ $(function(){
 	 *====================================== */
 	//댓글 등록 이벤트 연결
 	$('#reviews_form').submit(function(event){
+		// 댓글 내용 확인
 		if($('#reviews_con').val().trim()==''){
 			alert('내용을 입력하세요!');
 			$('#reviews_con').val('').focus();
 			return false;
 		}
+		// 별점 선택 여부 확인
+		   if (!$("input[name='reviews_score']:checked").val()) {
+		       alert("별점을 선택해주세요!");
+		       return false; // 폼 제출 중단
+		   }
 		//form 이하의 태그에 입력한 데이터를 모두 읽어서 쿼리 스트링으로 반환
 		const form_data = new FormData($(this)[0]);
 				

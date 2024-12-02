@@ -59,8 +59,11 @@ public class ListAction implements Action{
 		int pageSize = 10; // 한 페이지당 표시할 항목 수
 		PagingUtil page = new PagingUtil(null, null, Integer.parseInt(pageNum), count, 10, pageSize, "list.do",addKey);
 		List<FplaceVO> list = null;
+		
+		if(user_num==null) { user_num = 0L; } //이거 없으면 로그인 안할때(null일때) 리뷰가 안뜨는 오류남!!
+		
 		if(count > 0) {
-			list = dao.getListFplace(page.getStartRow(), page.getEndRow(), fp_filter1, fp_filter2, fp_filter3, user_num);
+			list = dao.getListFplace(page.getStartRow(), page.getEndRow(), fp_filter1, fp_filter2, fp_filter3,user_num);
 			
 			 // 전체 순위 계산 및 설정
             int startRank = (page.getCurrentPage() - 1) * pageSize; // 전체 순위 시작값
