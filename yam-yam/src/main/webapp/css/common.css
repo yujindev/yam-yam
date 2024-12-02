@@ -217,6 +217,11 @@ button,.btn {
 	background: url('../images/icon-search.png') no-repeat;
 	background-size: contain;
 }
+/* ===============속성 =============== */
+
+.br-05 { border-radius: .5rem !important;}
+.br-1 { border-radius: 1rem !important;}
+.max-100 {max-width: 100% !important;}
 /* ===============기타 =============== */
 .bar {
 	border-bottom: 2px solid var(--gr300);
@@ -236,7 +241,7 @@ button,.btn {
 	
 }
 
-/* ===============기타 =============== */
+/* ===============검색창  =============== */
 
 .search-input {
   border-radius: 5px;
