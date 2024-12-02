@@ -21,64 +21,60 @@
 	<div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2 class="fw-700">식당정보</h2>
-			
-			<!-- 로그인한 회원이 관리자면 식당정보 수정, 삭제 가능 -->
-			<c:if test="${!empty user_num && (user_auth == 9 || (user_auth == 7 && fplace.mem_num == user_num))}">
-				<input type="button" value="식당 정보 수정"
-					onclick="location.href='updateForm.do?fp_num=${fplace.fp_num}'">
-			</c:if>
-			<c:if test="${!empty user_num && user_auth == 9}">
-				<input type="button" value="식당 정보 삭제" id="delete_btn">
-				<script type="text/javascript">
-				const delete_btn = document.getElementById('delete_btn');
-				//이벤트 연결
-				delete_btn.onclick = function() {
-					let choice = confirm('삭제하시겠습니까?');
-					if (choice) {
-						location.replace('delete.do?fp_num=${fplace.fp_num}');
+		<div class="flex-box f-center mb-1">
+				<!-- 로그인한 회원이 관리자면 식당정보 수정, 삭제 가능 -->
+				<c:if test="${!empty user_num && (user_auth == 9 || (user_auth == 7 && fplace.mem_num == user_num))}">
+					<input type="button" value="식당 정보 수정" onclick="location.href='updateForm.do?fp_num=${fplace.fp_num}'" class="btn btn-primary">
+				</c:if>
+				<c:if test="${!empty user_num && user_auth == 9}">
+					<input type="button" value="식당 정보 삭제" id="delete_btn" class="btn btn-line-gray ml-1">
+					<script type="text/javascript">
+					const delete_btn = document.getElementById('delete_btn');
+					//이벤트 연결
+					delete_btn.onclick = function() {
+						let choice = confirm('삭제하시겠습니까?');
+						if (choice) {
+							location.replace('delete.do?fp_num=${fplace.fp_num}');
+						}
 					}
-				}
-			</script>
-			</c:if>
+				</script>
+				</c:if>
+			</div>
 			<!-- 식당정보 수정, 삭제 끝 -->
-
-			<!-- 식당정보 -->
 			
 			<!-- 필터 -->	
-			<p>${fplace.fp_filter1},${fplace.fp_filter2},
-				${fplace.fp_filter3}</p>
-			<br>
-			
+			<p class="text-c fs-08 text-gr500">${fplace.fp_filter1},${fplace.fp_filter2}, ${fplace.fp_filter3}</p>
+			<div class="flex-box f-center">
+				<h2 class="fw-700">${fplace.fp_name}</h2>
+				<%--가게 북마크--%>
+				<div class="bookmark-container">
+					<img class="output_bmstore ml-1" data-num="${fplace.fp_num}" src="${pageContext.request.contextPath}/images/icon-flag-g.png.gif" width="auto">
+				</div>
+			</div>
 			<!-- 식당이미지 -->
 			<div class="storimg w-50 m-0auto">
 				<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" class="max-100">
 			</div>
+			
 
-			<%--가게 북마크--%>
-			<div class="bookmark-container">
-				<img class="output_bmstore" data-num="${fplace.fp_num}"
-					src="${pageContext.request.contextPath}/images/icon-flag-g.png.gif"
-					width="auto">
-				<h2>${fplace.fp_name}</h2>
-			</div>
-			<br>
+			<!-- 식당정보 -->
 
 			<%--리뷰 별 노출--%>
 
 			<!-- 지도보기 , 예약 -->
-			<button id="fpmenu-map-btn">길찾기</button>
-			<input type="button" value="예약" onclick="location.href='reservForm.do?fp_num=${fplace.fp_num}'">
+			<div class="flex-box f-center m-1">			
+				<button id="fpmenu-map-btn">길찾기</button>
+				<input type="button" value="예약" onclick="location.href='reservForm.do?fp_num=${fplace.fp_num}'" class="block-box btn btn-line-primary ml-1">
+			</div>
 			<!-- 식당 상세 정보 -->	
-			<p>${fplace.fp_loc}</p>
-			<br>
-			<p>${fplace.fp_time}</p>
-			<br>
-			<p>${fplace.fp_phone}</p>
-			<br>
+			<ul class="w-50 m-0auto">
+				<li class="mb-2"><span class="fw-700 mr-1">위치</span>${fplace.fp_loc}</li>
+				<li class="mb-2"><span class="fw-700 mr-1">운영시간</span>${fplace.fp_time}</li>
+				<li class="mb-2"><span class="fw-700 mr-1">전화번호</span>${fplace.fp_phone}</li>
+			</ul>
 		
 			<!-- 메뉴 시작 -->
-			<h2 class="menu-title">메뉴 정보</h2>
+			<h2 class="menu-title fw-700 fs-16">메뉴 정보</h2>
 			<script type="text/javascript">
 				$(document).on('click', '#fpmenu-write-btn', function() {
 					const userNum = '${user_num}'; // 서버에서 로그인 여부를 가져옴
