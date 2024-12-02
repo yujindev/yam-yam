@@ -80,11 +80,6 @@
 				</li>
 			</c:if>
 			
-			<li class="nav_menu">
-				<button class="btn-nav">
-					<img src="${pageContext.request.contextPath}/images/icon-arrow.png">
-				</button>
-			</li>
 		</ul>
 	</nav>
 	<ul class="btn_area flex-box">
@@ -95,9 +90,8 @@
 						alt="">
 				</button></li>
 		</c:if>
-		<li><button type="button">
-				<img src="${pageContext.request.contextPath}/images/icon-search.png" alt="">
-			</button></li>
+		
+		
 		<c:if test="${user_num != null}">
 			<li>
 				<button type="button"
@@ -115,7 +109,7 @@
     const subMenu = document.querySelectorAll('.nav_smenu');
     const btnNav = document.querySelector('.btn-nav');
 
-    
+    /*
 	    //toggle형태
 	    btnNav.addEventListener('click', () => {
 	    subMenu.forEach(item => {
@@ -123,7 +117,7 @@
 	    });
 	  });
 	    
-	 /* 헤더 메뉴 중 아무 메뉴를 클릭해도 모든 서브메뉴 열기/닫기
+	 헤더 메뉴 중 아무 메뉴를 클릭해도 모든 서브메뉴 열기/닫기
 	    menu.forEach(item => {
 	        const button = item.querySelector('.nav_menu_title');
 	        button.addEventListener('click', () => {
