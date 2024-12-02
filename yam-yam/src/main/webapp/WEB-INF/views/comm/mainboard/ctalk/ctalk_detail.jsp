@@ -26,7 +26,7 @@
 					 <c:if test="${empty board.photo}">
 						<img src="${pageContext.request.contextPath}/images/face.png"	width="40" height="40" class="my-photo">
 					</c:if>
-						<span class="va-super">${ctalk.ctalk_num}</span>
+						<span class="va-super">${ctalk.mem_nickname}</span>
 					</a>
 				</li>
 				<li class="fs-08 text-r">

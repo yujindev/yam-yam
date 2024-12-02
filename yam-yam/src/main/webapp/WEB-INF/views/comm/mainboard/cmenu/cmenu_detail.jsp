@@ -29,7 +29,7 @@
 					
 					
 					<li>
-						${cmenu.cmenu_num}<br>
+						${cmenu.mem_nickname}<br>
 						조회 : ${cmenu.cmenu_hit}
 					</li>
 				</ul>

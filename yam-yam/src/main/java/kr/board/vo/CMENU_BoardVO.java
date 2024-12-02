@@ -18,7 +18,15 @@ public class CMENU_BoardVO {
 	private long mem_num;
 	private String mem_img2;
 	private String mem_img3;
+	private String mem_nickname;
 		
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	public String getCmenu_filename2() {
 		return cmenu_filename2;
 	}

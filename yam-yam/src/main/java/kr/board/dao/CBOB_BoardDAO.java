@@ -142,7 +142,7 @@ public class CBOB_BoardDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql ="select * from COMM_BOB join member using(mem_num) left outer join "
-					+ "member_detail using(mem_num) where cbob_num=?";
+					+ "member using(mem_num) where cbob_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, Cbob_num);
 			rs = pstmt.executeQuery();
@@ -158,6 +158,7 @@ public class CBOB_BoardDAO {
 				cbob_board.setCbob_hit(rs.getInt("cbob_hit"));
 				cbob_board.setCbob_date(rs.getDate("cbob_date"));
 				cbob_board.setMem_num(rs.getInt("mem_num"));
+				cbob_board.setMem_nickname(rs.getString("mem_nickname"));
 			}
 		}catch (Exception e) {
 			throw new Exception(e);

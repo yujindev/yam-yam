@@ -11,7 +11,14 @@ public class CMOV_BoardVO {
 	private String cmov_link;
 	private int cmov_hit;
 	private long mem_num;
+	private String mem_nickname;
 	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	public long getCmov_num() {
 		return cmov_num;
 	}

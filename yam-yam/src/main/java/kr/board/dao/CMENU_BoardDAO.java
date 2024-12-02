@@ -162,7 +162,8 @@ public class CMENU_BoardDAO {
 				cmenu_board.setCmenu_loc(rs.getString("cmenu_loc"));
 				cmenu_board.setCmenu_hit(rs.getInt("cmenu_hit"));
 				cmenu_board.setMem_num(rs.getInt("mem_num"));
-				System.out.println(cmenu_board);
+				cmenu_board.setMem_nickname(rs.getString("mem_nickname"));
+
 			}
 			
 		}catch (Exception e) {

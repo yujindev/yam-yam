@@ -9,9 +9,16 @@ public class CTALK_BoardVO {
 	private String ctalk_article;
 	private Date ctalk_date;
 	private int ctalk_hit;
-
+	
 	private long mem_num;
-
+	private String mem_nickname;
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	
 	public long getCtalk_num() {
 		return ctalk_num;

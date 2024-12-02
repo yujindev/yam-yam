@@ -153,6 +153,7 @@ public class CMOV_BoardDAO {
 				cmov_board.setCmov_date(rs.getDate("cmov_date"));
 				cmov_board.setCmov_link(rs.getString("cmov_link"));
 				cmov_board.setMem_num(rs.getInt("mem_num"));
+				cmov_board.setMem_nickname(rs.getString("mem_nickname"));
 			}
 		}catch (Exception e) {
 			throw new Exception(e);

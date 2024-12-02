@@ -27,7 +27,7 @@
 						</c:if>
 					</li>
 					<li>
-						${cmov.cmov_num}<br>
+						${cmov.mem_nickname}<br>
 						조회 : ${cmov.cmov_hit}
 					</li>
 				</ul>

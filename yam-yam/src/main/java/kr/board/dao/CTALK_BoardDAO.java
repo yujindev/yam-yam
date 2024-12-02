@@ -150,6 +150,7 @@ public class CTALK_BoardDAO {
 				ctalk_board.setCtalk_hit(rs.getInt("ctalk_hit"));
 				ctalk_board.setCtalk_date(rs.getDate("ctalk_date"));
 				ctalk_board.setMem_num(rs.getInt("mem_num"));
+				ctalk_board.setMem_nickname(rs.getString("mem_nickname"));
 				
 			}
 		}catch (Exception e) {

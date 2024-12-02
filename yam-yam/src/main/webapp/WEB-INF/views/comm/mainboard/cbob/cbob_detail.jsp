@@ -27,7 +27,7 @@
 						</c:if>
 					</li>
 					<li>
-						${cbob.cbob_num}<br>
+						${cbob.mem_nickname}<br>
 						조회 : ${cbob.cbob_hit}
 					</li>
 				</ul>

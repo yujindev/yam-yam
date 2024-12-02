@@ -157,7 +157,7 @@ public class CZONE_BoardDAO {
 				czone_board.setMem_img(rs.getString("mem_img"));
 				czone_board.setCzone_filename(rs.getString("czone_filename"));
 				czone_board.setMem_num(rs.getInt("mem_num"));
-
+				czone_board.setMem_nickname(rs.getString("mem_nickname"));
 			}
 		}catch (Exception e) {
 			throw new Exception(e);

@@ -13,7 +13,14 @@ public class CBOB_BoardVO {
 	private String cbob_meet;
 	private int cbob_hit;	
 	private long mem_num;
+	private String mem_nickname;
 	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	public long getCbob_num() {
 		return cbob_num;
 	}
