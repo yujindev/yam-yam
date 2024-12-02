@@ -238,16 +238,17 @@ ul.detail-sub li:last-child{
 #output_fav{
 	cursor: pointer;
 }
-div#reply_div{
+/* div#reply_div{
 	padding: 5px 10px 40px 10px;
 	margin-top: 10px;
 	background-color: #EEEEEE; 
-}
+} */
 form#re_form{
 	width: 650px;
 	border:none;
 }
 span.letter-count{
+	bottom: 0;
 	font-size: 10pt;
 	color: #999;
 }
@@ -441,3 +442,4 @@ header .btn_area li {
 .form-ttl {
     vertical-align: top;
 }
+
