@@ -123,6 +123,7 @@ body,header,main,div,footer {
 .f-around {justify-content: space-around;}
 .f-between {justify-content: space-between;}
 .f-center {justify-content: center;}
+.f-start {justify-content: start;}
 .f-end {justify-content: end;}
 
 /* ================= display 속성 =============== */
