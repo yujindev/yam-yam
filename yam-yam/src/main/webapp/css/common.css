@@ -270,3 +270,20 @@ button,.btn {
   padding: .7rem;
   border-radius: 5px;
 }
+
+/* =============== 리스트 테이블 =============== */
+
+table.list-table {
+	
+}
+table.list-table th {
+	border: none;
+	border-bottom:2px solid var(--gr600);
+	font-weight:700;
+	padding-bottom: 1rem;
+}
+table.list-table td{
+	border: none;
+	border-bottom:1px solid var(--gr300);
+	padding: 1rem;
+}

@@ -28,38 +28,32 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<div class="content-main">
-		<h2>리뷰목록(관리자 전용)</h2>
+	<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">
+		<h2 class="fw-700 fs-16 m-1">리뷰목록(관리자 전용)</h2>
 		<form id="search_form" action="adminReviewsList.do" method="get">
-			<ul class="search">
+			<ul class="search w-100">
 				<li>
-					<select name="keyfield">
+					<select name="keyfield" class="search-cat">
 						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>닉네임</option>
 						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>가게이름</option>
 						<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
 					</select>
 				</li>
-				<li>
-					<input type="search" size="16" name="keyword"
-					       id="keyword" value="${param.keyword}">
+				<li class="ml-1">
+					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input bg-gr150 w-80" placeholder="검색할 내용을 입력하세요.">
 				</li>
-				<li>
-					<input type="submit" value="찾기">
+				<li class="ml-1">
+					<input type="submit" value="" class="btn-re icon-search">
 				</li>
 			</ul>                                    
 		</form>
-		<div class="list-space align-right">
-			<input type="button" value="목록"
-			       onclick="location.href='AdminReviewsList.do'">
-			<input type="button" value="홈으로"
-			       onclick="location.href='${pageContext.request.contextPath}/main/main.do'">       
-		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			표시할 리뷰정보가 없습니다.
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		<table>
+		<table class="list-table mt-3">
 			<tr>
 				<th>닉네임</th>
 				<th>가게명</th>
@@ -73,9 +67,9 @@
 				<td>
 					<a href="adminUserForm.do?mem_num=${reviews.mem_num}">${reviews.id}</a>
 				</td> --%>
-				<td>${reviews.mem_nickname}</td>
-				<td>${reviews.fp_name}</td>
-				<td>${reviews.reviews_con}</td>
+				<td class="l-author">${reviews.mem_nickname}</td>
+				<td class="l-fpname">${reviews.fp_name}</td>
+				<td class="w-60">${reviews.reviews_con}</td>
 				<td>${reviews.reviews_score}</td>
 				<td>${reviews.reviews_date}</td>
 			</tr>
