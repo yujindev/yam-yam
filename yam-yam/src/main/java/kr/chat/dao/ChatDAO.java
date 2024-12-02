@@ -198,7 +198,7 @@ public class ChatDAO {
 			//커넥션 할당
 			conn = DBUtil.getConnection();
 			
-			sql="SELECT * FROM chat JOIN (SELECT SUM(chat_read) cnt,MAX(chat_num) chat_num FROM (SELECT chat_num,chat_read,"
+			sql="SELECT COUNT(*) FROM chat JOIN (SELECT SUM(chat_read) cnt,MAX(chat_num) chat_num FROM (SELECT chat_num,chat_read,"
 					+ "CASE WHEN INSTR(chat_sender_num || ','||chat_receiver_num,?)>1 THEN chat_sender_num ELSE chat_receiver_num END room FROM chat WHERE chat_sender_num=? OR chat_receiver_num=?) "
 					+ "GROUP BY room) USING(chat_num)";
 			
@@ -224,7 +224,7 @@ public class ChatDAO {
 		return count;
 	}
 	
-	//전체 채팅 목록 
+	//로그인한 유저가 참여하고 있는 전체 채팅 목록 
 	public List<ChatVO> getChatList(int start, int end, long mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt  = null;
@@ -274,7 +274,7 @@ public class ChatDAO {
 		}
 		return list;
 	}
-	
+	//로그인한 유저가 읽지않은 메시지의 수 
 	public int getUnreadCount(long chat_receiver_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -304,6 +304,29 @@ public class ChatDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return count;
+	}
+	//채팅 종료 (로그인한 유저가 특정회원과의 채팅한 내역을 삭제)
+	public void deleteChat(long chat_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//채팅방 삭제
+			sql = "DELETE * FROM chat WHERE ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, chat_num);
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+			
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 	
 	

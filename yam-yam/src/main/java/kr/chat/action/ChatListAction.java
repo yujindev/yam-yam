@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import kr.chat.dao.ChatDAO;
 import kr.chat.vo.ChatVO;
 import kr.controller.Action;
-import kr.member.vo.MemberVO;
 import kr.util.PagingUtil;
 
 public class ChatListAction implements Action{
@@ -28,6 +27,7 @@ public class ChatListAction implements Action{
 		
 		ChatDAO dao = ChatDAO.getInstance();
 		int count = dao.getChatCount(user_num);
+	    System.out.println(count);
 		
 		//페이징처리 
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,20,10,"chatList.do");
@@ -36,7 +36,7 @@ public class ChatListAction implements Action{
 		if(count>0) {
 			list = dao.getChatList(page.getStartRow(), page.getEndRow(), user_num);
 		}
-		
+		    
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());

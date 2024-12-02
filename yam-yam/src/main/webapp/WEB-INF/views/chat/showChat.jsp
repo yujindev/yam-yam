@@ -29,5 +29,6 @@
 		<input type="button" value="채팅목록" onclick ='location.href="${pageContext.request.contextPath}/chat/chatList.do?=${user_num}"'>
 	</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
