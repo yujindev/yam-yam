@@ -48,7 +48,6 @@
 	<div class="list-space align-right">
 	<c:if test="${!empty user_num && user_auth == 9}">
 		<input type="button" value="메뉴 등록" onclick="location.href='tmenuWriteForm.do'" class="btn-re btn-line-primary " style="width: 80px;">
-		<input type="button" value="목록" onclick="location.href='tmenuList.do'" class="btn-re btn-line-primary ">
 	</c:if>
 	</div>
 	<c:if test="${count ==0}">

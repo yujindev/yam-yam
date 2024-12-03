@@ -22,11 +22,14 @@
 
   /* 가로 정렬 */
   #write_form ul li label {
-    display: inline-flex; /* 라디오 버튼과 텍스트를 한 줄로 정렬 */
+  	width: calc(20% - 60px);
+ 	display: inline-flex; /* 라디오 버튼과 텍스트를 한 줄로 정렬 */
     align-items: center; /* 라디오 버튼과 텍스트 수직 정렬 */
-    margin-right: 15px; /* 각 라디오 버튼 간 간격 추가 */
+    font-weight: bold; /* 굵은 글씨 */
+    margin-bottom: 5px; /* 라벨과 입력 필드 간 간격 */
+    color: #333; /* 라벨 텍스트 색상 */
     white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-  }
+}
 
   /* 추가적인 스타일 (라디오 버튼과 텍스트 간격 조정) */
   input[type="radio"] {
@@ -84,19 +87,19 @@
 			<h2 class="fw-700">식당 정보 등록</h2>
 			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 				<ul>
-					<li><label for="fp_name">식당이름</label> 
+					<li class="flex-box"><label for="fp_name">식당이름</label> 
 					<input type="text" name="fp_name" id="fp_name" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="fp_phone">식당번호</label> 
+					<li class="flex-box"><label for="fp_phone">식당전화번호</label> 
 					<input type="text" name="fp_phone" id="fp_phone" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="fp_time">식당운영시간</label> 
+					<li class="flex-box"><label for="fp_time">식당운영시간</label> 
 					<input type="text" name="fp_time" id="fp_time" maxlength="50" class="input-check">
 					</li>
 					
-					<li><label for="fp_loc">식당위치</label> 
+					<li class="flex-box"><label for="fp_loc">식당위치</label> 
 					<input type="text" name="fp_loc" id="fp_loc" maxlength="50" class="input-check">
 					</li>
 					
@@ -128,7 +131,7 @@
 
 
 
-					<li><label for="fp_storeimg">식당이미지</label> 
+					<li class="flex-box"> <label for="fp_storeimg block-box">식당이미지</label> 
 					<input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
 					</li>
 					

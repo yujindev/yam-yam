@@ -49,7 +49,6 @@
 	</form>
 	<div class="list-space align-right">
 		<input type="button" value="식당등록" onclick="location.href='writeForm.do'" class="btn-re btn-line-primary" style="width: 80px;" >
-		<input type="button" value="목록" onclick="location.href='fplaceAdminList.do'" class="btn-re btn-line-primary">
 		<input type="button" value="맛집랭킹" onclick="location.href='${pageContext.request.contextPath}/fplace/list.do'" class="btn-re btn-line-primary " style="width: 80px;">
 	</div>
 	<c:if test="${count ==0}">

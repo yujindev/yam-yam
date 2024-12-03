@@ -47,9 +47,7 @@
 				</li>
 			</ul>
 		</form>
-		<div class="list-space align-right">
-			<input type="button" value="목록" onclick="location.href='fplaceManagerList.do'" class="btn-re btn-line-primary ">
-		</div>
+		
 		<c:if test="${count == 0}">
 			<div class="result-display">
 				표시할 식당이 없습니다.
