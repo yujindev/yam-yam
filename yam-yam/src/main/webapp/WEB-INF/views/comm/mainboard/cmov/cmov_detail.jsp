@@ -78,10 +78,7 @@
 				<form id="re_form" class="w-90 flex-box f-between position-r m-0auto">
 					<input type="hidden" name="cmov_num" value="${cmov.cmov_num}"
 						id="cmov_num">
-					<textarea rows="3" cols="50" name="cmov_re_content" id="cmov_re_content" class="rep-content w-80"
-						<c:if test="${empty user_num}"> disabled = "disabled" </c:if>>
-						<c:if	test="${empty user_num}">로그인 해야 작성할수있습니다.</c:if>
-					</textarea>
+					<textarea rows="3" cols="50" name="cmov_re_content" id="cmov_re_content" class="rep-content w-80" <c:if test="${empty user_num}"> disabled = "disabled" placeholder="로그인 해야 작성할 수 있습니다."</c:if>></textarea>
 					<c:if test="${!empty user_num}">
 						<div id="re_first" class="no-float position-a re-count w-05">
 							<span class="letter-count fs-08 text-gr300">300/300</span>
