@@ -1,7 +1,7 @@
 
 /* ================ 폰트적용 =============== */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
-body,header,main,div,footer {
+body,header,main,div,footer,.page-main {
 	font-family: "Noto Sans KR", sans-serif;
 }
 /* ================= width =============== */
@@ -273,9 +273,6 @@ button,.btn {
 
 /* =============== 리스트 테이블 =============== */
 
-table.list-table {
-	
-}
 table.list-table th {
 	border: none;
 	border-bottom:2px solid var(--gr600);

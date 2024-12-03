@@ -423,7 +423,7 @@ header button {
 }
 
 header .btn_area {
-  width: calc(30% - 100px);
+  width: calc(30% - 200px);
   height: fit-content;
 }
 

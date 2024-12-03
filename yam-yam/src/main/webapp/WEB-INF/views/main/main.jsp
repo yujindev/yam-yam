@@ -5,19 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
+<title>냠냠</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <style>
-main, .content-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 100vh;
-    padding-top: 10px; /* 상단 여백 조정 */
-}
-
 .container {
     width: 80%; /* 부모 요소 기준 80% */
     max-width: 1200px; /* 최대 너비 제한 */
@@ -83,15 +76,9 @@ main, .content-main {
 }
 
 /* 커뮤니티 섹션 */
-.community-section ul {
-    list-style: none;
-    padding: 0;
-}
 
-.community-section ul li {
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #666;
+.community-section ul li:first-child {
+    width: calc(30% - 50px);
 }
 
 /* 맛집 추천 섹션 */
@@ -174,54 +161,46 @@ main, .content-main {
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-    <div class="content-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <div class="content-main">
+     <!-- 메인 컨테이너 -->
+     <div class="main-container">
+        <!-- 룰렛 섹션 -->
+        <div class="section roulette-section">
+            <h2 class="fw-700">룰렛</h2>
+            <a href="${pageContext.request.contextPath}/tmenu/roulette.do" class="roulette-link">
+                <img src="${pageContext.request.contextPath}/images/roulette.jpeg" alt="룰렛 이미지">
+            </a>
+        </div>
 
-      <div class="page-main">
-    <div class="content-main">
-
-        <!-- 메인 컨테이너 -->
-        <div class="main-container">
-            <!-- 룰렛 섹션 -->
-            <div class="section roulette-section" >
-                <h2>룰렛</h2>
-                <a href="${pageContext.request.contextPath}/tmenu/roulette.do" class="roulette-link">
-                    <img src="${pageContext.request.contextPath}/images/roulette.jpeg" alt="룰렛 이미지">
-                </a>
-            </div>
-
-            <!-- 커뮤니티 섹션 -->
-			<div class="section community-section">
-				<h2>커뮤니티</h2>
-				<ul>
+         <!-- 커뮤니티 섹션 -->
+				<div class="section community-section">
+					<h2 class="fw-700">커뮤니티</h2>
 					<c:forEach var="board" items="${list3}" varStatus="status">
-						<c:if test="${status.index < 15}">
-							<li><strong>${board.category}</strong> - <a
-								href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">
-									${board.board_title} </a></li>
-						</c:if>
+					<c:if test="${status.index < 12}">
+					<ul class="flex-box mb-05 fs-10">
+								<li class="text-main fw-500">${board.category}</li>
+								<li class=""><a href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">${board.board_title} </a></li>
+					</ul>
+					</c:if>
 					</c:forEach>
-				</ul>
+					<button onclick="location.href='${pageContext.request.contextPath}/main_board/list.do'" class="btn-re block-box m-0auto w-30"> 다른 글 더보기</button>
+				</div>
 			</div>
-		</div>
+			<!-- 메인 컨테이너 -->
 
     <!-- 하단 컨테이너 -->
 	<div class="bottom-container">
 		<!-- 맛집 추천 섹션 -->
 		<div class="section restaurant-recommendation-section">
-			<h2>맛집 추천</h2>
+			<h2 class="fw-700">맛집 추천</h2>
 			<div class="restaurant-recommendation">
 				<c:if test="${count > 0}">
 					<c:forEach var="fplace" items="${list}" varStatus="status">
 						<c:if test="${status.index < 6}">
 							<div class="restaurant-card">
-								<a
-									href="${pageContext.request.contextPath}/fplace/detail.do?fp_num=${fplace.fp_num}">
-									<img
-									src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}"
-									alt="${fplace.fp_name}">
-								</a>
+								<a href="${pageContext.request.contextPath}/fplace/detail.do?fp_num=${fplace.fp_num}"><img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}"></a>
 								<p class="restaurant-name">${fplace.fp_name}</p>
 							</div>
 						</c:if>
@@ -235,23 +214,19 @@ main, .content-main {
 		</div>
 
 		<!-- 축제 이미지 배너 섹션 -->
-						<div class="section banner-section">
-							<h2>축제 정보</h2>
-							<div class="festival-slider">
-								<c:forEach var="dopamine" items="${list2}">
-									<div class="slide">
-										<div class="festival-card">
-											<img
-												src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}"
-												alt="축제정보">
-										</div>
-									</div>
-								</c:forEach>
-							</div>
+		<div class="section banner-section">
+			<h2 class="fw-700">축제 정보</h2>
+			<div class="festival-slider">
+				<c:forEach var="dopamine" items="${list2}">
+					<div class="slide">
+						<div class="festival-card">
+						<img src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}" alt="축제정보">
 						</div>
 					</div>
-				</div>
-</div>
+				</c:forEach>
+			</div> <!-- slide end -->
+		</div> <!-- section end -->
+	</div>
     <script>
         $(document).ready(function () {
             let currentIndex = 0;
@@ -283,9 +258,9 @@ main, .content-main {
             setInterval(nextSlide, 3000);
         });
     </script>
+	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
-</div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
 </html>
