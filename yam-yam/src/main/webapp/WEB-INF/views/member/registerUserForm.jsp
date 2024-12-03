@@ -133,40 +133,42 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="align-center">
-	<h2>회원 가입</h2>
-	<form id="register_form" action="registerUser.do" method="post">
+	<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">
+	<div class="content-main">
+	<h2 class="fw-700 fs-16 m-1 text-c">회원 가입</h2>
+	<form id="register_form" action="registerUser.do" method="post" class="w-80 m-0auto">
 		<ul>
-			<li>
-				<label for="mem_id">아이디</label>
-				<input type="text" name="mem_id" id="mem_id" maxlength="12" autocomplete="off" class="input-check">
-				<input type="button" value="ID 중복체크" id="id_check">
-				<span id="message_id"></span>
-				<div class="form-notice">영문 또는 숫자(6자~12자)</div>
+			<li class="flex-box mb-1">
+				<label for="mem_id" class="fw-600">아이디</label>
+				<div class="position-r w-50 mr-2">
+					<input type="text" name="mem_id" id="mem_id" maxlength="12" autocomplete="off" class="input-check p-05 w-100">
+					<p class="positon-a fs-08 mt-05">영문 또는 숫자(6자~12자)</p>
+					<span id="message_id" class="fw-700 fs-08"></span>
+				</div>
+					<input type="button" value="ID 중복체크" id="id_check" class="btn-re btn-line-primary w-20">
 			</li>
-			<li>
-				<label for="mem_nickname">닉네임</label>
-				<input type="text" name="mem_nickname" id="mem_nickname" maxlength="10" autocomplete="off" class="input-check">
-				<input type="button" value="닉네임 중복체크" id="nickname_check">
-				<span id="message_nickname"></span>
-				<div class="form-notice">한글,영문,숫자 사용 가능(최대 10자)</div>
-			</li>			
-			<li>
-				<label for="mem_pw">비밀번호</label>
-				<input type="password" name="mem_pw" id="mem_pw" maxlength="12" class="input-check">
+			<li class="flex-box mb-1">
+				<label for="mem_nickname" class="fw-600">닉네임</label>
+				<div class="position-r w-50 mr-2">
+					<input type="text" name="mem_nickname" id="mem_nickname" maxlength="10" autocomplete="off" class="input-check p-05 w-100">
+					<p class="positon-a fs-08 mt-05">한글,영문,숫자 사용 가능(최대 10자)</p>
+					<span id="message_nickname" class="fw-700 fs-08"></span>
+				</div>
+				<input type="button" value="닉네임 중복체크" id="nickname_check" class="btn-re btn-line-primary w-20">
+			</li>	
+			<li class="flex-box mb-1">
+				<label for="mem_pw" class="fw-600">비밀번호</label>
+				<input type="password" name="mem_pw" id="mem_pw" maxlength="12" class="input-check p-05 w-50">
 			</li>				
-			<li>
-				<label for="mem_phone">연락처</label>
-				<input type="text" name="mem_phone" id="mem_phone" maxlength="15" class="input-check">
-			</li>				
+			<li class="flex-box mb-1">
+				<label for="mem_phone" class="fw-600">연락처</label>
+				<input type="text" name="mem_phone" id="mem_phone" maxlength="15" class="input-check p-05 w-50">
+			</li>		
 		</ul>
-		<br>
-		<div class="align-center">
-			<input type="submit" value="등록">
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-		</div>
+		<input type="submit" value="회원가입" class="block-box w-100 btn btn-primary mt-3">
 	</form>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </div>
 </body>
 </html>

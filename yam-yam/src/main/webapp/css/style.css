@@ -441,3 +441,7 @@ header .btn_area button {
     vertical-align: top;
 }
 
+#register_form ul li label {
+	width: calc(20% - 20px);
+}
+
