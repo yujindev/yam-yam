@@ -74,7 +74,7 @@ $(function(){
 									$.ajax({
 										url:'deleteFile.do',
 										type:'post',
-										data:{cmenu_num:${cmenu.cmenu_num}},
+										data:{cmenu_num:${cmenu.cmenu_num},filenum:1},
 										dataType:'json',
 										success:function(param){
 											if(param.result == 'logout'){
@@ -104,18 +104,18 @@ $(function(){
 					       accept="image/gif,image/png,image/jpeg" class="input-check w-90 p-05 ml-auto block-box">
 					<c:if test="${!empty cmenu.cmenu_filename2}">
 					<div id="file_detail">
-						(${cmenu.cmenu_filename})파일이 등록되어 있습니다.
+						(${cmenu.cmenu_filename2})파일이 등록되어 있습니다.
 						<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename2}" width="100">
-						<input type="button" value="파일삭제" id="file_del" class="btn ml-1">
+						<input type="button" value="파일삭제" id="file_del2" class="btn ml-1">
 						<script type="text/javascript">
-							$('#file_del').click(function(){
+							$('#file_del2').click(function(){
 								let choice = confirm('삭제하시겠습니까?');
 								if(choice){
 									//서버와 통신
 									$.ajax({
 										url:'deleteFile.do',
 										type:'post',
-										data:{cmenu_num:${cmenu.cmenu_num}},
+										data:{cmenu_num:${cmenu.cmenu_num},filenum:2},
 										dataType:'json',
 										success:function(param){
 											if(param.result == 'logout'){

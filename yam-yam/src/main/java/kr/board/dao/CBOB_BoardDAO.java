@@ -200,7 +200,7 @@ public class CBOB_BoardDAO {
 			conn=DBUtil.getConnection();
 			
 			sql = "UPDATE COMM_BOB SET cbob_title=?, cbob_article=?, "
-				+ "cbob_gender1=?, cbob_gender2=?, cbob_menu=?, cbob_meet=? "
+				+ "cbob_gender1=?, cbob_gender2=?, cbob_menu=?, cbob_meet=?, "
 				+ "cbob_date=SYSDATE WHERE cbob_num=?" ;
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, cbob.getCbob_title());
