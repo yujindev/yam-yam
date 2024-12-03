@@ -9,8 +9,8 @@ $(function () {
 
     // 룰렛 섹션 색상 (고정된 색상)
     const sections = [
-        "#3CA3E3", "#FF6F0F", "#00A05A", "#38438F",
-        "#EFB6C8", "#786953", "#FF7F3E", "#FDE7BB"
+        "#DEAA79", "#FFE6A9", "#B1C29E", "#659287",
+        "#EFB6C8", "#8174A0", "#FF7F3E", "#FDE7BB"
     ];
 
     const centerX = canvas.width / 2;
@@ -43,7 +43,7 @@ $(function () {
             ctx.translate(centerX, centerY);
             ctx.rotate(startAngle + anglePerSection / 2);
             ctx.textAlign = "right";
-            ctx.fillStyle = "#fff";
+            ctx.fillStyle = "#000";
             ctx.font = "16px Arial";
             ctx.fillText(menuListsc[i].label, radius - 20, 10);
             ctx.restore();
