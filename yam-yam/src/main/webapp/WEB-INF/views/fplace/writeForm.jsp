@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>식당정보 저장</title>
+<title>식당정보 등록</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/HY.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
@@ -81,7 +81,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="content-main">
-			<h2 class="fw-700">식당 정보 저장</h2>
+			<h2 class="fw-700">식당 정보 등록</h2>
 			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 				<ul>
 					<li><label for="fp_name">식당이름</label> 

@@ -150,9 +150,10 @@
 	                <li><label for="fp_storeimg">식당이미지</label>
 	                <c:if test="${!empty fplace.fp_storeimg}">
 	                    <div id="file_detail">
-	                        (${fplace.fp_storeimg}) 파일이 등록되어 있습니다.
+	                      
 	                        <img id="preview_img" src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" width="100">
-	                        <input type="button" value="파일삭제" id="file_del">
+	                          <p>(${fplace.fp_storeimg}) 파일이 등록되어 있습니다.</p>
+	                        <input type="button" value="파일삭제" id="file_del" class="btn block-box ml-auto w-20">
 	                    </div>
 	                </c:if>
 	                   <input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
@@ -160,6 +161,31 @@
 	                    <img id="preview_img" src="" width="100" style="display:none;">
 	                </c:if>
 	                </li>
+	                
+	                <li><label for="">예약 가능 시간</label> 
+					<br>
+					<!-- 11시 ~ 2시 --> 
+						<input type="checkbox" name="ft_time" value="11:00"> <span>11:00</span>
+						<input type="checkbox" name="ft_time" value="11:30"> <span>11:30</span>
+						<input type="checkbox" name="ft_time" value="12:00"> <span>12:00</span>
+						<input type="checkbox" name="ft_time" value="12:30"> <span>12:30</span>
+						<input type="checkbox" name="ft_time" value="13:00"> <span>13:00</span>
+						<input type="checkbox" name="ft_time" value="13:30"> <span>13:30</span>
+						<input type="checkbox" name="ft_time" value="14:00"> <span>14:00</span>
+
+						<!-- 5시 ~ 8시 --> 
+						<br>
+						<input type="checkbox" name="ft_time" value="17:00"> <span>17:00</span> 
+						<input type="checkbox" name="ft_time" value="17:30"> <span>17:30</span> 
+						<input type="checkbox" name="ft_time" value="18:00"> <span>18:00</span>
+						<input type="checkbox" name="ft_time" value="18:30"> <span>18:30</span>
+						<input type="checkbox" name="ft_time" value="19:00"> <span>19:00</span>
+						<input type="checkbox" name="ft_time" value="19:30"> <span>19:30</span>
+						<input type="checkbox" name="ft_time" value="20:00"> <span>20:00</span>
+					</li>
+	                
+	                
+	                
 	            </ul>
 	            
 				<div class="align-center">
