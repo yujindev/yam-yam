@@ -286,7 +286,7 @@ p {
 /* 흠 */
 /* 예약 시간 선택 버튼 레이아웃 수정 */
 .reserv-time-select {
-    display: flex;
+    item-align: left;
     flex-wrap: wrap;  /* 줄 바꿈을 허용 */
     justify-content: space-between;  /* 버튼 간격을 균등하게 */
     gap: 10px;  /* 버튼 간격 */
@@ -294,10 +294,9 @@ p {
 
 /* 각 예약 시간 선택 버튼 */
 .reserv-time-select label {
-    flex: 0 0 8%;  /* 버튼 너비를 4개가 한 줄에 배치될 수 있도록 설정 */
-    display: flex;
-    align-items: left;
+    flex: 0 0 15%;  /* 버튼 너비를 4개가 한 줄에 배치될 수 있도록 설정 */
     color: #919191;
+    item-align: left;
     background-color: white;
     padding: 10px 15px;
     border-radius: 5px;
@@ -305,6 +304,7 @@ p {
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
+    position: relative;
 }
 
 /* 버튼이 4개씩 줄 바뀌도록 하기 */
