@@ -35,7 +35,6 @@
 .item img {
     border-radius: 4px;
     margin-top: 5px;
-    height: 30px;
     width: 30px;
 }
 
@@ -99,6 +98,7 @@
 .output_bmreviews.disabled {
     cursor: not-allowed;
     opacity: 0.5; /* 흐리게 */
+    height: 30px;
 }
 
 .delete-btn {

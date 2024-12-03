@@ -278,7 +278,7 @@
 						<input type="hidden" name="fp_num" value="${fplace.fp_num}"
 							id="fp_num">
 
-						<h3>${fplace.fp_name}</h3>
+						<h2 style="text-align: center; font-weight: bold;">${fplace.fp_name}</h2>
 
 
 						<div class="rating">
@@ -295,7 +295,11 @@
 								<label for="star1" class="star" title="1점">★</label>
 							</div>
 						</div>
-						<br> 어떤 점이 좋았나요?
+						<br> 
+						<div style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; text-align: center;">
+							<span style = "font-weight: bold; font-size: 1.1rem;">어떤 점이 좋았나요?</span>
+							<br> 
+						</div>
 						<!-- reviews_con -->
 						<textarea rows="5" cols="50" name="reviews_con" id="reviews_con"
 							class="rep-content"
@@ -308,8 +312,10 @@
 							</div>
 
 							<div class="photo-upload">
-								<label for="reviews_img1">사진 :</label> <input type="file"
-									id="reviews_img1" name="reviews_img1" accept="image/*">
+							<div style="display: inline-flex; align-items: center;  gap: 10px;">
+								<label for="reviews_img1">사진 :</label> 
+								<input type="file" id="reviews_img1" name="reviews_img1" accept="image/*">
+							</div>
 							</div>
 							<br>
 							<div id="re_second" class="align-right">
