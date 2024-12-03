@@ -27,8 +27,8 @@
 					style="align-content: center; display: none; width: 500px; height: 500px;"
 					alt="섞는 중">
 				<div class="random-button-container">
-					<button id="pick-draw" class="random-button">제비뽑기</button>
-					<button id="refresh-menu" class="random-button">메뉴 바꾸기</button>
+					<button id="pick-draw" class="random-button btn-primary">제비뽑기</button>
+					<button id="refresh-menu" class="random-button btn-line-primary">메뉴 바꾸기</button>
 				</div>
 			</div>
 		</div>
