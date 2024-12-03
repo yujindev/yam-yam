@@ -34,3 +34,52 @@
 	position: absolute; /* 절대 위치 */
 	right: 10px; /* 버튼 오른쪽 끝에 위치 */
 }
+
+/* 기본 별점 컨테이너 스타일 /
+.rating {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: #d3d3d3; / 기본 회색 별 색상 /
+}
+
+/ 별을 오른쪽에서 왼쪽으로 배치 /
+.stars {
+    display: flex;
+   flex-direction: row-reverse;
+    align-items: center;
+}
+
+/ 라디오 버튼 숨기기 /
+.stars input[type="radio"] {
+    display: none;
+}
+
+/ 별 모양 스타일 /
+.stars label {
+    cursor: pointer;
+    color: #d3d3d3; / 기본 회색 /
+    transition: color 0.3s ease;
+}
+
+/ 별을 클릭할 때 색상 변경 (오른쪽에서 왼쪽으로 채워짐) /
+.stars input[type="radio"]:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #ffcc00; / 노란색으로 채워짐 /
+}
+
+/ 마우스를 올렸을 때 색상 변화 (hover) /
+.stars label:hover {
+    color: #ffcc00; / hover 시 별 색상 /
+}
+
+/ 선택된 별과 이전 별을 노란색으로 채우기 /
+.stars input[type="radio"]:checked + label,
+.stars input[type="radio"]:checked ~ label {
+    color: #ffcc00; / 선택된 별은 노란색 /
+}
+
+/ 마우스 hover 상태에서, hover가 적용된 별과 그 앞의 별까지 노란색 */
+.stars input[type="radio"]:checked ~ label {
+    color: #ffcc00;
+}

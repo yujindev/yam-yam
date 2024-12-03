@@ -28,21 +28,22 @@
     <div class="page-main">
     	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     	<div class="content-main">
-    	<h2>전체 글 보기</h2>
-    	<form action="list.do" id="search_form" method="get">
-    		<ul class="search">
+    	<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">   	
+    	<h2 class="fw-700 fs-16 m-1">전체 글 보기</h2>
+    	<form action="list.do" id="search_form" method="get" class="text-c">
+    		<ul class="search w-100">
     			<li>
-    				<select name="keyfield">
+    				<select name="keyfield" class="search-cat">
     					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
     					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
 
     				</select>
     			</li>
-    			<li>
-    				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+    			<li class="ml-1">
+    				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}" class="search-input bg-gr150 w-80" placeholder="검색할 내용을 입력하세요.">
     			</li>
-    			<li>
-    				<input type="submit" value="검색">
+    			<li class="ml-1">
+    				<input type="submit" value="" class="btn-re icon-search">
     			</li>
     			
     		</ul>

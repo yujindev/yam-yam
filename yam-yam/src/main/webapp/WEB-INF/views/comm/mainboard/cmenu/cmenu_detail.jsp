@@ -46,8 +46,18 @@
 				<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename2}" class="detail-img">		
 				</div>
 				</c:if>
+				위치 : ${cmenu.cmenu_loc}
+				<br>
+				<br>
+				음식명 : ${cmenu.cmenu_name}
+				<br>
+				<br>
 				내용 : ${cmenu.cmenu_article}
+				<br>
+				<br>
+				별점 : ${cmenu.cmenu_star}
 				</article>
+				
 				
 				<div class="flex-box f-center p-1">
 				<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%> 

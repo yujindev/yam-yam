@@ -33,37 +33,50 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>밥친구 찾기 글 수정</h2>
-			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
+			<h2 class="fw-700">밥친구 찾기 글 수정</h2>
+			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data" class="mt-3 w-80 m-0auto">
 			<input type="hidden" name="cbob_num" value="${cbob.cbob_num}">
 				<ul>
-					<li><label for="cbob_title">제목</label> <input type="text"
-					value="${cbob.cbob_title}" name="cbob_title" id="cbob_title" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cbob_title">제목</label> <input type="text"
+					value="${cbob.cbob_title}" name="cbob_title" id="cbob_title" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li><label for="cbob_gender1">내 성별</label> <input type="checkbox"
-					name="cbob_gender1" id="cbob_gender1" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cbob_menu">메뉴 선정</label> <input type="text" value="${cbob.cbob_menu}"
+						name="cbob_menu" id="cbob_menu" maxlength="50" class="input-check w-80 p-05 ml-auto block-box">
 					</li>
 					
-					<li><label for="cbob_gender2">상대 성별</label> <input type="checkbox"
-						name="cbob_gender2" id="cbob_gender2" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cbob_gender1">내 성별 : </label>
+					<label><input type="radio" name="cbob_gender1" id="cbob_gender1" value="남자" class="input-check"> 남자</label>
+                    <label><input type="radio" name="cbob_gender1" id="cbob_gender1" value="여자" class="input-check"> 여자</label>
+                    </li>
+					
+					<li class="flex-box mb-2">
+					<label for="cbob_gender2">상대 성별 : </label>
+					<label><input type="radio" name="cbob_gender2" id="cbob_gender2" value="남자" class="input-check"> 남자</label>
+                    <label><input type="radio" name="cbob_gender2" id="cbob_gender2" value="여자" class="input-check"> 여자</label>
+                    <label><input type="radio" name="cbob_gender2" id="cbob_gender2" value="무관" class="input-check"> 무관</label>
+                    </li>
+					
+					<li class="flex-box mb-2">
+					<label for="cbob_meet">만나는 시간</label> <input type="text" value="${cbob.cbob_meet}"
+						name="cbob_meet" id="cbob_meet" maxlength="50" class="input-check w-80 p-05 ml-auto block-box">
 					</li>
 					
-					<li><label for="cbob_meet">만나는 시간</label> <input type="text"
-						name="cbob_meet" id="cbob_meet" maxlength="50" class="input-check">
-					</li>
-					
-					<li>
+					<li class="flex-box mb-2">
 					<label for="cbob_article">내용</label> 
-					<textarea rows="5" cols="40" name="cbob_article" id="cbob_article" class="input-check">${cbob.cbob_article}</textarea>
+					<textarea rows="5" cols="40" name="cbob_article" id="cbob_article" class="input-check w-90 p-05 ml-auto block-box">${cbob.cbob_article}</textarea>
 					</li>
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="수정"> 
-					<input type="button" value="글 상세" onclick="location.href='cbob_detail.do?cbob_num=${cbob.cbob_num}'">
+				<div class="flex-box f-end mt-3">
+					<input type="submit" value="수정" class="btn btn-primary"> 
+					<input type="button" value="수정 취소" onclick="location.href='cbob_detail.do?cbob_num=${cbob.cbob_num}'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
 </body>
 </html>

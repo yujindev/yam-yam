@@ -37,32 +37,35 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>글 수정</h2>
+			<h2 class="fw-700">글 수정</h2>
 			<form id="update_form" action="update.do" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="czone_num" value="${czone.czone_num}">
 				<ul>
-					<li><label for="czone_title">제목</label> <input type="text"
+					<li class="flex-box mb-2">					
+					<label for="czone_title">제목</label> <input type="text"
 						value="${czone.czone_title}" name="czone_title" id="czone_title"
-						maxlength="50" class="input-check"></li>
+						maxlength="50" class="input-check w-90 p-05 ml-auto block-box"></li>
 
-					<li><label for="czone_loc">위치</label> <input type="text"
+					<li class="flex-box mb-2">
+					<label for="czone_loc">위치</label> <input type="text"
 						value="${czone.czone_loc}" name="czone_loc" id="czone_loc"
-						maxlength="50" class="input-check"></li>
+						maxlength="50" class="input-check w-90 p-05 ml-auto block-box"></li>
 
-					<li><label for="czone_article">내용</label> <textarea rows="5"
+					<li class="flex-box mb-2">
+					<label for="czone_article">내용</label> <textarea rows="5"
 							cols="40" name="czone_article" id="czone_article"
-							class="input-check">${czone.czone_article}</textarea></li>
+							class="input-check w-90 p-05 ml-auto block-box">${czone.czone_article}</textarea></li>
 				
-					<li>
+					<li class="flex-box mb-2">
 					<label for="czone_filename">이미지</label>
 					<input type="file" name="czone_filename" id="czone_filename" 
-					       accept="image/gif,image/png,image/jpeg">
+					       accept="image/gif,image/png,image/jpeg" class="input-check w-90 p-05 ml-auto block-box">
 					<c:if test="${!empty czone.czone_filename}">
 					<div id="file_detail">
 						(${czone.czone_filename})파일이 등록되어 있습니다.
 						<img src="${pageContext.request.contextPath}/upload/${czone.czone_filename}" width="100">
-						<input type="button" value="파일삭제" id="file_del">
+						<input type="button" value="파일삭제" id="file_del" class="btn ml-1">
 						<script type="text/javascript">
 							$('#file_del').click(function(){
 								let choice = confirm('삭제하시겠습니까?');
@@ -96,13 +99,14 @@ $(function(){
 				</li>
 				
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="수정"> <input type="button"
-						value="글 상세"
-						onclick="location.href='czone_detail.do?czone_num=${czone.czone_num}'">
+				<div class="flex-box f-end mt-3">
+					<input type="submit" value="수정" class="btn btn-primary"> 
+					<input type="button" value="글 상세"
+						onclick="location.href='czone_detail.do?czone_num=${czone.czone_num}'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
 </body>
 </html>

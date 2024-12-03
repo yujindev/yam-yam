@@ -31,33 +31,37 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>도시락존 게시판 글쓰기</h2>
-			<form id="write_form" action="czone_write.do" method="post" enctype="multipart/form-data">
+			<h2 class="fw-700">도시락존 게시판 글쓰기</h2>
+			<form id="write_form" action="czone_write.do" method="post" enctype="multipart/form-data" class="mt-3 w-80 m-0auto">
 				<ul>
-					<li><label for="czone_title">제목</label> <input type="text"
-						name="czone_title" id="czone_title" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="czone_title">제목</label> <input type="text" 
+						name="czone_title" id="czone_title" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li><label for="czone_loc">위치</label> <input type="text"
-						name="czone_loc" id="czone_loc" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="czone_loc">위치</label> <input type="text"
+						name="czone_loc" id="czone_loc" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li>
+					<li class="flex-box mb-2">
 					<label for="czone_article">내용</label> 
-					<textarea rows="5" cols="40" name="czone_article" id="czone_article" class="input-check"></textarea>
+					<textarea rows="5" cols="40" name="czone_article" id="czone_article" class="input-check w-90 p-05 ml-auto block-box"></textarea>
 					</li>
 					
-					<li><label for="czone_filename">이미지</label> <input type="file"
-						name="czone_filename" id="czone_filename" accept="image/gif,image/png,image/jpeg">
+					<li class="flex-box">
+					<label for="czone_filename">이미지 </label> <input type="file"
+						name="czone_filename" id="czone_filename" accept="image/gif,image/png,image/jpeg" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="등록"> 
-					<input type="button" value="목록" onclick="location.href='list.do'">
+					<input type="submit" value="등록" class="btn btn-primary"> 
+					<input type="button" value="목록" onclick="location.href='list.do'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
 </body>
 </html>
