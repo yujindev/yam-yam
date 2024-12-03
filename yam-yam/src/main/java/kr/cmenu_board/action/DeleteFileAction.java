@@ -12,6 +12,7 @@ import kr.board.dao.CTALK_BoardDAO;
 import kr.board.vo.CMENU_BoardVO;
 import kr.board.vo.CTALK_BoardVO;
 import kr.controller.Action;
+import kr.util.FileUtil;
 import kr.util.StringUtil;
 
 public class DeleteFileAction implements Action{
@@ -29,12 +30,19 @@ public class DeleteFileAction implements Action{
 			request.setCharacterEncoding("utf-8");
 			long cmenu_num = Long.parseLong(request.getParameter("cmenu_num"));
 
-			CMENU_BoardDAO cmenu_dao = CMENU_BoardDAO.getInstance();
-			CMENU_BoardVO cmenuVO = cmenu_dao.getBoard(cmenu_num);
-			if (user_num != cmenuVO.getMem_num()) {
+			CMENU_BoardDAO dao = CMENU_BoardDAO.getInstance();
+			CMENU_BoardVO db_board = dao.getBoard(cmenu_num);
+			if (user_num != db_board.getMem_num()) {
 				// 로그인한 회원번호와 작성자 회원번호 불일치
 				mapAjax.put("result", "wrongAccess");
 			} else {
+				dao.deleteFile(cmenu_num);
+				//파일 삭제
+				FileUtil.removeFile(request, 
+						               db_board.getCmenu_filename());
+				FileUtil.removeFile(request, 
+			               				db_board.getCmenu_filename2());
+				
 				mapAjax.put("result", "success");
 			}
 		}

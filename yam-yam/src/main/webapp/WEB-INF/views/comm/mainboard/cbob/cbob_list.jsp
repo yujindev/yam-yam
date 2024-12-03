@@ -29,7 +29,7 @@
     	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     	<div class="content-main">
     	<input type="button"onclick="location.href='${pageContext.request.contextPath}/main/main.do'" class="icon block-box ml-auto icon-home bg-gr300">
-    	<h2 class="fw-700 fs-16 m-1">밥친구 게시판 게시판</h2>
+    	<h2 class="fw-700 fs-16 m-1">밥친구 게시판</h2>
     	<form action="list.do" id="search_form" method="get" class="text-c">
     		<ul class="search w-100">
     			<li>

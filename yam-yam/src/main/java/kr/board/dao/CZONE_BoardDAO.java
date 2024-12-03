@@ -188,21 +188,21 @@ public class CZONE_BoardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	// 파일삭제
-	public void deleteFile(long board_num)throws Exception{
+	
+	public void deleteFile(long czone_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE comm_zone SET czone_filename='' WHERE zboard_num=?";
+			sql = "UPDATE comm_zone SET czone_filename='' WHERE czone_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setLong(1, board_num);
+			pstmt.setLong(1, czone_num);
+			pstmt.executeUpdate();
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -212,6 +212,7 @@ public class CZONE_BoardDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	// 잡담 글 수정
 	public void updateczoneBoard(CZONE_BoardVO czone) throws Exception{
 		Connection conn = null;

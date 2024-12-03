@@ -64,7 +64,7 @@ $(function(){
 					<c:if test="${!empty cmenu.cmenu_filename}">
 					<div id="file_detail">
 						(${cmenu.cmenu_filename})파일이 등록되어 있습니다.
-						<img src="${pageContext.request.contextPath}/upload/${czone.czone_filename}" width="100">
+						<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename}" width="100">
 						<input type="button" value="파일삭제" id="file_del" class="btn ml-1">
 						<script type="text/javascript">
 							$('#file_del').click(function(){
@@ -105,7 +105,7 @@ $(function(){
 					<c:if test="${!empty cmenu.cmenu_filename2}">
 					<div id="file_detail">
 						(${cmenu.cmenu_filename})파일이 등록되어 있습니다.
-						<img src="${pageContext.request.contextPath}/upload/${czone.czone_filename2}" width="100">
+						<img src="${pageContext.request.contextPath}/upload/${cmenu.cmenu_filename2}" width="100">
 						<input type="button" value="파일삭제" id="file_del" class="btn ml-1">
 						<script type="text/javascript">
 							$('#file_del').click(function(){

@@ -38,7 +38,8 @@ public class UpdateAction implements Action{
 		board.setCmov_num(cmov_num);
 		board.setCmov_title(request.getParameter("cmov_title"));
 		board.setCmov_article(request.getParameter("cmov_article"));
-		
+		board.setMem_nickname(request.getParameter("mem_nickname"));
+
 		CMOV_BoardDAO dao = CMOV_BoardDAO.getInstance();
 		dao.updatecmovBoard(cmov);
 		return "redirect:/cmov_board/cmov_detail.do?cmov_num="+cmov_num;

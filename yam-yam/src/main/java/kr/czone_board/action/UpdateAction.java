@@ -37,8 +37,9 @@ public class UpdateAction implements Action{
 		board.setCzone_title(request.getParameter("czone_title"));
 		board.setCzone_loc(request.getParameter("czone_loc"));
 		board.setCzone_article(request.getParameter("czone_article"));
-		
+		board.setMem_nickname(request.getParameter("mem_nickname"));
+
 	
-		return "redirect:/mainboard/czone/czone_detail.do?czone_num="+czone_num;
+		return "redirect:/czone_board/czone_detail.do?czone_num="+czone_num;
 	}
 }
