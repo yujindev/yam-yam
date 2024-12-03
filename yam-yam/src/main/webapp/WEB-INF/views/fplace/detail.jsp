@@ -66,7 +66,7 @@
 				<%--가게 북마크--%>
 				<div class="bookmark-container">
 					<img class="output_bmstore ml-1" data-num="${fplace.fp_num}"
-						src="${pageContext.request.contextPath}/images/icon-flag-g.png.gif"
+						src="${pageContext.request.contextPath}/images/icon-flag-g.png"
 						width="auto">
 				</div>
 			</div>
