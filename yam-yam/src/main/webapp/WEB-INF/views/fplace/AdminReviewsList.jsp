@@ -63,15 +63,15 @@
 			</tr>
 			<c:forEach var="reviews" items="${list}">
 			<tr>
-			<%--아이디 눌렀을때 이동하게 할건지..
-				<td>
-					<a href="adminUserForm.do?mem_num=${reviews.mem_num}">${reviews.id}</a>
-				</td> --%>
-				<td>${reviews.mem_nickname}</td>
-				<td>${reviews.fp_name}</td>
+			<tr>
+				<td class="l-author">
+					 <a href="${pageContext.request.contextPath}/others/saveStore.do?mem_id=${reviews.mem_id}">${reviews.mem_nickname}</a>
+				</td>
+				<td class="l-fpname">${reviews.fp_name}</td>
 				<td class="w-60">${reviews.reviews_con}</td>
 				<td>${reviews.reviews_score}</td>
 				<td>${reviews.reviews_date}</td>
+			</tr>
 			</tr>
 			</c:forEach>
 		</table>

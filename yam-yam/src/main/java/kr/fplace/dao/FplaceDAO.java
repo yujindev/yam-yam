@@ -1082,7 +1082,7 @@ public class FplaceDAO {
 			sql = "SELECT * FROM ( "
 					+ "SELECT a.*, rownum rnum FROM ( "
 					+ "    SELECT r.reviews_num, r.reviews_date, r.reviews_con, r.reviews_img1, "
-					+ "           r.reviews_score, fp.fp_name, m.mem_nickname "
+					+ "           r.reviews_score, fp.fp_name, m.mem_nickname, m.mem_id "
 					+ "    FROM reviews r "
 					+ "    JOIN member m ON r.mem_num = m.mem_num "
 					+ "    JOIN fplace fp ON r.fp_num = fp.fp_num "
@@ -1108,7 +1108,7 @@ public class FplaceDAO {
 				reviews.setReviews_con(StringUtil.useBrNoHtml(rs.getString("reviews_con")));
 				reviews.setReviews_img1(rs.getString("reviews_img1"));
 				reviews.setReviews_score(rs.getInt("reviews_score"));
-				//reviews.setMem_id(rs.getString("mem_id"));
+				reviews.setMem_id(rs.getString("mem_id"));
 				//reviews.setMem_num(rs.getLong("mem_num"));
 				//reviews.setFp_num(rs.getLong("fp_num"));
 				reviews.setFp_name(rs.getString("fp_name"));
@@ -1355,7 +1355,7 @@ public class FplaceDAO {
 			sql = "SELECT * FROM (" +
 					" SELECT a.*, rownum rnum " +
 					" FROM (" +
-					"   SELECT f.*, COALESCE(r.avg_score, 0) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
+					"   SELECT f.*, ROUND(COALESCE(r.avg_score, 0),1) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
 					"   FROM (" +
 					"       SELECT fp_num, AVG(reviews_score) AS avg_score, COUNT(reviews_score) AS review_count " +
 					"       FROM reviews " +
@@ -1456,7 +1456,7 @@ public class FplaceDAO {
 			sql = "SELECT * FROM (" +
 					"    SELECT a.*, rownum rnum " +
 					"    FROM (" +
-					"        SELECT f.*, COALESCE(r.avg_score, 0) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
+					"        SELECT f.*, ROUND(COALESCE(r.avg_score, 0), 1) AS fp_avgscore, COALESCE(r.review_count, 0) AS fp_review_count " +
 					"        FROM (" +
 					"            SELECT fp_num, AVG(reviews_score) AS avg_score, COUNT(reviews_score) AS review_count " +
 					"            FROM reviews " +
