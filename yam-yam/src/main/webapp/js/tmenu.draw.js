@@ -50,11 +50,11 @@ $(function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
         ctx.drawImage(menuImage, 0, 0, canvas.width, canvas.height); // 1번 이미지 표시
 
-        ctx.font = "20px Arial";
+        ctx.font = "18px Arial";
         ctx.textAlign = "center";
         ctx.fillStyle = "black";
 
-        const startY = 50; // 첫 번째 텍스트 Y 좌표
+        const startY = 140; // 첫 번째 텍스트 Y 좌표
         const lineHeight = 40; // 텍스트 간 간격
 
         menuListsc.forEach((menu, index) => {
