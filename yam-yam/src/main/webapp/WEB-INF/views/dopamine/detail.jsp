@@ -26,7 +26,7 @@
 	<div class="dpcontent-main">
 		<h2 class="fw-700">${dopamine.dp_title}</h2>
 		<hr size="1" noshade="noshade" width="100%">
-		<article class="p-2">>
+		<article class="p-2">
 		<img src="${pageContext.request.contextPath}/upload/${dopamine.dp_file}" class="detail-img">
 		
 		<p>
