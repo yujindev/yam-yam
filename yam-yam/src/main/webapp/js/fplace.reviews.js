@@ -58,7 +58,6 @@ $(function(){
 						}
 					}
 					output += '<span class="output_brcount"> '+item.reviews_count+'</span>'; 
-					output += '<span>&#9733; ' + item.reviews_score + '</span>';
 					output+='</div>';
 					
 					output += '<hr size = "1" noshade width="98%">';
