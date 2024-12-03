@@ -21,7 +21,7 @@
 				</div>
 				</c:if>
 				<c:if test="${count>0}">
-				<table>
+				<table class="list-table mt-3">
 					<tr>
 						<th>식당명</th>
 						<th>예약자 아이디</th>
@@ -31,7 +31,7 @@
 						<th>현재 예약 상태</th>
 					</tr>
 					<c:forEach var="reserv" items="${reserv}">
-					<tr>
+					<tr class="text-c">
 						<td>${reserv.fp_name}</td>
 						<td>${reserv.mem_id}</td>
 						<td>${reserv.mem_nickname}</td>
@@ -46,7 +46,7 @@
 					</tr>
 					</c:forEach>
 				</table>
-				<div class="align-center">${page}</div>
+				<div class="align-center mt-3">${page}</div>
 				</c:if>
 			</div>
 		</div>
