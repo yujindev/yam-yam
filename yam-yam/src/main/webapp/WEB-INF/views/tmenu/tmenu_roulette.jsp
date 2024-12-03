@@ -21,10 +21,9 @@
         <!-- 캔버스 -->
         <canvas id="roulette_canvas" width="400" height="400"></canvas>
         <!-- 버튼 -->
-        <br><br>
-        <div class="radom-button-container">
-            <button id="spin_roulette" class="random-button">룰렛 돌리기</button>
-            <button id="refresh_menu" class="random-button">메뉴 바꾸기</button>
+        <div class="radom-button-container mt-3">
+            <button id="spin_roulette" class="random-button btn-primary">룰렛 돌리기</button>
+            <button id="refresh_menu" class="random-button btn-line-primary">메뉴 바꾸기</button>
         </div>
     </div>
    </div>
