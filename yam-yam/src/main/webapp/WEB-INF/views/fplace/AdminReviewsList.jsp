@@ -67,15 +67,15 @@
 				<td>
 					<a href="adminUserForm.do?mem_num=${reviews.mem_num}">${reviews.id}</a>
 				</td> --%>
-				<td class="l-author">${reviews.mem_nickname}</td>
-				<td class="l-fpname">${reviews.fp_name}</td>
+				<td>${reviews.mem_nickname}</td>
+				<td>${reviews.fp_name}</td>
 				<td class="w-60">${reviews.reviews_con}</td>
 				<td>${reviews.reviews_score}</td>
 				<td>${reviews.reviews_date}</td>
 			</tr>
 			</c:forEach>
 		</table>
-		<div class="align-center">${page}</div>
+		<div class="align-center mt-3">${page}</div>
 		</c:if>
 	</div>
 </div>

@@ -68,15 +68,15 @@
 	 		</tr>
 	 		<c:forEach var="fplace" items="${list}">
 	 		<tr align="center">
-	 			<td class="l-fpname"><a href="detail.do?fp_num=${fplace.fp_num}">${fplace.fp_name}</a></td>
+	 			<td><a href="detail.do?fp_num=${fplace.fp_num}">${fplace.fp_name}</a></td>
 	 			<td>${fplace.fp_avgscore}</td>
 	 			<td>${fplace.reviews_count}개</td>
 	 			<td>${fplace.fp_filter1}, ${fplace.fp_filter2}, ${fplace.fp_filter3}</td>
-	 			<td class="l-author">${fplace.mem_num}</td>
+	 			<td>${fplace.mem_num}</td>
 	 		</tr>
 	 		</c:forEach>
 	 	</table>
-	 	<div class="align-center">${page}</div>
+	 	<div class="align-center mt-3">${page}</div>
 	</c:if>
 	</div>
 </div>
