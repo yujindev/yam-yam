@@ -49,40 +49,34 @@
     		</ul>
     	</form>
 
-            <!-- 게시물 목록 -->
-            <c:if test="${count == 0}">
-                <div class="result-display">
-                    표시할 게시물이 없습니다.
-                </div>
-            </c:if>
-            <c:if test="${count > 0}">
-               <table>
-		             <tr>
-		                 <th>글번호</th>
-		                 <th>카테고리</th>
-		                 <th>제목</th>
-		                 <th>작성일</th>
-		                 <th>조회수</th>
-		             </tr>
-		             <c:forEach var="board" items="${list}">
-		                 <tr>
-		                     <td>${board.board_num}</td>
-		                     <td>${board.category}</td>
-			                  <td>
-			                    <a href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">${board.board_title}</a>			                
-			                </td>
-		                     <td>${board.board_date}</td>
-		                     <td>${board.board_hit}</td>		                     
-		                 </tr>
-		             </c:forEach>
-		            </table>
-                  <div class="align-center">${page}</div>
-            </c:if>
-            </div>
-        </div>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-	
-	<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+   <!-- 게시물 목록 -->
+   <c:if test="${count == 0}">
+       <div class="result-display">
+           표시할 게시물이 없습니다.
+       </div>
+   </c:if>
+   <c:if test="${count > 0}">
+      <c:forEach var="board" items="${list}">
+      <ul class="w-95 m-0auto mt-2">
+      	<li>
+      	<a href="${pageContext.request.contextPath}/${board.tableUrl}_detail.do?${board.tableUrlNum}=${board.board_num}">
+      		<ul>
+      			<li class="fs-10"><span class="text-main fw-500">${board.category}</span></li>
+			       <li class="fs-12 mt-1"><span class="fs-08 text-gr500 pr-05">No.${board.board_num}</span>${board.board_title}</a></li>
+			       <li class="fs-08 mt-1">${board.board_date}</li>
+			       <li class="fs-08 text-r">조회수 | ${board.board_hit}</li>		                     
+			       <li class="bar pt-2"></li>		
+	      	</ul>
+      	</a>
+      </li>
+     </ul>
+      </c:forEach>
+         <div class="align-center mt-3">${page}</div>
+   </c:if>
+   </div>
+   <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<jsp:include page="/WEB-INF/views/reserv/reservList.jsp" />
 </body>
 </html>
