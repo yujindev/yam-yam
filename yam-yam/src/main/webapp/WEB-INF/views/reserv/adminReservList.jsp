@@ -5,7 +5,7 @@
 <html>
 <head>  
 <meta charset="UTF-8">  
-<title>예약관리()</title>
+<title>예약관리(관리자 전)</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
