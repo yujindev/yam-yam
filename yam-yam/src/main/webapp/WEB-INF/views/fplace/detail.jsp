@@ -135,25 +135,24 @@
 			<!-- 메뉴 작성 폼 시작 -->
 			<div id="menu-form" style="display: none;">
 
-				<form id="fpmenu_form" enctype="multipart/form-data" method="post">
+				<form id="fpmenu_form" enctype="multipart/form-data" method="post" class="m-1">
 					<input type="hidden" name="fp_num" value="${fplace.fp_num}"
 						id="fp_num">
-					<div class="form-group">
-						<label for="fpmenu_name">메뉴 이름</label> <input type="text"
-							name="fpmenu_name" id="fpmenu_name" class="input-check">
+					<div class="flex-box mt-1">
+						<label for="fpmenu_name">메뉴 이름</label>
+						<input type="text"	name="fpmenu_name" id="fpmenu_name" class="input-check p-05 w-80 ml-auto">
 					</div>
-					<div class="form-group">
-						<label for="fpmenu_price">가격</label> <input type="number"
-							name="fpmenu_price" id="fpmenu_price" min="1" max="999999999"
-							class="input-check">
+					<div class="flex-box mt-1">
+						<label for="fpmenu_price">가격</label>
+						<input type="number" name="fpmenu_price" id="fpmenu_price" min="1" max="999999999" class="input-check p-05 w-80 ml-auto">
 					</div>
-					<div class="form-group">
-						<label for="fpmenu_img">이미지</label> <input type="file"
-							name="fpmenu_img" id="fpmenu_img" accept="image/*">
+					<div class="flex-box mt-1">
+						<label for="fpmenu_img">이미지</label>
+						<input type="file" name="fpmenu_img" id="fpmenu_img" accept="image/*" class=" p-05 w-80 ml-auto">
 					</div>
-					<div id="menu_buttons" class="align-right">
-						<input type="submit" value="등록"> <input type="button"
-							value="취소" id="fpmenu-cancel-btn">
+					<div id="menu_buttons" class="mb-2 text-r">
+						<input type="submit" value="등록" class="btn-re btn-primary">
+						<input type="button" value="취소" id="fpmenu-cancel-btn" class="btn-re">
 					</div>
 
 				</form>

@@ -38,13 +38,14 @@
 
 			<div class="bar mt-1"></div>
 				<article class="p-2">
-				<c:if test="${!empty board.filename}">
+				<c:if test="${!empty czone.czone_filename}">
 					<div class="align-center">
 				<img src="${pageContext.request.contextPath}/upload/${czone.czone_filename}" class="detail-img">		
 				</div>
-				</c:if>
+				</c:if>				
 				위치 : ${czone.czone_loc}
 				<br>
+				<br>				
 				내용 : ${czone.czone_article}
 				</article>
 				

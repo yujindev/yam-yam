@@ -31,30 +31,32 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>게시판 글쓰기</h2>
-			<form id="write_form" action="cmov_write.do" method="post" enctype="multipart/form-data">
+			<h2 class="fw-700">게시판 글쓰기</h2>
+			<form id="write_form" action="cmov_write.do" method="post" enctype="multipart/form-data" class="mt-3 w-80 m-0auto">
 				<ul>
-					<li><label for="cmov_title">제목</label> <input type="text"
-						name="cmov_title" id="cmov_title" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cmov_title">제목</label> <input type="text"
+						name="cmov_title" id="cmov_title" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 											
-					<li><label for="cmov_link">링크</label> <input type="url"
-						name="cmov_link" id="cmov_link" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cmov_link">링크</label> <input type="url"
+						name="cmov_link" id="cmov_link" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li>					
+					<li class="flex-box mb-2">
 					<label for="cmov_article">내용</label> 
-					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check"></textarea>
+					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check w-90 p-05 ml-auto block-box"></textarea>
 					</li>
-					
 					
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="등록"> 
-					<input type="button" value="목록" onclick="location.href='list.do'">
+				<div class="flex-box f-end mt-3">
+					<input type="submit" value="등록" class="btn btn-primary"> 
+					<input type="button" value="목록" onclick="location.href='list.do'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
 </body>
 </html>
