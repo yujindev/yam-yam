@@ -106,20 +106,20 @@
 			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="fp_num" value="${fplace.fp_num}">
 				<ul>
-					<li><label for="fp_name">식당이름</label> 
-					<input type="text" name="fp_name" id="fp_name"  value="${fplace.fp_name}" maxlength="50" class="input-check">
+					<li class="flex-box"><label for="fp_name">식당이름</label> 
+					<input type="text" name="fp_name" id="fp_name"  value="${fplace.fp_name}" maxlength="50" class="input-check w-80 ml-2">
 					</li>
 					
-					<li><label for="fp_phone">식당번호</label> 
-					<input type="text" name="fp_phone" id="fp_phone"  value="${fplace.fp_phone}" maxlength="50" class="input-check">
+					<li class="flex-box"><label for="fp_phone">식당전화번호</label> 
+					<input type="text" name="fp_phone" id="fp_phone"  value="${fplace.fp_phone}" maxlength="50" class="input-check w-80 ml-2">
 					</li>
 					
-					<li><label for="fp_time">식당운영시간</label> 
-					<input type="text" name="fp_time" id="fp_time"  value="${fplace.fp_time}" maxlength="50" class="input-check">
+					<li class="flex-box"><label for="fp_time">식당운영시간</label> 
+					<input type="text" name="fp_time" id="fp_time"  value="${fplace.fp_time}" maxlength="50" class="input-check w-80 ml-2">
 					</li>
 					
-					<li><label for="fp_loc">식당위치</label> 
-					<input type="text" name="fp_loc" id="fp_loc"  value="${fplace.fp_loc}" maxlength="50" class="input-check">
+					<li class="flex-box"><label for="fp_loc">식당위치</label> 
+					<input type="text" name="fp_loc" id="fp_loc"  value="${fplace.fp_loc}" maxlength="50" class="input-check w-80 ml-2">
 					</li>
 					
 					<li><label for="fp_filter1">필터1 (식사, 간식)</label></li>
@@ -147,23 +147,22 @@
 				    <label><input type="checkbox" name="fp_filter3" value="모임">모임</label>
 					</li>
 
-	                <li><label for="fp_storeimg">식당이미지</label>
-	                <c:if test="${!empty fplace.fp_storeimg}">
-	                    <div id="file_detail">
-	                      
-	                        <img id="preview_img" src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" width="100">
-	                          <p>(${fplace.fp_storeimg}) 파일이 등록되어 있습니다.</p>
-	                        <input type="button" value="파일삭제" id="file_del" class="btn block-box ml-auto w-20">
-	                    </div>
-	                </c:if>
-	                   <input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
-	                <c:if test="${empty fplace.fp_storeimg}">
-	                    <img id="preview_img" src="" width="100" style="display:none;">
-	                </c:if>
-	                </li>
+           <li class="flex-box">
+           <label for="fp_storeimg block-box">식당이미지</label>
+           <c:if test="${!empty fplace.fp_storeimg}">
+               <div id="file_detail" class="block-box">
+                   <img id="preview_img" src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" class="w-20 block-box m-0auto">
+                     <p>(${fplace.fp_storeimg}) 파일이 등록되어 있습니다.</p>
+                   <input type="button" value="파일삭제" id="file_del" class="btn-re block-box ml-auto w-20 fs-08">
+               </div>
+           </c:if>
+              <input type="file" name="fp_storeimg" id="fp_storeimg" accept="image/gif,image/png,image/jpeg">
+           <c:if test="${empty fplace.fp_storeimg}">
+               <img id="preview_img" src="" width="100" style="display:none;">
+           </c:if>
+           </li>
 	                
-	                <li><label for="">예약 가능 시간</label> 
-					<br>
+          <li><label for="">예약 가능 시간</label> 
 					<!-- 11시 ~ 2시 --> 
 						<input type="checkbox" name="ft_time" value="11:00"> <span>11:00</span>
 						<input type="checkbox" name="ft_time" value="11:30"> <span>11:30</span>
@@ -186,7 +185,7 @@
 	                
 	                
 	                
-	            </ul>
+       </ul>
 	            
 				<div class="align-center">
 					<button type="submit" class="btn-primary">수정</button>
