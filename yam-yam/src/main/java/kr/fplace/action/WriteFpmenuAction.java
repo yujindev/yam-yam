@@ -26,6 +26,8 @@ public class WriteFpmenuAction implements Action{
 		Long user_num = (Long)session.getAttribute("user_num");
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
+		request.setCharacterEncoding("utf-8");
+		
 		FplaceDAO dao = FplaceDAO.getInstance();
 		
 		//fp_num 가져오기
@@ -36,7 +38,6 @@ public class WriteFpmenuAction implements Action{
 		if (user_num == null || (user_auth != 9 && user_auth != 7)) {//로그인이 되지 않은경우, 관리자, 식당관리자로 로그인 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else if(user_num!=null && (user_num == db_fplace.getMem_num() || user_auth == 9)) {
-			request.setCharacterEncoding("utf-8");
 			FpMenuVO fpmenu = new FpMenuVO();
 			fpmenu.setMem_num(user_num);
 			fpmenu.setFpmenu_name(request.getParameter("fpmenu_name"));
