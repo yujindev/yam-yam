@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.ant.jmx.JMXAccessorQueryTask;
 
 import kr.controller.Action;
 import kr.fplace.dao.FplaceDAO;
 import kr.fplace.vo.FpMenuVO;
 import kr.fplace.vo.FplaceVO;
-import kr.fplace.vo.ReviewsVO;
 import kr.util.FileUtil;
 import kr.util.StringUtil;
 
