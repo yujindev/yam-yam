@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
 <meta charset="UTF-8">
 <title>예약관리()</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
