@@ -14,7 +14,7 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-	<h2>내 식당 예약 관리</h2>
+	<h2 class="fw-700">내 식당 예약 관리</h2>
 		<c:if test="${count==0}">
 				<div class="result-display">
 					표시할 예약정보가 없습니다.

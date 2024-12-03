@@ -32,10 +32,6 @@ public class AdminReservListAction implements Action{
 		ReservDAO dao = ReservDAO.getInstance();
 		Long fp_num = dao.getFpNumByMemNum(user_num);
 		int count = dao.AllReservCount(fp_num);
-		
-		if (fp_num == null) {
-			throw new Exception("fp_num을 찾을 수 없습니다. 관리자의 가게 정보가 올바르지 않습니다.");
-		}
 				
 		//페이지 처리
 		PagingUtil page = new PagingUtil(null,null,Integer.parseInt(pageNum),count,20,10,"adminReservList.do");
@@ -47,6 +43,7 @@ public class AdminReservListAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("reserv", reserv);
 		request.setAttribute("page", page.getPage());
+		request.setAttribute("fp_num", fp_num);
 		
 		//JSP 경로 반환
 		return "reserv/adminReservList.jsp";
