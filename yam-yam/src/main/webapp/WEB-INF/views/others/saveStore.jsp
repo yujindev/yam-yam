@@ -36,17 +36,15 @@
 					<button onclick="location.href ='${pageContext.request.contextPath}/fplace/list.do'" class="block-box m-0auto btn btn-primary mt-2">식당찾기</button>
 				</div>
 			</c:if>
-			<c:if test="${count == 1}">
 			<c:forEach var="fplace" items="${list}">
-			<ul class="bg-gr300 pb-1">
-				<li>음식점 이름 : ${fplace.fp_name}</li>
-				<li>연락처 : ${fplace.fp_phone}</li>
-				<li>영업시간 : ${fplace.fp_time}</li>
-				<li>위치 : ${fplace.fp_loc}</li>
-				<li><img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}" class="image-cell"></li>
+			<ul class="bg-gr150 p-2 mb-1">
+				<li class="fw-700 fs-12 text-main">${fplace.fp_name}</li>
+				<li class="mt-1 fw-500">연락처 : ${fplace.fp_phone}</li>
+				<li class="mt-05">영업시간 : ${fplace.fp_time}</li>
+				<li class="mt-05">위치 : ${fplace.fp_loc}</li>
+				<li class="mt-2"><img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" alt="${fplace.fp_name}" class="w-20"></li>
 			</ul>
-				</c:forEach>
-			</c:if>
+			</c:forEach>
 		</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
