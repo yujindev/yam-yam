@@ -374,9 +374,6 @@ h2{
   font-size: 2rem;
   line-height: 2;
 }
-header h1 {
-  padding: 0 3rem;
-}
 header nav { 
   padding: 0 1rem 1rem;
 }
@@ -394,9 +391,6 @@ header button {
   padding: .4rem;
 }
 
-.nav_menu {
-  /* height: fit-content; */
-}
 .nav_menu_title {
   width: 100%;
   font-size: 1.2rem;
@@ -437,6 +431,9 @@ header .btn_area li {
   height: fit-content;
 }
 
+header .btn_area button {
+	    width: 80px;
+}
 /* ==============================게시======================================== */
 
 .form-ttl {

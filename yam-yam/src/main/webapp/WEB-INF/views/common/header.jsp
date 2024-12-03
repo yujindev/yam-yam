@@ -3,10 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <header class="flex-box">
-	<h1>
-		<a class="m-0auto pb-1"
-			href="${pageContext.request.contextPath}/main/main.do"><img
-			src="${pageContext.request.contextPath}/images/logo.svg" alt="로고"></a>
+	<h1 class="m-0auto">
+		<a class="pt-3" href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/logo.svg" alt="로고"></a>
 	</h1>
 	<nav class="ml-auto bg-gr100">
 		<ul class="flex-box menu-box f-center">
@@ -82,21 +80,15 @@
 						alt="로그인" width="50px">
 				</button></li>
 		</c:if>
-		
-		
 		<c:if test="${user_num != null}">
 			<li>
-				<button type="button"
-					onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
-					<img
-						src="${pageContext.request.contextPath}/images/icon-profile.svg"
-						alt="마이페이지" width="50px">
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
+					<img src="${pageContext.request.contextPath}/images/icon-profile.svg" alt="마이페이지" width="50px">
 				</button>
-				<button type="button"
-					onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
-					<img
-						src="${pageContext.request.contextPath}/images/icon-logout.svg"
-						alt="로그아웃" width="50px">
+				</li>
+				<li>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
+					<img src="${pageContext.request.contextPath}/images/icon-logout.svg" alt="로그아웃" width="50px">
 				</button>
 			</li>
 		</c:if>
@@ -107,24 +99,6 @@
     const subMenu = document.querySelectorAll('.nav_smenu');
     const btnNav = document.querySelector('.btn-nav');
 
-    /*
-	    //toggle형태
-	    btnNav.addEventListener('click', () => {
-	    subMenu.forEach(item => {
-	      item.classList.toggle('open'); // 각 요소에 active 클래스 추가
-	    });
-	  });
-	    
-	 헤더 메뉴 중 아무 메뉴를 클릭해도 모든 서브메뉴 열기/닫기
-	    menu.forEach(item => {
-	        const button = item.querySelector('.nav_menu_title');
-	        button.addEventListener('click', () => {
-	            subMenu.forEach(sub => {
-	                sub.classList.toggle('open'); // 모든 서브메뉴에 open 클래스 토글
-	            });
-	        });
-	    });
-	 */
 	  //헤더 메뉴에 마우스를 올리면 모든 서브메뉴 열기
 	    menu.forEach(item => {
 	        item.addEventListener('mouseenter', () => {
