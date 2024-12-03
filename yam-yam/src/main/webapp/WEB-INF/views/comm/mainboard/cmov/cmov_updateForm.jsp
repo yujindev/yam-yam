@@ -33,29 +33,32 @@ $(function(){
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<div class="content-main">
-			<h2>글 수정</h2>
+			<h2 class="fw-700">글 수정</h2>
 			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="cmov_num" value="${cmov.cmov_num}">
 				<ul>
-					<li><label for="cmov_title">제목</label> <input type="text"
-					value="${cmov.cmov_title}" name="cmov_title" id="cmov_title" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cmov_title">제목</label> <input type="text"
+					value="${cmov.cmov_title}" name="cmov_title" id="cmov_title" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li><label for="cmov_link">링크</label> <input type="url" value="${cmov.cmov_link}"
-						name="cmov_link" id="cmov_link" maxlength="50" class="input-check">
+					<li class="flex-box mb-2">
+					<label for="cmov_link">링크</label> <input type="url" value="${cmov.cmov_link}"
+						name="cmov_link" id="cmov_link" maxlength="50" class="input-check w-90 p-05 ml-auto block-box">
 					</li>
 					
-					<li>
+					<li class="flex-box mb-2">
 					<label for="cmov_article">내용</label> 
-					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check">${cmov.cmov_article}</textarea>
+					<textarea rows="5" cols="40" name="cmov_article" id="cmov_article" class="input-check w-90 p-05 ml-auto block-box">${cmov.cmov_article}</textarea>
 					</li>
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="수정"> 
-					<input type="button" value="글 상세" onclick="location.href='cmov_detail.do?cmov_num=${cmov.cmov_num}'">
+				<div class="flex-box f-end mt-3">
+					<input type="submit" value="수정" class="btn btn-primary"> 
+					<input type="button" value="수정 취소" onclick="location.href='cmov_detail.do?cmov_num=${cmov.cmov_num}'" class="btn ml-1">
 				</div>
 			</form>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
 </body>
 </html>
