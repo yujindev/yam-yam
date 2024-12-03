@@ -192,6 +192,60 @@ public class ReservDAO {
 	    return fp_num;
 	}
 	
+	//식당 예약의 rs_num 조회하여 예약자 mem_num 조회
+	public Long getMemNumByRsNum(Long rs_num) throws Exception{
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    Long mem_num = 0L;
+		
+	    try {
+	        conn = DBUtil.getConnection();
+	        sql = "SELECT mem_num FROM reserv WHERE rs_num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(1, rs_num);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            mem_num = rs.getLong("mem_num");
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+		
+		return mem_num;
+	}
+	
+	//식당 예약의 rs_num 조회하여 예약자 mem_num과 rs_status 조회
+	public int getRsStatusByRsNum(Long rs_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int rs_status = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT rs_status FROM reserv WHERE rs_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, rs_num);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				rs_status = rs.getInt("rs_status");
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return rs_status;
+	}
+	
 	//식당관리자 예약 갯수세기
 	public int AllReservCount(long fp_num) throws Exception{
 		Connection conn = null;
@@ -261,6 +315,44 @@ public class ReservDAO {
 
 	    return list;
 	}
+	
+	//식당관리자 예약 상세 보기
+	public ReservVO getReservByRsNum(Long rs_num) throws Exception {
+        ReservVO reserv = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtil.getConnection();
+            String sql = "SELECT r.rs_num, f.fp_name, m.mem_id, m.mem_nickname, r.rs_time, r.rs_cnt, r.rs_status "
+                       + "FROM reserv r "
+                       + "JOIN fplace f ON r.fp_num = f.fp_num "
+                       + "JOIN member m ON r.mem_num = m.mem_num "
+                       + "WHERE r.rs_num = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, rs_num);
+
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                reserv = new ReservVO();
+                reserv.setRs_num(rs.getLong("rs_num"));
+                reserv.setFp_name(rs.getString("fp_name"));
+                reserv.setMem_id(rs.getString("mem_id"));
+                reserv.setMem_nickname(rs.getString("mem_nickname"));
+                reserv.setRs_time(rs.getString("rs_time"));
+                reserv.setRs_cnt(rs.getInt("rs_cnt"));
+                reserv.setRs_status(rs.getInt("rs_status"));
+            }
+        }catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+
+        return reserv;
+    }
+	
 	
 	//식당관리자 예약 상태 관리
 	public void ManageReserv(long rs_num,int rs_status,long mem_num) throws Exception{

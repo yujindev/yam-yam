@@ -133,7 +133,6 @@ $.ajax({
 	},
 	error:function(){
 		$('#loading').hide();
-		alert('네트워크 오류 발생');
 	}
 })
 </script>

@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약 페이지</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/HR.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
@@ -96,8 +95,7 @@
 }
 
 .reserv-time-select input:checked + span {
-    background-color: #ff69b4;
-    color: #fff;
+    color: grey;
 }
 
 /* 버튼 스타일 */
@@ -118,6 +116,7 @@ button {
 .btn-submit {
     background-color: #ff7800;
     color: #fff;
+    width: 20%;
 }
 
 .btn-submit:hover {
@@ -127,6 +126,7 @@ button {
 .btn-cancel {
     background-color: #ddd;
     color: #333;
+    width: 20%;
 }
 
 .btn-cancel:hover {
@@ -147,11 +147,31 @@ p {
 #datepicker {
     font-family: 'Arial', sans-serif;
     max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
+    margin: 17px 17px 17px 15%;
+    padding: 5px;
     background-color: #fff;
-    border:none;
-    width:60%;
+    border: none;
+    width: 60%;
+}
+
+.ui-datepicker {
+    width: 70%;
+    padding: 0.2em 0.2em 0;
+}
+.ui-widget-content {
+    padding: 0.6em;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    color: #333333;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: none;
+    background: white;
+    font-weight: normal;
+    width: 40px;
+}
+.reserv-notice-left{
+	text-align:left;
 }
 
 /* 달력 헤더 (월/년도 표시) */
@@ -205,12 +225,12 @@ p {
 /* 선택된 날짜 (원형 테두리 추가) */
 .ui-datepicker-calendar tbody td a.ui-state-active {
     position: relative;
-    border: 2px solid #FF7800;
+    border: 3px solid #FF7800;
     border-radius: 50%;
-    padding: 5px;
+    padding: 0px;
     font-weight: bold;
     color: #FF7800;
-    background-color:white;
+    background-color: white;
 }
 
 /* hover 효과 */
@@ -370,8 +390,8 @@ p {
   </script>
 </head>
 <body>
-<div class="reservation-container">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="reservation-container">
 	<div class="store-info">
 		<img src="${pageContext.request.contextPath}/upload/${fplace.fp_storeimg}" width="400">
 		<div class="store-details">
@@ -402,14 +422,14 @@ p {
 		        </div>
 		    </div>
 		</div>
-		<button type="submit" class="btn-submit">예약 신청</button>
-        <button type="button" class="btn-cancel" onclick="location.href='detail.do?fp_num=${fplace.fp_num}'">예약취소</button>
-		<p>
+		<p class="reserv-notice-left">
 		예약시 주의 사항<br>
 		예약신청 후 사장님의 승인으로 예약확정이 완료됩니다.<br>
 		예약시간 노쇼시 이후 예약확정에 어려움이 있을 수 있습니다.<br>
 		단체손님 예약은 따로 문의해야합니다.
 		</p>
+		<button type="submit" class="btn-submit">예약 신청</button>
+        <button type="button" class="btn-cancel" onclick="location.href='detail.do?fp_num=${fplace.fp_num}'">예약취소</button>
 		</form>
 		<jsp:include page="/WEB-INF/views/reserv/reservList.jsp"/>
 	</div>

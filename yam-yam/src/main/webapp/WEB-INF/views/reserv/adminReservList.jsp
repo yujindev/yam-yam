@@ -38,10 +38,10 @@
 						<td>${reserv.rs_time}</td>
 						<td>${reserv.rs_cnt}</td>
 						<td>
-							<c:if test="${reserv.rs_status == 1}"><a href="/fplace/adminReserv.do?rs_num=${reserv.rs_num}">예약 확인중</a></c:if>
-							<c:if test="${reserv.rs_status == 2}"><a href="/fplace/adminReserv.do?rs_num=${reserv.rs_num}">예약 확정</a></c:if>
-							<c:if test="${reserv.rs_status == 3}"><a href="/fplace/adminReserv.do?rs_num=${reserv.rs_num}">예약 지남</a></c:if>
-							<c:if test="${reserv.rs_status == 4}"><a href="/fplace/adminReserv.do?rs_num=${reserv.rs_num}">예약 취소</a></c:if>
+							<c:if test="${reserv.rs_status == 1}"><a href="detailReservForm.do?rs_num=${reserv.rs_num}">예약 확인중</a></c:if>
+							<c:if test="${reserv.rs_status == 2}"><a href="detailReservForm.do?rs_num=${reserv.rs_num}">예약 확정</a></c:if>
+							<c:if test="${reserv.rs_status == 3}"><a href="detailReservForm.do?rs_num=${reserv.rs_num}">예약 지남</a></c:if>
+							<c:if test="${reserv.rs_status == 4}"><a href="detailReservForm.do?rs_num=${reserv.rs_num}">예약 취소</a></c:if>
 						</td>
 					</tr>
 					</c:forEach>
