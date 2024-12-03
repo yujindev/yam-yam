@@ -29,7 +29,7 @@
 						<th>예약일시</th>
 						<th>예약인원</th>
 						<th>현재 예약 상태</th>
-					</tr>
+					</tr>  
 					<c:forEach var="reserv" items="${reserv}">
 					<tr class="text-c">
 						<td>${reserv.fp_name}</td>
