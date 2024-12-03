@@ -41,6 +41,7 @@ $(function(){
 					     output += '<img src="../upload/'+item.reviews_img1+'" class="w-20">';
 					}
 					output+='<div class="top-actions">';
+					output += '<span style="color: #FFD700;">&#9733;</span> <span>' + item.reviews_score + '</span>';
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자 회원번호 일치
@@ -58,7 +59,6 @@ $(function(){
 						}
 					}
 					output += '<span class="output_brcount"> '+item.reviews_count+'</span>'; 
-					output += '<span>&#9733; ' + item.reviews_score + '</span>';
 					output+='</div>';
 					
 					output += '<hr size = "1" noshade width="98%">';
