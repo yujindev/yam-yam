@@ -36,7 +36,6 @@ public class UpdateAction implements Action{
 		board.setCbob_gender1(request.getParameter("cbob_gender1"));
 		board.setCbob_gender2(request.getParameter("cbob_gender2"));
 		board.setCbob_meet(request.getParameter("cbob_meet"));
-		board.setCbob_hit(Integer.parseInt(request.getParameter("cbob_hit")));
 		
 		CBOB_BoardDAO dao = CBOB_BoardDAO.getInstance();
 		dao.updatecbobBoard(board);

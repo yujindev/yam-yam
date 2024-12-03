@@ -20,7 +20,6 @@
 			<h2 class="fw-700">${cmenu.cmenu_title}</h2>
 				<ul class="">
 					<li class="fw-700 fs-12">
-					<span class="va-super">${cmemu.mem_nickname}</span>
 					<a href="#">
 						<c:if test="${!empty cmenu.mem_img2}">
 						<img src="${pageContext.request.contextPath}/upload/${cmenu.mem_img2}" width="40" height="40" class="my-photo">
